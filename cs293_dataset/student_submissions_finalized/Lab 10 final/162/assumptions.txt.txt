@@ -1,0 +1,1 @@
+Doesn't go in a loop. A->B->C->A->D is not a valid route and it seems unreasonable.

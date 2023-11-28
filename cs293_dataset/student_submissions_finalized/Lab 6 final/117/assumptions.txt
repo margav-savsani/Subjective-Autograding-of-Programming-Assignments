@@ -1,0 +1,2 @@
+Capitalization changes the station
+Searching doesn't care about Capitalization

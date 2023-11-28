@@ -1,0 +1,2 @@
+In this program I assumed that while implementing the modified DFS we will go to the adjacent node which has the least integer value stored in it.
+I also printed the BST tree immediately after performing modified DFS on each connected component.

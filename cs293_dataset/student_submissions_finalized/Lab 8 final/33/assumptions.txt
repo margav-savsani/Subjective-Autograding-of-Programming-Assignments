@@ -1,0 +1,22 @@
+210050161_Lab 8 || Varada Mahanth Naidu
+
+Assumptions :-
+  # I have added extra member variable "height" of int type in the class TreeNode which is equal to the height of the node in a particular heap .
+  # I have added some extra member functions in the class Heap :- 
+           1) getheight() :
+                 # returns the height of a particular node in a heap .
+           2) Heapify_up()  
+                 # heapifies the object values in the node from bottom to top .
+           3) Heapify_down()  
+                 # heapifies the object values in the node from top to bottom .
+           4) swap() 
+                 # exchanges the object values present in the two nodes .
+           5) findlast_insert()
+                 # this actually returns the pointer pointing the node where the new node has to be inserted .
+                 # thought someidea in my mind but this didnt work...so i didnt use this function anywhere in the code .
+  # I have added some extra member variables num_levels , free_index both of int type in the class Heap .
+  # num_levels refers to the number of levels in the heap tree .
+  # free_index refers to the index of the free node in the last row where the new node has to be added during insertion .
+  # I have defined array named array in the code and converted this heap into a binary heap ( left means 0 and right means 1 ) .
+  # Used this array to find the node where the new node has to be inserted and also to find the node where the last node has to be deleted .
+  # Finally I have implemented the print function which was referred from printBST given in old labs .

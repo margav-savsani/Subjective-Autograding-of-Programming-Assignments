@@ -1,0 +1,7 @@
+Assumptions:
+
+I used the following conditions for traversal in DFS as explained by sir in the help session
+1) If we travel from A to B, we cannot go from B to A
+2) No of nodes visited once and twice, might be different for the same graph depending on the starting node
+
+If there are multiple cycles involving a common node, then I considered it to be a part of only one cycle(i.e avoided recounting) 

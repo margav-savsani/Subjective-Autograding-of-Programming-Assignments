@@ -1,0 +1,5 @@
+Prerak Contractor
+210050124
+-------------------------------
+
+Assuming getMax function is not called when root is null.

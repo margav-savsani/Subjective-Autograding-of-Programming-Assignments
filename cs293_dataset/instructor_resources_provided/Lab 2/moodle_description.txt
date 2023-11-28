@@ -1,0 +1,9 @@
+Please read the problem statement in file problem_statement.pdf and then proceed to solve this assignment.
+
+The assignment has two parts.  You are expected to complete part 1 in the lab on Fri, Aug 12.  You will upload your solution of this part on moodle as a single tar zipped file by the end of the lab on Aug 12, and will be evaluated based on this submission.   Part 2 can be completed later, and must be uploaded on moodle as a single tar zipped file by Fri, Aug 19, 2pm.  This part will be evaluated on Fri, Aug 19.
+
+If you have any doubts, feel free to ask the TA assigned to you.  You should have received an email listing assignment of TAs to students 
+
+# Submission stats
+Participants	200
+Submitted	186

@@ -1,0 +1,4 @@
+I have assumed srcStnName and destStnName to be distinct.
+I have assumed that for each neighbouring station , trains travelling directly to them from a particular station   have different journeycodes.
+For eg :- from A there are two neighbouring stations B and C then journeycode(A->B) and journeycode(A->C) are not same .
+I have also assumed that no train loops around , that is it does'nt come back to the same station after some steps.

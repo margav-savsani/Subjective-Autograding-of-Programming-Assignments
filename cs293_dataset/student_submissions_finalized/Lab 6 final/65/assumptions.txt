@@ -1,0 +1,5 @@
+1)EVERY INSERTION SHOULD BE DONE ONLY IN CAPITALS
+
+2) station names can contain whitespaces
+
+3)while using "Do you want to filter reviews by keyword? (y/n)".. the entry should be case sensitive.

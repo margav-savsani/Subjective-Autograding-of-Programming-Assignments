@@ -1,0 +1,29 @@
+Please follow the submission instructions below carefully. 
+Submissions prepared without following these instructions WILL NOT BE GRADED.
+
+1. Create a separate directory named <roll_number>_L8, where roll_number is your roll number. 
+
+2. Clearly write whatever assumptions you had to make to solve the lab assignment in an ASCII text file named assumptions.txt 
+If you have not made any assumptions, create an empty assumptions.txt file
+
+3. Place only the following files in the above directory (i.e. in <roll_number>_L8):  
+
+          Heap.h, Heap.cpp, assumptions.txt 
+   
+    Any other files found in this directory may lead to severe penalty
+
+4. Go to the parent directory of <roll_number>_L8
+
+5. Run tar -zcvf   <roll_number>_L8.tgz    <roll_number>_L8
+
+6.  Check by running tar -xcvf <roll_number>_L8.tgz that the extracted directory contains only Heap.h, Heap.cpp and assumptions.txt, and nothing else.  Make sure there are no hidden files in the extracted directory.
+
+You can list all files in a directory, including hidden files, on Linux using "ls -a"
+
+7. If the above step shows shows files other than Heap.h, Heap.cpp and assumptions.txt in the extracted directory, delete the <roll_number>_L8 directory and re-start from step 1.
+
+Otherwise, upload only <roll_number>_L8.tgz  on Moodle
+
+# Submission stats
+Participants	200
+Submitted	163

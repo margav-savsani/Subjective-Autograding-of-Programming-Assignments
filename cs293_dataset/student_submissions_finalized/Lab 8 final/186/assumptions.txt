@@ -1,0 +1,9 @@
+Name        : Atishay Jain
+Roll Number : 210050026
+CS293 Lab 8 - Heap
+
+Assumptions : 
+1. I used print heap function from previous BST lab, as it does not matter 
+   much for working of heap that how are we printing
+2. I have made some other member functions for Heap class according to my
+   implementation

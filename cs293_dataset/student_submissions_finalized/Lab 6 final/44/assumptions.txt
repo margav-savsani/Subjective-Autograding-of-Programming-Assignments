@@ -1,0 +1,7 @@
+Completions stores the station names with the given prefix at the address of currCompletion.
+
+addCompletion assumes we are already at the leaf, and then it adds station names to the address of the currCompletion. 
+
+
+I have logically written it correct, but I am not sure why is it not showing the correct result.
+I have written in comments what all cases I have taken and why. 

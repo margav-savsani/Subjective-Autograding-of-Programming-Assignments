@@ -1,0 +1,8 @@
+210050011- Ameya Deshmukh
+
+CS293 Lab 7
+
+Assumptions:
+
+1) The journeys for a station have been sorted according to their days first, then by their departure times.
+2) If a journey ends at the station, it is placed at the top of the sorted list for its day for the station.

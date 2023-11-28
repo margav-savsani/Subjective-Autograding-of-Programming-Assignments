@@ -1,0 +1,3 @@
+The format to run the code is:
+1. './a.out < graphFile.txt' (this will store the output in a file named 'outgraph.txt')
+2. './a.out outputFile.txt < graphFile.txt' (this will store the output in a file named outputFile.txt)

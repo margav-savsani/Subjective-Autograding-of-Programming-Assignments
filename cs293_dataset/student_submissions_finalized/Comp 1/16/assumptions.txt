@@ -1,0 +1,5 @@
+Assumptions:
+1. One shouln't go through the path that already has been traversed in oppsoite direction, eg A->B then after that we shouldn't go from B->A.
+2. Can visit a node only twice (at max).
+
+#####################################################################

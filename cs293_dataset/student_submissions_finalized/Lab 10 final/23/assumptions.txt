@@ -1,0 +1,4 @@
+i have found the path from source to destination.
+then i have calculated all the trains.
+then i have kept the constraint on the trais which i have found.
+after that i will print all the trains.

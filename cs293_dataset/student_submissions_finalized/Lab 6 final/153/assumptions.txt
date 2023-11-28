@@ -1,0 +1,1 @@
+On deletion of a word in the trie, if the node contains no completions anymore, then that part of the trie is assumed to be useless and is thus pruned.

@@ -1,0 +1,12 @@
+For giving the input file as input please follow:
+Run the following commands:
+    g++ main.cpp
+    ./a.out
+Then it will ask for input: Please write the input file name
+So the commands for input file name "inputs.txt" are
+g++ main.cpp
+./a.out
+inputs.txt
+
+
+I have printed the output in a terminal instead of in a file. Please consider it.

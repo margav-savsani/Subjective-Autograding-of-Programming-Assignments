@@ -1,0 +1,1 @@
+If a node is already visited twice I do not search in its neighbours.

@@ -1,0 +1,1 @@
+1)No journey loops with the same journey code, that is, no train goes from A->B->C and then back to A.

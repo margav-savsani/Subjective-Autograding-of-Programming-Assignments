@@ -1,0 +1,4 @@
+Note :: Both QuickSort and QuickSortSimple is implemented
+ 
+Sort by day , if days are  equal sort by arrival time , if arrival is same 
+sort by depature time .

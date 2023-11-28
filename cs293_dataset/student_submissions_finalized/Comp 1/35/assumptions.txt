@@ -1,0 +1,7 @@
+If we traverse from a to b then I am blocking the route from b to a (a and b are adjacent)
+i.e I am using a path only in 1 direction but its still undirected because the way I fixed that direction later depends on the situation.
+
+If the graph is :
+1-2-3-4-2
+I will go from 1->2->3->4->2->3->4.... 
+eventually backtracing to 2 but now I am not going to 1 because 2->1 is blocked since I have already went from 1->2

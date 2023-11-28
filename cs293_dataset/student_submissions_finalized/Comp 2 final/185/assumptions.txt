@@ -1,0 +1,4 @@
+please run the file using following commands:
+
+g++ -g -o graph main.cpp
+./graph graphFile.txt

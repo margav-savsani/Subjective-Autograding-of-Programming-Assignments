@@ -1,0 +1,33 @@
+#ifndef SORT_H
+#define SORT_H
+#endif
+
+#include <stdlib.h>
+#include "tree.cpp"
+#include "choose.h"
+class SorterTree
+{
+private:   
+  Journey* array;
+  //int* codes; // Stores the values of the entries (this is for feeding to the blackbox to obtain a pivot value)
+  BST* tree;
+  int choice; // Choice of pivot function to use
+  int l; // Total number of entries
+  int comparisons; // Total number of comparisons performed
+  
+public:
+  SorterTree(int choic, int k); // Define valid constructor
+  bool Quicksort(int start, int finish); // Sort the array according to the stored values
+  int partition(int start, int finish);
+  void swap(Journey a, Journey b);
+  bool QuicksortWithBSTInsert(int journeyCode, int price); // May need extra parameters depending on implementation
+  bool printArray();
+  void printOutputs();
+  void PrintBST();
+  bool insertPivot(int JourneyCode, int price); // insert node corresponding to chosen pivot in BST
+  BST* getTree(); // returns pointer to the tree of pivots
+  ~SorterTree(){
+    delete []array;
+    delete tree;/////////////////////////////////////////////////////////////////
+  } // Destructor
+};

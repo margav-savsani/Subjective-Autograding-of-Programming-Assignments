@@ -1,0 +1,32 @@
+#ifndef HEAP_H
+#include "Heap.h"
+
+#ifndef STD_HEADERS_H
+#include "std_headers.h"
+#endif
+
+template<typename T>
+void Heap<T>::insert(T obj) {
+  // insert your code here
+  
+  return;
+}
+
+template<typename T>
+void Heap<T>::delMax() {
+
+  // insert your code here
+
+  return;
+}
+
+template<typename T>
+void Heap<T>::printHeap(TreeNode<T> *node) {
+
+  // insert your code here
+
+  return;
+}
+
+#endif
+  

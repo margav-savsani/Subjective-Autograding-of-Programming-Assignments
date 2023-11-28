@@ -1,0 +1,5 @@
+I created a class for node which store the index and trains.
+I created two different functions which are:
+            presentadd()->It returns the traininfoperstation pointer if the train is presemt in the given linked list.
+            alternateBFS()->I implemented a modified form of BFS which is different from the standard BFS.
+            

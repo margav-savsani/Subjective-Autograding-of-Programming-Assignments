@@ -1,0 +1,20 @@
+Name - Kanad Shende
+Roll No. - 210050078
+LAB 7
+
+1) I implemented both Quicksort and QuickSortSimple in my code.
+2) I changed all static variables and recursionLevel, but instead created another function to handle the first case.
+3) If a particular station(element e1) is is the destination, originally depTime was assigned the value -1 initially
+   I changed it to a number greater than 2400 (3000 in my code) so that its priority in list is lower than another instance(element e2) on the same day(let us assume x) but which is not the destination.
+   But for another instance(element e3) on another day (greater than x), it will be returned after element e1.
+   So order will e2 < e1 < e3.
+4) If two stations(element e1, element e2) have same day and dept_time, then arrival time comes into play.
+   Element with lower arrival time will be sorted first in such a case.
+5) Newly created helper functions are - 
+   i) my_swap()
+   ii) swap_train_station()
+   iii) find_train_stat()
+   iv) which_earlier()
+   v) get_rand_pivot()
+   vi) perform_rand_pivot()
+   vii) Quickie()

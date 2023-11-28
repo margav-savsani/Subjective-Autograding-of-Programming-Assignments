@@ -1,0 +1,1 @@
+Changed the parameters of the printHeap function. While printing the printHeap, send prefix and isleft as the arguments.

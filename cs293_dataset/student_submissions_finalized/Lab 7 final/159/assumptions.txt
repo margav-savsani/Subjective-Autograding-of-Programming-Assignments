@@ -1,0 +1,9 @@
+i have implememnted quicksortsimple.
+my idea for random pivoting is for example take n=20,k=4.
+created a static array of size n/k=5.
+copied 0,4,8,12,16 positions of linked list in this array.
+now let us say i want 19th position to be pivot then i will take 16th from
+array and make 3 nexts.
+so for any pivot firstly i will one random number from 0 to 4(n/k-1) that decides 
+which array element i have to take and next random number from 0 to 3(k-1) that
+decides how many times i should move next. 

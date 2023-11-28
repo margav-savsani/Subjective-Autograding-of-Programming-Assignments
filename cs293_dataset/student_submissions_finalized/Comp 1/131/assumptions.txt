@@ -1,0 +1,3 @@
+*if equal values have to be inserted in bst then it is inserted in the left subtree
+*in the graph log file all the pairs of edges generated (even if repeated) are written but actually in the implementation if an edge is already present its not added to the graph.
+* the smallest node is chosen first for the dfs procedure on any connected component

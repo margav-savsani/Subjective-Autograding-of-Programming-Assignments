@@ -1,0 +1,16 @@
+210050161 - Varada Mahanth Naidu 
+
+Assumptions :-
+
+     # First my idea was to use recursion by taking base cases as maxStopOvers and maxTransitTime as zeroes .
+     # If the maxStopOvers , maxtransitTime both are zero then the it should simply print the direct journeys from source station to destination station .
+     # So I have used BFS for finding it .
+     # Then there was no progress in my lab .
+     # So I started searching for new idea .
+     # Second I thought of  defining new class in printJourney.cpp .
+     # So I have defined new class TrainInfoperStation which is similar to the class TrainInfoPerStation .
+     # Then I have defined some member functions inside it .
+     # But I didnt get any idea how to use them .
+     # Lastly I thought of drawing the whole planner as a graph by using journeys as edges .
+     # But I was not able to complete it within the time .
+     # So I have submitted the BFS code which prints only the direct journeys without any stopovers .

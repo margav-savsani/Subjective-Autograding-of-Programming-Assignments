@@ -1,0 +1,2 @@
+I created a variable of type int to keep track of number of nodes
+ inside the tree

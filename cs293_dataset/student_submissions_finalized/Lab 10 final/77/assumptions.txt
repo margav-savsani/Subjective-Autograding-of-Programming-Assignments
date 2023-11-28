@@ -1,0 +1,5 @@
+ASSUMPTIONS:
+1. Transit time is always less than 24 hrs.
+2. If we change the train and again come in the same train later then , I'm counting +2 for stop sequences.
+3. Assumed that person can identify train timing and can change train according to that.
+

@@ -1,0 +1,1 @@
+1. if we have went from A->B then we cant go back from B->A

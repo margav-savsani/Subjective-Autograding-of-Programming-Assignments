@@ -1,0 +1,10 @@
+Name : Soham Joshi
+Roll No : 210051004
+Lab : 08
+
+Topic : Implementing heap and priority queues. 
+
+===============================================================================
+
+1. The heap only maintains objects of the same template. 
+2. The objects are well-orderd, and the atleast one of the other linked files contains an overloaded < operator for the template class (that of the objects in the heap). 

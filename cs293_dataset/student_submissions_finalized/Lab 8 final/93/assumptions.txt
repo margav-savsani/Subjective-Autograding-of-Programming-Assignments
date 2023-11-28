@@ -1,0 +1,2 @@
+(a) delMax does nothing on an empty heap.
+(b) getMax won't work on en empty heap.

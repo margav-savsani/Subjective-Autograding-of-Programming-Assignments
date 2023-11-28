@@ -1,0 +1,1 @@
+Assuming waiting time is less than 24 hours for the passenger.

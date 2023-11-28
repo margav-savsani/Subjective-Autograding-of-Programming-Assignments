@@ -1,0 +1,4 @@
+ASSUMPTIONS
+
+--> The BST Tree that I am generating for each connected component of the generated graph is based on the visiting sequence of the vertices in the modified DFS.
+--> All the trees are printed on the terminal along with the data that we were asked to print.

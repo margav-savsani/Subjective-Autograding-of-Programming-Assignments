@@ -1,0 +1,4 @@
+I haven't created any new function so planner.h is same as given file.
+but in planner.cpp I uncommented Quicksortsimple and commented Quicksortsimple.
+If trains have same departure time and same day but different arrival time then I haven't sorted them.
+I sorted them based only on departure time and day. 

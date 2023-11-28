@@ -1,0 +1,13 @@
+210050011- Ameya Deshmukh
+
+CS293 Lab 8
+
+* Improved the print functionality to remove spurious lines.
+
+* The heap gives reviews with ratings >= the user-provided threshold.
+
+* Added 2 extra member variables to Heap.h to know the number of elements in the heap,
+and the righmost node in the last level.
+
+* Added a helper function in Heap.cpp to get to the parent of the righmost node in the last level,
+given the number of elements in the heap.

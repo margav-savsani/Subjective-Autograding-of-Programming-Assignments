@@ -1,0 +1,4 @@
+-> Stored number of nodes as size variable
+-> Converted it into binary to know left and right while traversing to insert
+-> * Used "vector" to store the binary number of size
+-> printed tree similar to that Tree.h in previous labs

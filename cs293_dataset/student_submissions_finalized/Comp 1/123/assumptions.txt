@@ -1,0 +1,1 @@
+I assumed that when there is a cycle, all nodes will be backtracked

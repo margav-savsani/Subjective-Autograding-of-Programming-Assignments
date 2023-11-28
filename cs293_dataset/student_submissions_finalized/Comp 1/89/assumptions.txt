@@ -1,0 +1,3 @@
+assumption : 
+  modified DFS is such that,
+  If the adjacent nodes other than the parent_node of a node are visted twice then we backtrack from that node 

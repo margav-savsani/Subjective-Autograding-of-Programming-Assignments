@@ -1,0 +1,3 @@
+While traversal, I kept track of parent nodes to ensure the parent of a node doesn't get added
+back into the stack. For instance, if 2 is in the adjacency of 1 and gets added to the node stack,
+I assumed that 1 shouldn't be added back into the stack from 2's adjacency list.

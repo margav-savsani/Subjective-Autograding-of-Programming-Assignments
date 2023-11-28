@@ -1,0 +1,7 @@
+//// ### Trie.cpp ### \\\\
+1) Didn't make use of the already provided functions recursiveAddCompletions() and addCompletions().
+2) Made a new Recursive function to add StationNames to a list of string.
+3) Deleted the Nodes which are not required using the recursive delete function.
+
+//// ### KMP.cpp ### \\\\
+No assumptions as such

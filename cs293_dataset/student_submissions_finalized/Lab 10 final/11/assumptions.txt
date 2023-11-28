@@ -1,0 +1,18 @@
+1) maxTransitTime (input) format :: hhmm 
+     Eg : 23 hrs 59 min = 2359
+2) The travel time between two consecutive stations is less than 24 hrs 
+3) If the train with same journey code from a->b->c on monday and tuesday . 
+   If the transit time allows then , the possibility of coming in monday from a 
+   to b and b to c using the  journey code is also considered and transittime is not zero for that case 
+4) No loop journey is present 
+
+Printing:
+For every journey path possible : 
+  1) The max transit time is printed 
+  2) The stations either u start or change trains 
+  3) The journey code , date , arrtime , Departure 
+
+Note : 
+  example train100 goes from a to b in monday and tuesday . 
+  then the both possibility is printed in two different journeys .
+   

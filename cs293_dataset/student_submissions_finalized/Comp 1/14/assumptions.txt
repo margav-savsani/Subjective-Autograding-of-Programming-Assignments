@@ -1,0 +1,1 @@
+assuming numEdges < (numNodes*(numNodes+1)/2) always as said in piazza.

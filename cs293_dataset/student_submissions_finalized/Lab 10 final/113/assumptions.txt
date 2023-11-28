@@ -1,0 +1,11 @@
+Name:- Lisan Kadivar
+Roll No. :- 210050076
+
+1. No train will travel continuously between 2 consecutive stops for more than 24 hours, i.e. 2400
+2. No train will stop at a particular stop for more than 24 hours. Also the transit time is considered as the differnece between the new train's departure time and previous train's arrival time. If day changes during this journey then we can add 2400 to this difference to calculate the actual transit time.
+3. No journeys with transit time 24 hours or more will be printed. Even if the user inputs a time more than 24 hours, we will only consider journeys with time < 2400
+	(This can be changed to print journeys with greater transit time by changing only some part of the code)
+4. The input parameter is assumed to be given in HHMM format i.e. if the user wants to stop for 12 hours then the input should be 1200
+5. Cyclic journeys will be considered but only once. i.e. if I want to go from A to E and there are trains from A to B, B to E, B to C, C to B then the loop BCB will be traversed only once in one journey i.e. the user won't be going around in a loop forever.
+6. The printing is very clear and you can clearly see the day and time along with transit time if any
+

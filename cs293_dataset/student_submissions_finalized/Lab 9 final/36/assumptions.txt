@@ -1,0 +1,4 @@
+when i run the code i was getting segmentation fault in the destructors of classes in dictionary.h
+so i removed the destructors and code was working fine.
+
+i assumed there are no cyclic connections between stations as we may enter infinite loops if there are any.

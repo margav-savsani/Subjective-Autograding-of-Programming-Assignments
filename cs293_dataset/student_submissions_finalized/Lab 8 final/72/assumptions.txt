@@ -1,0 +1,7 @@
+1] I declared a private variable `count` to keep track of number of elements in the heap.
+
+2] Freed the space by calling function recursive delete in the destructor.
+
+3] Declared some static variables in printHeap() to ease the implementation.
+
+4] Commented the calls to printHeap() in the final cod.

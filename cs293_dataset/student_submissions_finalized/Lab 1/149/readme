@@ -1,0 +1,11 @@
+-test.cpp
+    The values of num_ins and num_del are initialised to zero.
+    #include"circularQueue.cpp" is included for checking circular queue.
+The linear Queue and circular Queue is implemented as mentioned in the problem statement.
+Linear queue functions a bit slower than Circular queue as linear queue needs to be shifted more number of times.
+
+linearQueue.cpp
+The queue is implemented normally. When the tail reaches N and head is not at zero, the whole queue is shifted such that head becomes zero to accomodate more elements. When it becomes really full it is incremented by a constant amount.
+
+circularQueue.cpp
+The queue is implemented such that tail can jump from N to 0 if it is empty. The queue goes through a full circle while filling. Its size is increased only when head and tail are next to each other and all the other places are filled.

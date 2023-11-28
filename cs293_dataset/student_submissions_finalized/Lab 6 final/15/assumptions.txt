@@ -1,0 +1,3 @@
+I just created some extra functions in trie.cpp for adding deleting and finding in a linked list.
+I assumed add completions to return false if that node has no branches.
+I implemented KMP case insensitively.

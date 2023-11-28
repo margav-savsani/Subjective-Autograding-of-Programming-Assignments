@@ -1,0 +1,47 @@
+#ifndef HEAP_H
+#define HEAP_H
+
+#ifndef STD_HEADERS
+#include "std_headers.h"
+#endif
+
+using namespace std;
+
+template <typename T> class TreeNode {
+ public:
+  T object;
+  TreeNode<T> *left;
+  TreeNode<T> *right;
+  TreeNode<T> *parent;
+
+  TreeNode(T initObj) {
+    object = initObj;
+    left = right = parent = nullptr;
+  }
+ 
+};
+
+template <typename T> class Heap {
+  TreeNode<T> *root;
+  TreeNode<T> *lastNode;
+
+ public:
+
+  Heap() {root = nullptr; lastNode = nullptr;}
+
+
+  void insert(T obj);
+  void delMax();
+  T getMax() {return root->object; // insert your own code here if needed
+  }
+  void Heapify(TreeNode<T>* node);
+  void printHeap(TreeNode<T> *node);
+  TreeNode<T>* CreateLevelOrderSuccessor(TreeNode<T>* node, T obj);
+  TreeNode<T>* FindLevelOrderPredecessor(TreeNode<T>* node);
+  void SwapContent(T* t1, T* t2);
+  void printt(const string& prefix, bool isLeft=false);
+  //  void displayAboveThresh(int thresh);
+};
+
+#endif
+

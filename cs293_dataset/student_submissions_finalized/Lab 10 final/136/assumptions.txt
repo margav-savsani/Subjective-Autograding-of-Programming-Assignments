@@ -1,0 +1,1 @@
+There are no cyclic paths available for a train.

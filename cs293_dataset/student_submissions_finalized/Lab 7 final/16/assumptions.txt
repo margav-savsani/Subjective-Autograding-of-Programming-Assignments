@@ -1,0 +1,14 @@
+******************************************************
+
+NAME : KARAN GODARA 
+ROLL NO : 210050082
+DSA LAB 7
+
+*******************************************************
+
+Assumptions:
+1. I have sorted based on departure time.
+2. If two trains have same day of departure and same time of departure, then their order would be arbitrary in the sorted list.
+3. The sorting is done by considering day first departure time later.
+
+*******************************************************

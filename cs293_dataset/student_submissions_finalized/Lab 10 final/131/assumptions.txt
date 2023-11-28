@@ -1,0 +1,14 @@
+About the final output:
+*The journey is printed in a reverse order meaning the source station is at the bottom and the destination station at the top.and all the intermediate stations in the order in which they will be reached
+*Train code printed alongside denotes the train reaching that station.
+*transit time(non zero only for stop overs) printed alongside a station means that the user has to change a train at that station after waiting for that many number of hours(in 24 hr format)
+*days printed means the the trains and the journey are for those days only.
+*day 0 means sunday, 1 means monday , 2 means tuesday and so on.
+
+About the implementation:
+*all the possible train codes a person can board a train from the source station have only been considered , that is the person can only start with the trains running from source station
+*all the possible days a person can start from the source station have been considered
+*When the person has to change a train then , he will board on the earliet possible train , considering the transit time to be less than the input limit.
+*If a person is travelling on a particular train then he will not change it unless the current train does not go along the route he wants to traverse .
+*All indexes of the stations must be less than 1000.
+*the graph of cycles is considered to be acyclic.

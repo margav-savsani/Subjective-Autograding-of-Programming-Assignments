@@ -1,0 +1,5 @@
+Proofs:
+	If two nodes a and b are related as aRb then level of a is necessarily greater than or equal to the level of b in BFS
+		Proof:
+			Induction
+	Two nodes if related by condition 2

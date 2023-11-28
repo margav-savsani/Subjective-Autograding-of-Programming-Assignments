@@ -1,0 +1,2 @@
+Firstly , I have sorted the trains using same Arrival times and I have assumed no  two trains have same day and same arrival time.
+Secondly for function Quicksort I have created two variables a and b which might increase some space but , it would be O(N/K+c) so space would be O(N/K) only.

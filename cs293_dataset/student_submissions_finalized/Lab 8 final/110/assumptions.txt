@@ -1,0 +1,5 @@
+Name: Nandigama Nikhil
+Roll No: 210050105
+
+I defined a new variable in heap named count to count the total number of nodes
+I changed the number of arguments in the print function to have a clear tree as we had in BST.

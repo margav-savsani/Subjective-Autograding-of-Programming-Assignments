@@ -1,0 +1,6 @@
+The assumptions made are as follows:
+
+    1) Only the first occurence of the pattern is reported in KMP.
+    2) If no match is found, KMP returns -1.
+    3) The functions "isPresentInCompletions" and "freeCompletionList" isn't used anywhere in my code.
+    4) To pass pointers as reference in "addCompletions" and "recursiveAddCompletions", the declaration of these functions were changes slightly.

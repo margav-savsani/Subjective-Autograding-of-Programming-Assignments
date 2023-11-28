@@ -1,0 +1,3 @@
+Assuming there is no need of inserting node when visited second time.
+I assumed that, a single node with no neighbours as one of the connected component for graph(i.e no of connected components = no of BST trees produced)
+Assuming single node or two neighnouring nodes are not considered as a cycle.

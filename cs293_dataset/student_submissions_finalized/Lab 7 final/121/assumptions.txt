@@ -1,0 +1,28 @@
+Assumptions made for QuicksortSimple implementation :
+    -stnInfoList is not nullptr
+    -start and end are non negative integers
+    -start and end are not out of bounds of stnInfoList, 
+     that is both of them are from 0 to (length of linked list)-1.
+    -rand() function generates uniform random integers and pivots
+     generated using it are indeed random.
+    -made some more functions along with QuicksortSimple for cleaner 
+     implementation of function. Though, it is possible to do the same 
+     without these functions, it just increases the readability : 
+        myswap - swaps the TrainInfoPerStation* object inside 2 given links
+        isgt - compares 2 TrainInfoPerStation* objects and returns if the first
+               one is greater than the other. Comparison is done on the basis of 
+               day of the week and then if day of the week is same then departure 
+               time is considered. 
+     
+Assumptions made for Quicksort implementation :
+    -stnInfoList is not nullptr
+    -rand() function generates uniform random integers and pivots
+     generated using it are indeed random.
+    -made some more functions along with QuicksortSimple for cleaner 
+     implementation of function. Though, it is possible to do the same 
+     without these functions, it just increases the readability : 
+        myswap - swaps the TrainInfoPerStation* object inside 2 given links
+        isgt - compares 2 TrainInfoPerStation* objects and returns if the first
+               one is greater than the other. Comparison is done on the basis of 
+               day of the week and then if day of the week is same then departure 
+               time is considered. 

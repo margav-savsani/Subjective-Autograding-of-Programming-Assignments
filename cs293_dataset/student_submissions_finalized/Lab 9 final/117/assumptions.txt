@@ -1,0 +1,2 @@
+If the journey codes are same, then the train is the same
+No loop is made of the same journey code

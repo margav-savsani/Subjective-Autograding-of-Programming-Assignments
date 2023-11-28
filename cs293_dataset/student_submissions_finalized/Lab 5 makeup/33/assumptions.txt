@@ -1,0 +1,16 @@
+ASSUMPTIONS :-
+
+ a) BST.cpp :-
+===============
+     # I Have implemented insert and find functions using the pseudo code given in the lecture slides .
+     # One extra member function "getheight()" was added to class BST which returns the height of the particular node which was given as the input parameter .
+     # There are no more extra assumptions made for the BST.cpp other than those mentioned in the BST.h file .
+     
+ b) AVL.cpp :-
+===============
+     # I Have implemented insert and find functions using the pseudo code given in the Lecture slides .
+     # I have three extra member functions to the class AVLTee. Those are :- 1) getheight() 2) nearest() 3) imbalance() .
+     # One extra member function "getheight()" was added to class AVLTree which returns the height of the particular node which was given as the input parameter .
+     # Another extra member function "nearest()" returns us the adress of the node where the first imbalance occurs due to addition while moving up the tree from the inserted node .
+     # And finally one more member function "imbalance()" returns us the height difference between the left and right subtrees of the node which was given as the input parameter .
+     # There are no more extra assumptions made for the AVL.cpp other than those mentioned in the AVL.h file .

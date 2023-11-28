@@ -1,0 +1,2 @@
+Assumed that the path of no train conains a loop
+Used vector instead for queue implementation

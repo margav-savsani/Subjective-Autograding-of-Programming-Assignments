@@ -1,0 +1,2 @@
+- Each journey with a journey code has a singular path it cannot be tree like
+- There are no loops in any journeys

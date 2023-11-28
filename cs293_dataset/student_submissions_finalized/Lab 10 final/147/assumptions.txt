@@ -1,0 +1,3 @@
+- no journeys last for more than 24h
+- very easy to fix but left due to time constraint:
+no cycling around the week (so journeys on Friday do not carry to Monday)

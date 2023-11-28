@@ -1,0 +1,3 @@
+assumption-1 : Made KMP case insensitive.
+assumption-2 : in completions only separate words can give station name, like in MUMBAI CENTRAL only MUMBAI or CENTRAL can find the station, not MUM or something else.
+assumption-3 : changed addcompletions return type.

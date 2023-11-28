@@ -1,0 +1,2 @@
+I've assumed that a train with day of the week Sunday and dept time -1 is going to show up earlier than one with Monday and dept time let's say 1000
+Also, the extra amount of space required is n/k + 6 is required. the array is of size n/k+1, and 5 additional static pointers have been used to carry out iteration, and make the function work.

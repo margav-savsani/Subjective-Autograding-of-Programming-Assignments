@@ -1,0 +1,3 @@
+Assumptions:
+
+For any given station A, A->B and A->C will always have different train numbers/ journey codes.

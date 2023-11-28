@@ -1,0 +1,2 @@
+no edge is ever backtraversed, though it my be traversed upto twice in the same direction
+

@@ -1,0 +1,9 @@
+210050139
+
+This code will generate all the possible paths possible from Source station
+to Destination station within maxstopovers. To check for maxtransist time
+I used the condition dept time of 2nd train > arr time of 1st train and 
+dept time of 2nd train - arr time of 1st train <= maxtransist time.
+
+These cases include all the trains which satisfies arr and dep time 
+conditions ignoring days in which train is coming to the station.

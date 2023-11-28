@@ -1,0 +1,17 @@
+In this assignment, you have to implement quicksort on a linked list under some resource constraints.  Implement the function quicksort in file quicksort.cpp  This function takes a pointer to a list of objects as argument, where each object is a pointer to an object of class TrainInfoPerStation.  See dictionary.h to see more details of this class (TrainInfoPerStation).
+
+Please read the problem statement carefully.
+
+To compile, run the following in a shell:
+
+g++ -g -o planner main.cpp
+
+To run the planner, use the following command in a shell:
+
+./planner <log_file_name>
+
+Please submit only quicksort.cpp and planner.cpp bundled as a .tgz file in a folder named <roll_number>_L7
+
+# Submission stats
+Participants	200
+Submitted	180

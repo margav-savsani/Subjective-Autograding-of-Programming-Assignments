@@ -1,0 +1,2 @@
+In this question I assumed that the station names will be containing only Capital Letters.
+I assumed that if MUMBAI CENTRAL is a station name then MUMBAI cant be another station name.

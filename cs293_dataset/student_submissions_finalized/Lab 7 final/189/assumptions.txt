@@ -1,0 +1,1 @@
+All the pivot generating functions that I could not think of were not within the time and space constraints of the problem statement,so Ib have taken pivot to be the fiest element of the list.

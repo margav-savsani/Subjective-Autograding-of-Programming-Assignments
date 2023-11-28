@@ -1,0 +1,13 @@
+
+-->Trie.cpp :: addCompletions(...):
+    * add completions adds the name of stations to the list immediatly.
+    * it doesn't check for repeatitions.
+    Eg: suppose there is a station name "CHAT COT". if called to print all completions,
+        with prefix "C" it would print "CHAT COT" 2 times.
+    reason for assumption: It is beacuse, adding that comparitions is demanding much
+                        work from program, which is not a better deal to exchange for
+                        that feature according to my opinion
+
+--> Assuming all the inputs are intended to what they were supposed to do.
+    Eg: journey code should be integer.
+    (This assumption is just as a precaution).

@@ -1,0 +1,4 @@
+Each number, given a random permutation, has the same probability of being chosen as pivot. Hence I can choose any pivot, as
+the prbability of choosing any number at any position as a pivot would average out over a large number of iterations and permutations.
+
+Also, the sorting works on the magnitude of arrival times alone.

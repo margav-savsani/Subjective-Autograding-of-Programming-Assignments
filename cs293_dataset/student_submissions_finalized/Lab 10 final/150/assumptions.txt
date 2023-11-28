@@ -1,0 +1,13 @@
+210050029
+AYUSH AGARWAL
+
+1) The max time a train can stay at a stop is 24 hours.
+2) All journeys are considered seprately wherever it is possible to change our train
+   for example we stop at some station and took same train on any another day
+3) Stopping time will come in hours like 1 means 1 hours
+4) PRINT Format:
+                  "TrainInfoPerStation
+                   Verbal Description along with transition time at stops"
+                   "No of stops"
+
+

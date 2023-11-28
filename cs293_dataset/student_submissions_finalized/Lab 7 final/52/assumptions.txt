@@ -1,0 +1,3 @@
+Sorting is done on basis of day and arrival time
+If trains start from a station then arrival time will be -1 and it will be displayed before all other trains
+If two trains have same day and same arrival time then any one of them can be displayed first

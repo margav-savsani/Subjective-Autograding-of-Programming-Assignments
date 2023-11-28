@@ -1,0 +1,62 @@
+#ifndef KMP_CPP
+#define KMP_CPP
+
+#ifndef PLANNER_H
+#include "planner.h"
+#endif
+
+using namespace std;
+
+int *Planner::computeHMatrixForKMP(string pattern) {
+
+  int len=0;
+  int h[pattern.length()];
+  int i = 1;
+    while (i < pattern.length()) {
+        if (pattern[i] == pattern[len]) {
+            len++;
+            h[i] = len;
+            i++;
+        }
+        else
+        {
+            if (len != 0) len = h[len - 1];
+            else 
+            {
+                h[i] = 0;
+                i++;
+            }
+        }
+    }
+  return h;
+}
+
+int Planner::KMPMatch(string text, int *hMatrix, string pattern) {
+
+  int *h=computeHMatrixForKMP(pattern);
+  int N= text.length();
+  int M= pattern.length();
+  int i = 0; // index for txt[]
+    int j = 0; // index for pat[]
+    while ((N - i) >= (M - j)) {
+        if (pattern[j] == text[i]) {
+            j++;
+            i++;
+        }
+ 
+        if (j == M) {
+            return i-j;
+            j = hMatrix[j - 1];
+        }
+ 
+        else if (i < N && pattern[j] != text[i]) {
+            if (j != 0)
+                j = hMatrix[j - 1];
+            else
+                i = i + 1;
+        }
+    }
+  return 0;
+}
+
+#endif

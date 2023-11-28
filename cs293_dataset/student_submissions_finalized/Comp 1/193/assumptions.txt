@@ -1,0 +1,22 @@
+### DATA STRUCTURES ###
+*) I copied the BST function as was submitted by me in Lab assignment 3.
+*) The Node class is used to represent a node of the Graph, it contains Node's value,
+   an array to store the parents of the Node (which will occur in the DFS tree formed).
+   {Since every Node can be visited at max twice, hence the maximum number of parents of the Node can be 2}.
+*) I changed some implementations of DynamicQueue done in Lab assignment 1 and reconstructed it into MyVector class.
+   This class can act as a Vector but can only insert and delete from the ends.
+*) Graph Class contains adjacencylist of each node implemented in the form of an array of linkedlist of int.
+   Adjacencylist contains the indices of Nodes adjacent to the given index.
+   The class contains isinacycle boolean array of every Node that tells whether the Node is in a cycle or not.
+
+### MODIFIED DFS ###
+*) I made a recursive DFS function that takes in input as the index of Node to be Visited and the BST in which 
+   we need to insert the nodes that have been visited.
+*) I call this recursive function in the modified DFS function function whenever the visit of a Node is found to be 0.
+   In the DFS function we add an element into the stack of the DFS only when the Node is not one of the Parent of the source
+   and it is visited less than 2 times.
+*) For calculating the Number of elements in the cycle I just check whether the adjacent index is already present in the DFS stack or not,
+   if it is present then I make the "isinacycle" of every element from the last instance of that adjacent index untill the end of stack to be true.
+*) Whenever I called DFS recursively inside the DFS function, I insert the respective parent of the iterator Node.
+*) Whenever a DFS is completed then the BST is added to a vector.
+*) At last all the connected components, BST of each components and the number of Nodes in a cycle etc are printed.

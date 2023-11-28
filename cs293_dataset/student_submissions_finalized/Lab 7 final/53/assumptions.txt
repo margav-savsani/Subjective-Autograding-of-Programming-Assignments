@@ -1,0 +1,9 @@
+A partition function has been introduced in planner.h as allowed by the instructor
+Both QuicksortSimple and Quicksort have been implemented
+
+Quicksort takes the head of the linked list only and sorts the list whereas QuicksortSimple takes head 
+of the linked list, start index = 0, end index = length -1 to sort the linked list
+
+If the days are the same, then comparison is made on the basis of departure time.
+
+The code is well documented for explaining the functions

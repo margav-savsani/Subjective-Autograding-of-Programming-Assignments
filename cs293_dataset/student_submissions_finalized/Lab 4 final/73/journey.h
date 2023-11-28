@@ -1,0 +1,36 @@
+#ifndef JOURNEY_H
+#define JOURNEY_H
+#include <iostream>
+using namespace std;
+class Journey {
+  unsigned int JourneyCode, price; 
+  
+public:
+  Journey(); // Default constructor if required
+  
+  Journey(unsigned int c, unsigned int p); // Parametrized Constructor
+  
+  unsigned int getJourneyCode(); // returns journey code
+  unsigned int getPrice(); // returns price
+    
+  bool operator < (Journey const &j); // Overloaded operator. Usage: if (journey1 < journey2) {...}
+  bool operator <= (Journey const &j) //overloaded operator <= comparing journeycode
+  { 
+    if(JourneyCode <= j.JourneyCode) 
+      return true; 
+    else 
+      return false;
+  }
+  bool operator == (Journey const &j) //overloaded operator == returns true if both are same
+  { 
+    if(JourneyCode == j.JourneyCode && price==j.price) 
+      return true; 
+    else 
+      return false;
+  }
+    // Following code can be used for ease of I/O
+    // Only for those enthusiastic about operator overloading
+    //istream& operator >> (istream& in, Journey &j) { /*TODO*/ } // Usage: cin >> journey1;
+    // ostream& operator << (ostream& out, const Journey& j) { /*TODO*/ } // Usage: cout << journey2
+};
+#endif

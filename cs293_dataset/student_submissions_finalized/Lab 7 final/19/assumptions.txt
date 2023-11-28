@@ -1,0 +1,6 @@
+1) Sorting order is based on departure day i.e
+	Sun < Mon < Tue ...
+2) If both trains are departing on same day then departure time
+3) If both trains are departing on same day and on same time the based on arrival time
+4) I made Quicksortsimple() and not changed anything in planner.h
+=

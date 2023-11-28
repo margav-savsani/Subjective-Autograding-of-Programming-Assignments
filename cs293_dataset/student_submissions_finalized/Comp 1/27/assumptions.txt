@@ -1,0 +1,1 @@
+1. Assuming we dont have to trace the path for DFS  back from which it came.

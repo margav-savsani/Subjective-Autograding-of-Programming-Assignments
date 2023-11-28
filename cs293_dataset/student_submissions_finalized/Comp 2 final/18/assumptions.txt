@@ -1,0 +1,4 @@
+I am printing the pair of similar nodes in sorted order, as given in piazza.
+If there are two pairs, (i,j) and (k,l) then first check i<k then j<l
+
+Also, the edges in the collapsed graph are also printed in sorted order wrt the source node, then wrt target node

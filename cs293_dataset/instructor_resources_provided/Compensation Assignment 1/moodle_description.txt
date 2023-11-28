@@ -1,0 +1,25 @@
+Please read the problem statement carefully, state all your assumptions in assumptions.txt and submit a tar zipped folder named <roll_number>_C1.tgz containing only the following files:
+
+Graph.cpp, Graph.h and assumptions.txt
+
+To compile your code, use g++ -g -o modDFS main.cpp
+
+To run the compiled code, use ./modDFS  N M graphFileName, where N is the count of nodes, M is the count of edges (should be <= N(N-1)/2) and graphFileName is the name of a file in which your random graph will be written in the format
+
+numNodes
+
+numEdges
+
+Edge1_node1  Edge1_node2
+
+Edge2_node1  Edge2_node2
+
+...
+
+You can open the file named graphFileName after running your code to see what random graph was generated.
+
+To debug your code, use gdb ./modDFS on Linux and lldb ./modDFS on Mac
+
+# Submission stats
+Participants	200
+Submitted	169

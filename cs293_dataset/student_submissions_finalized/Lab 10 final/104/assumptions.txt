@@ -1,0 +1,16 @@
+## INPUT TRANSIT TIME IN GIVEN FORMAT
+    An Integer whose units and tens digit denote minutes
+    While rest of the digits denote hours
+
+    For example if we want to input 14 hours and 37 mins 
+    we will write time as "1437"
+
+## ASSUMPTIONS
+    Maximum time a train can run without stopping at any station is at most 24 hours
+
+    Week starts with monday while ends with sunday
+
+    A person won't wait more than a week at a transit station
+
+    I have also removed non-sensible journies like if train arrives every week on say mon and tues
+    then I won't print a journey that arrives on monday and departs on tues even if that journey satisfies all the conditions given to us

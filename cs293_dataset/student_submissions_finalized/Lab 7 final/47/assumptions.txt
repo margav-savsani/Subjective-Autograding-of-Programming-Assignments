@@ -1,0 +1,2 @@
+1) if the departure time is -1, then in the list they are at the top.
+2) Made both the QuickSort and QuickSortSimple. 

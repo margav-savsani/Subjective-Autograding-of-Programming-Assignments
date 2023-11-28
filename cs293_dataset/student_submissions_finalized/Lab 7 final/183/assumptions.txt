@@ -1,0 +1,1 @@
+i implemented both quicksort and quicksortsimple and sorted based on dept day  and then dep time

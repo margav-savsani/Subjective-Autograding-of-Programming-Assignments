@@ -1,0 +1,7 @@
+I wanted to solve this by the following approach:
+	(i) find all trains that pass from source station
+	(ii) for each train, make a new graph from the same vertices (stations) with fresh edges (train that pass through consecutive stations)
+	(iii) for each graph do BFS, and if the search hits the destination station print this journey
+
+
+NOTE: This logic is wrong, as sir explained in piazza, so I left with incomplete solution to this lab 

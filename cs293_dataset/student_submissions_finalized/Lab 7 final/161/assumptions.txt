@@ -1,0 +1,4 @@
+I have sorted the stnInfoList according to arrTime. 
+As written in Piazza.
+if the train starts from there then it will appear earliar compared to a train with same day.
+

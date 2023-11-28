@@ -1,0 +1,7 @@
+I assumed that a stopOver occurs if and only if the passenger changes trains i.e changes his/her journeyCode. It doesnt occur when he waits at a station in the duration between two rides on the same train i.e. same journeyCode.
+
+Also, transit time is counted only when a stopover occurs i.e while the passenger is waiting at the station for a different train with a different journeyCode than the one he/she arrived in. Therefore, the time spent at a station between two consecutive rides of the same JourneyCode can be indefinitely long.
+
+Made an assumption that along a journey, a train never travels between two consecutive stops for 24 hours or more at a stretch. This was mentioned by sir on Piazza as a reasonable assumption.
+
+Assumed that the stopping time for a train at a station is always less than 24 hours. This was mentioned by sir on Piazza as a reasonable assumption.

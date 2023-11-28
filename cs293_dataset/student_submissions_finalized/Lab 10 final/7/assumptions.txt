@@ -1,0 +1,1 @@
+maxTransitTime <= 2400

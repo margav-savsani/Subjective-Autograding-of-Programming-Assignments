@@ -1,0 +1,5 @@
+Assumptions-
+
+Few functions have been defined in file quicksort.cpp
+The partition function is also defined in the same way. It is not a member function of the planner class.
+Since all the member functions and variables of the TrainInfoPerStation are public, all the functions in the quicksort.cpp can access them.

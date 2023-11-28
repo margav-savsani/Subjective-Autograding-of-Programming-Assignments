@@ -1,0 +1,1 @@
+I have considered sorting only according to the day and the departure time

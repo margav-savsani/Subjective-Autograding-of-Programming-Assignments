@@ -1,0 +1,14 @@
+########################################################################################
+Name : Karan Godara
+Roll No : 210050082
+Lab 9
+########################################################################################
+
+Assumptions:
+1. From a station a train with a given journey code only goes to one station,
+that is if there is a journey from A to B with JC 1500 not other station say C
+would exist that have journey from A to C with JC 1500.
+
+2. On searching, the arrival and departure time are with respect to the source station.
+
+#########################################################################################

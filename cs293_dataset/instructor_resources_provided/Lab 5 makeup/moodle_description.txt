@@ -1,0 +1,30 @@
+Please follow the submission instructions below carefully. 
+Submissions prepared without following these instructions WILL NOT BE GRADED.
+
+1. Create a separate directory named <roll_number>_L5M, where roll_number is your roll number.   The "M" after "L5" in the directory name is important.
+
+2. Clearly write whatever assumptions you had to make to solve the lab assignment in an ASCII text file named assumptions.txt 
+If you have not made any assumptions, create an empty assumptions.txt file
+
+3. Copy only the following files in the above directory (i.e. in <roll_number>_L5M):  
+
+          BST.h, BST.cpp, AVL.h, AVL.cpp, Tree.h, main.cpp, assumptions.txt 
+   
+    Any other files found in this directory will lead to severe penalty.
+    Do not use Finder (on Mac) or File Explorer (on Windows) to copy files from one folder to another, since this can copy metadata files.  Instead, use "cp" or "copy" command from a shell.
+
+4. Go to the parent directory of <roll_number>_L5M
+
+5. Run tar -zcvf    <roll_number>_L5M.tgz    <roll_number>_L5M
+
+6.  Check by running tar -xcvf <roll_number>_L5M.tgz that the extracted directory contains only BST.h, BST.cpp, AVL.h, AVL.cpp, Tree.h, main.cpp, assumptions.txt and nothing else.  Make sure there are no hidden files in the extracted directory.
+
+You can list all files in a directory, including hidden files, on Linux using "ls -a"
+
+7. If the above step shows shows files other than BST.h, BST.cpp, AVL.h, AVL.cpp, Tree.h, main.cpp and assumptions.txt in the extracted directory, delete the <roll_number>_L5M directory and re-start from step 1.
+
+Otherwise, upload only <roll_number>_L5.tgz  on Moodle
+
+# Submission stats
+Participants	200
+Submitted	7

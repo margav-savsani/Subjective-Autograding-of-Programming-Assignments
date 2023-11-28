@@ -1,0 +1,1 @@
+1. If two reviews have the same rating, then they are deleted in an arbitrary order as in the heap during delete in the heapify function the left element goes up the heap in case of equality

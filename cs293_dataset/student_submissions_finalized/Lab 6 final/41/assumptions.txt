@@ -1,0 +1,5 @@
+
+Assumptions:
+I changed the passing parameters in two functions of Trie; recursiveAddCompletions and addCompletions.
+In both of these, I changed the passing parameter to 'pass by refernce' for currCompletions.
+Also updated both functions in the Trie.h header file also.

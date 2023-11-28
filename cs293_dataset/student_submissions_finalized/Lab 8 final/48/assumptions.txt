@@ -1,0 +1,3 @@
+i changed the declaration of printHeap function heap.h file to
+void printHeap(const string& prefix, bool isLeft);
+i have not taken care of deleteMax() in nulltree

@@ -1,0 +1,5 @@
+1)A single train can only move from one station to only one of the toStations.
+2)I have added two public member functions in planner.h which I have used in printJourney.cpp so I am submitting planner.h also.
+3)I have included the extra function of in planner.h because it was using private member of planner.h 
+int* listTojCode(listOfObjects<TrainInfoPerStation *> *list);
+int JCode(int indexA, int destIndex, int jCode);

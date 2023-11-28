@@ -1,0 +1,2 @@
+1. number of edges <= n.(n+1)/2
+2. a path once backtracked will not be searched again

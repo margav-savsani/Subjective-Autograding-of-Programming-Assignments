@@ -1,0 +1,8 @@
+The trains shall first be arranged based on day, then dep time, then arr time.
+
+The stnInfoList input into Quicksort shall represent a particular train journey, 
+that is only one of its bool dayofWeek[7] shall be true
+
+No train shall end at a station where there are further stations ahead, 
+that is even if one trains end at a station, then other trains if exist,
+shall be ending at this station. Similar is the case with start stations.

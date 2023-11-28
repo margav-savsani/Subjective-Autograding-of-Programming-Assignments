@@ -1,0 +1,7 @@
+1. Implemented recursive definition of BST 
+2. Implemented DLL(doubly linked list) class (and also DLLNode) to help the implementation 
+3. If we backtracked from a node and still it's visited count is 1 then we can visit it again if we come back there
+4. Used some helper functions which takes BST as parameter and one which doesn't
+5. The order in which the things are printed is different from the one which is mentioned in the question. 
+6. BSTs are printed first with the number of connected component and then the rest of the things.
+7. Nodes are visited in the order same as they were inserted in the adjacent list. 

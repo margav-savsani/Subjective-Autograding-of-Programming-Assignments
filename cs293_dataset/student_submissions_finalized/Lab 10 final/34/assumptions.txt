@@ -1,0 +1,4 @@
+1) along a journey, a train never travels between two consecutive stops for 24 hours or more at a stretch
+2) The stopping time for a train at a station (where the train arrives at the station, stops for some time, and then leaves the station) is assumed to be less than 24 hours
+3) The time spent on same train at a station is not considered in transit time.
+4) If person arrives at station at some day on train A but does not continue on that train and in next days takes same train to go to next station then transit time is taken into consideration.

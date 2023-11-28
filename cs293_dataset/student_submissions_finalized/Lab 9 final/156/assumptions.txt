@@ -1,0 +1,5 @@
+1. Only a single route exists with a given journey code
+2. A journey code represents only one direction in the route , not the opposite one
+3. If a train is in list of both the source station and destination but some disturbance
+   in links while traversing the route is present then we won't count it as an direct journey
+4. Assuming that the train stops at all the stations it is visiting during its journey

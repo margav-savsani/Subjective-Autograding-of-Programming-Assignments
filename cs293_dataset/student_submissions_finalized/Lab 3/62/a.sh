@@ -1,0 +1,10 @@
+./automated <input0.txt >my0.txt
+./automated <input1.txt >my1.txt
+./automated <input2.txt >my2.txt
+./automated <input3.txt >my3.txt
+./automated <input4.txt >my4.txt
+./automated <input5.txt >my5.txt
+./automated <input6.txt >my6.txt
+./automated <input7.txt >my7.txt
+./automated <input8.txt >my8.txt
+./automated <input9.txt >my9.txt

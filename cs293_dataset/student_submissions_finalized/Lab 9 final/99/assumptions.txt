@@ -1,0 +1,3 @@
+Assumptions
+
+There are no loops in journeys

@@ -1,0 +1,15 @@
+I have implememted my code as such that if we are on node and visit its adjacent
+node and then backtracks on that node again then I will again visit that adjacent node
+and now as it is two time visited I will not further visit it.
+For eg.
+If I have the graph 1--2--3
+and I start my DFS from node 1 then the traversal according to my code is
+1-2-3-3-2 and the BST tree would be
+            1
+             \
+              2
+               \
+                3
+               / \
+              2   3
+as I have assumed that the equal node in a BST would always be inserted on the right. 

@@ -1,0 +1,7 @@
+Name - Hitesh Kumar
+Roll no. - 210050066
+
+Assumptions:
+I added a new private member variable to maintain the the total numebr of elements in the heap.
+I created a 'swap_nodes' function which swap the object data of two TreeNode.
+I created 'return_array' function which returns the binary array of any number 

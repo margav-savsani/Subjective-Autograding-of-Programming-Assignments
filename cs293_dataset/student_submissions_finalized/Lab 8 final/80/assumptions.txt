@@ -1,0 +1,1 @@
+Assumed input will be provided properly like the test case.

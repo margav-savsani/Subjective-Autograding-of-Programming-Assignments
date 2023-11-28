@@ -1,0 +1,4 @@
+There is no cycle in the graph connecting stations.
+If train is not changing in a station, it can stay there till next saturday.
+Transit time is only considering when changing train.
+Stopovers will be considerd only when changing train.

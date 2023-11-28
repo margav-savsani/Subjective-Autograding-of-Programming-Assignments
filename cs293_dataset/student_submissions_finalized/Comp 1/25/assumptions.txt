@@ -1,0 +1,7 @@
+I have assumed that the main goal of the modified DFS is to correctly find all the nodes in the graph which are part of a cycle,
+taking into account all rules in the problem statement about visiting, BST, etc.
+The code cannot compromise on the fact that a node can not be visited more than twice.
+I have assumed that the DFS does not visit the parent of a node next to it, for example if I reach 2 from 1, I cannot immediately go back to 1.
+If a node is not a part of more than a cycle, the number of nodes visited twice will be the same as the number of nodes in a cycle.
+The number of nodes visited twice depends on the node I start my DFS from, and hence the visited twice and visited once answers might vary.
+But the number of nodes in a cycle will be accurate always.

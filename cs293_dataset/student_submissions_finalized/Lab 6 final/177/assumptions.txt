@@ -1,0 +1,4 @@
+Major assumption/change in trie.h and trie.cpp:
+
+Both recursiveAddCompletions and addCompletions have been parametrically changed; they are now passed by reference.
+It is assumed that these functions are not used anywhere else apart from trie.cpp.

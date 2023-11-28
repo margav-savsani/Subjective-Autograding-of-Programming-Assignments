@@ -1,0 +1,3 @@
+In the BST implementation, equal numbers after comparison, become the right node of the parent node.
+
+The DFS is started from the smallest value node for all components

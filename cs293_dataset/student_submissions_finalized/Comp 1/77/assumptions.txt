@@ -1,0 +1,2 @@
+ASSUMPTIONS:
+- There can be reasonable number of edges(Number should not exceed n(n-1)/2).

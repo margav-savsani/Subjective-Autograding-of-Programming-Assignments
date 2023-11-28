@@ -1,0 +1,1 @@
+I assumed that if there is a train from A to B with a journey code, there won't be a train from B to A with the same journey code. In other words, can we assume that we wont traverse a station with the same journey code twice

@@ -1,0 +1,17 @@
+NAME: AKSHAT SINGH
+ROLL NUMBER: 210020013
+LAB 10
+
+1. Assumed that if a person takes a train with same traincode between 3 stations but on different days, it counted as a direct journey and transit time is zero as traincode doesnt change as train is on same day
+
+2. In my output , Transit=0 means direct journey
+
+3. i assumed a weeekly calender that if a train depart before its arrival, it departs 1 week after.
+
+4. i assumed the input of maxtransit time would be of type HHMM.
+
+5. i have printed the output i such a way to show trains between everyintermediate stations
+
+6. If transit time>0 means there is a step over
+
+7. if a train runs on multiple days suppos monday and wednesday on the route A->B->C, then i have also printed the journey A->B on monday then B->C on wednesday and assumed this to be a direct journet as traincode doesnt change

@@ -1,0 +1,13 @@
+CS293 LAB 7 
+Name - Govind Kumar
+Roll - 210050058
+
+I haven't made any changes to planner.h
+
+Assumptions:
+	I am sorting only according to the day and departure time
+	
+	First priority is day of week
+	Second is departure time with -1 = infinity
+
+

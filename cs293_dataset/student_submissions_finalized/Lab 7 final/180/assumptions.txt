@@ -1,0 +1,4 @@
+if a train departure time is compared with any other train departing on same day at some other time then :
+	since -1 will be less than that time so ..TRAIN NOT DEPARTING FROM STATION WILL BE PRINTED FIRST.
+in case there are two trains that are not departing on the same day ie both have departure time -1:
+	in that case ANY OF THE TWO TRAINS CAN BE PRINTED FIRST {because if both of the trains are not departing it does not make sense to decide which train will depart first}

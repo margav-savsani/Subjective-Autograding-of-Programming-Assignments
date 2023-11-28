@@ -1,0 +1,1 @@
+Printing only the journey codes of the train routes in the printDirectJourneys function, as not sure what else is expected to be printed.

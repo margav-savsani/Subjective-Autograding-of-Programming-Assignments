@@ -1,0 +1,3 @@
+Assumptions-
+
+A new function BFS is created to find if a train can go from a source station to a destination station with given indices. The adjacency list is also passed to this function since this function cannot be included in the planner class. 

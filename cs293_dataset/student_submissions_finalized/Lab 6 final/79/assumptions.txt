@@ -1,0 +1,2 @@
+All station names must be in upper case.
+Reviews are case insensitive. So "Good","good","gooD","gOOd" all are equivalent.

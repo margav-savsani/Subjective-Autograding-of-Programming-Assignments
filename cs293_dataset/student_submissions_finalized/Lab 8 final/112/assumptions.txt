@@ -1,0 +1,1 @@
+assumed the number of nodes in the heap does not overflow int data type i.e. numNodes is < 2^32-1

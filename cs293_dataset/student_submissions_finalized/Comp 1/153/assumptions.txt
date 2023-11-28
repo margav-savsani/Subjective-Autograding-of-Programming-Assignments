@@ -1,0 +1,2 @@
+Assumed that
+- the modifiedDFS should be such a DFS that gives (number-of-nodes-in-a-cycle)=(number-of-nodes-visited-twice)

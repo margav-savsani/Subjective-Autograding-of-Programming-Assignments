@@ -1,0 +1,8 @@
+*****************Interpretation of modified BFS*******************************************************
+My implementation performs BFS, based on graphs, in which directed edges exist, only if the train with specific journey code connects the two stations
+First I store all the trains leaving from source in a doubly linked list
+Then ,for each of the trains, a BFS is performed. If destination is reached somewhere in between, we store that journey code
+
+******************************Source=Destination*******************************************************
+If source and destination are the same, I print out all the trains leaving from source station. Since 
+a (retarded) person can obviously go sit in a train for 5 mins and leave it at the same station.

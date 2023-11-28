@@ -1,0 +1,12 @@
+Name : Soham Joshi
+Lab : 09
+Roll number : 210051004
+
+===============================================================================
+
+1. The trains reaching the destination are a subset of intersection of sets of outgoing journeys at the source and incoming trains at the destination
+2. A train may break down in the middle of a journey, hence not reaching the destination
+3. The graph cannot have cycles, i.e. a train cannot come back to a station if it left from there
+4. All datastructures have been pre-"filled"
+
+==============================================================================

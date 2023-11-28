@@ -1,0 +1,13 @@
+                #/// BFS \\\#
+*) I have Implemented BFS considering the Stations as Vertex of directed Graph 
+   and "To Trains" denoting the directed paths.
+*) The BFS algorithm is performed from the source station.
+*) The Queue Mainted for BFS and a container which will contain the Train_No.s are implemented through the Queue data Structure from lab1.
+*) The Queue Maintained for BFS has an Object which contains (Train_no and Station_index).
+*) Every Time a BFS search reaches a station it adds only that Queue Object (Train_no and Station)
+   that contains the same Train_no as that of the Object removed from the Queue.(i.e effectively we choose only specific Paths in graphs).
+*) If a Node having destination index is encountered, then the Train_no corresponding to that Object is stored in the Queue.
+*) Finally the Queue of Train_No.s will have all the required Trains.
+*) Since we need to show the Train Info for the Source Stations, I added an extra function "find_elem" in DynamicQueue, to find
+   whether the elem is in Queue or not. 
+*) I search for all the Trains common in StationInfo of the sourceTrain and the Queue of Train_nos.

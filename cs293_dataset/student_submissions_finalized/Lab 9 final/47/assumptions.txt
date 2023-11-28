@@ -1,0 +1,6 @@
+1. The output will give the TrainInfoPerStation of the destination side( arravial and departure time at the destination). and the output will be sorted order for same journeycode trains.
+direct_train_first = will store trains that are possible to find a path ( it is head ) and to make addition similar, created direct_train_last as well.
+index_values_first = will store indices of the stations that can be between source and destination, ( it is head ) and to make addition similar, created index_values_last as well.
+
+These both continuosly add the vertices in the next level and remove the previous level vertices. Here actually BFS got used.
+firstly added level 1 vertices into index_values_first and direct_train_first, later appiled BFS on the remaining.

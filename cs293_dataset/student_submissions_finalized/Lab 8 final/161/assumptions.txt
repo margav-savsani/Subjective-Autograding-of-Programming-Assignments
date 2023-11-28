@@ -1,0 +1,1 @@
+Did the bonus part assuming that the first node(root) is getting printed as some left or right child so i removed that thing and now the root node is getting printed as root 

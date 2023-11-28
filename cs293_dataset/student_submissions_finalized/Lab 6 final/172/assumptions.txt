@@ -1,0 +1,2 @@
+The stations can contain only capital letters.
+AddCompletions always return true

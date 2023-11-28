@@ -1,0 +1,2 @@
+-> checking only day and dept time not checking arr time while comparing
+-> only impemented quicksortsimple, so uncommented quicksortsimple in planner.cpp

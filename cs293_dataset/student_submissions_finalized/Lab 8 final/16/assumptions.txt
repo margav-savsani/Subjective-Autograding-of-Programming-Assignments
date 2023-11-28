@@ -1,0 +1,8 @@
+###############################################
+Name : Karan Godara
+Roll No : 210050082
+Lab 8
+###############################################
+Assumptions:
+1. In heapify if both children are equal, then my right element is swapped with the parent if parent is less than the child.
+###############################################

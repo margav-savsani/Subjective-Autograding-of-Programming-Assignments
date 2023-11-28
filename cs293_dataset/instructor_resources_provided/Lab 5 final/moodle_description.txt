@@ -1,0 +1,51 @@
+Please follow the submission instructions below carefully. 
+Submissions prepared without following these instructions WILL NOT BE GRADED.
+
+1. Create a separate directory named <roll_number>_L5, where roll_number is your roll number.  For example, if your roll number is 1234567890, the directory should be named 1234567890_L5
+
+2. Clearly write whatever assumptions you had to make to solve the lab assignment in an ASCII text file named assumptions.txt 
+If you have not made any assumptions, create an empty assumptions.txt file
+
+3. Place only the following files in the above directory (i.e. in <roll_number>_L5):  
+
+          BST.h, BST.cpp, AVL.h, AVL.cpp, Tree.h, main.cpp, assumptions.txt 
+   
+    Any other files found in this directory will lead to severe penalty
+
+4. Go to the parent directory of <roll_number>_L5
+
+5. Run tar -zcvf    <roll_number>_L5.tgz    <roll_number>_L5
+
+6.  Check by running tar -xcvf <roll_number>_L5.tgz that the extracted directory contains only BST.h, BST.cpp, AVL.h, AVL.cpp, Tree.h, main.cpp, assumptions.txt and nothing else.  Make sure there are no hidden files in the extracted directory.
+
+You can list all files in a directory, including hidden files, on Linux using "ls -a"
+
+7. If the above step shows shows files other than BST.h, BST.cpp, AVL.h, AVL.cpp, Tree.h, main.cpp and assumptions.txt in the extracted directory, delete the <roll_number>_L5 directory and re-start from step 1.
+
+ Otherwise, upload only <roll_number>_L5.tgz  on Moodle
+
+The following is an example sequence of commands for making a proper submission on a Linux system.  Suppose you have been working (writing code, compiling, testing and running your code) in the current directory, and suppose your roll number is 1234567890.  When you are ready to submit, you can execute the following shell commands.
+
+shell_prompt> mkdir 1234567890_L5
+shell_prompt> cp BST.h 1234567890_L5/
+shell_prompt> cp BST.cpp 1234567890_L5/
+shell_prompt> cp AVL.h 1234567890_L5/
+shell_prompt> cp AVL.cpp 1234567890_L5/
+shell_prompt> cp Tree.h 1234567890_L5/
+shell_prompt> cp main.cpp 1234567890_L5/
+shell_prompt> cp assumptions.txt 1234567890_L5/
+shell_prompt> tar -zcvf 1234567890_L5.tgz 1234567890_L5
+shell_prompt> mkdir test_extraction
+shell_prompt> cd test_extraction
+shell_prompt> cp ../1234567890_L5.tgz ./
+shell_prompt> tar -zxvf 1234567890_L5.tgz
+shell_prompt> ls -a 1234567890_L5
+(If the above command shows only the files BST.h, BST.cpp, AVL.h, AVL.cpp, Tree.h, main.cpp and assumptions.txt and nothing else (except perhaps for . and ..) in the extracted directory 1234567890_L5, then proceed as follows. Otherwise go back to the first step, delete the directory 1234567890_L5 and start all over)
+shell_prompt> cd ..
+shell_prompt> /bin/rm -rf test_extraction
+
+You can now upload 1234567890_L5.tgz to Moodle
+
+# Submission stats
+Participants	200
+Submitted	182

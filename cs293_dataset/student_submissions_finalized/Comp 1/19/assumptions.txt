@@ -1,0 +1,5 @@
+For no of cycles I calculating using recursive cycle() which will remove all the nodes which have
+degree 1 and  call the recursive function again until the total sum of the adjacency list size of 
+all the nodes present until now if before sum and after sum are same the end the recursive function.
+the BST code is a slightly modified version from the lab3 solutions which are provided in the git the 
+modified BST doesn't have journey code and it will only have price.

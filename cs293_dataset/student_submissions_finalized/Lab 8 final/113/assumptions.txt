@@ -1,0 +1,4 @@
+I have created a new class variable for heap called "end" to keep track of the last element of the binary heap.
+I have implemented the destructor for the heap class in .h file by help of a recursive delete function.
+If you want to see the heap you can uncomment the lines at the end of insert and delete functions to print the heap at each step.
+I implemented the printheap function along with modifying the code so the it doesn't print the continuous lines as it was in previous labs.

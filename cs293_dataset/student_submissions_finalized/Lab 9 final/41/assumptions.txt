@@ -1,0 +1,8 @@
+Name - Hitesh Kumar
+Roll No. - 210050066
+
+My assumptions:
+1) I created two new class; BFS and Train.
+2) BFS class have a linekd list implementation used for searching and Train class is for storing the data related to train.
+3) Then I created two more functions; search_journey and train_add_journey.
+4) search_journey searches the journey in the linked list and train_add_journey adds the data to th elinekd list.

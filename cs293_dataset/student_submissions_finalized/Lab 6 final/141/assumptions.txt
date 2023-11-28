@@ -1,0 +1,7 @@
+Topic : Tries + KMP
+
+==============================================================================================
+
+1. Station name cannot have a leading space. 
+2. KMP only identifies the first occurence of the pattern. 
+3. The nodes of the trie are all alphabets, i.e. the inputs can be only a-z or A-Z. 

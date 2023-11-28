@@ -1,0 +1,3 @@
+h[i] is the length of the longest proper prefix of pattern 
+which is also the suffix of pattern[0..i-1] without necessarily 
+satisfying the condition that pattern[i] != pattern[h[i]].

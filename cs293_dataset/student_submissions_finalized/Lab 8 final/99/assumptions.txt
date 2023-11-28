@@ -1,0 +1,5 @@
+ASSUMPTIONS
+
+In the BST print function, the "|__" string that gets printed 
+before the root is not correct since the root isn't a right child.
+I have removed that from the printHeap() function.

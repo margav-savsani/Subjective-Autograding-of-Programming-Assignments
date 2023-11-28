@@ -1,0 +1,2 @@
+--- if in a graph an edge is travelled from A-B then it can't be traversed from B-A
+

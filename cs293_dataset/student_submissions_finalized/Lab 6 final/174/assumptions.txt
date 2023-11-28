@@ -1,0 +1,2 @@
+For kmp.cpp:
+1.I assumed that if my pattern is empty, I should return a nullptr while calculating hmatrix.

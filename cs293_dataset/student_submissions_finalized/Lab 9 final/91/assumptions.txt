@@ -1,0 +1,1 @@
+I assumed that a given train (with a particular journeycode) goes through a particular station atmost once

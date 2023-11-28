@@ -1,0 +1,9 @@
+Name - Hitesh Kumar
+Roll No. 210050066
+
+My assumptions are:
+1) I made a function 'Quick' which is called recursively for sorting the elements
+2) A function 'get_pivot' is made to get the pivot for sorting.
+3) A function 'swap_train_data' is made for swapping two train info totally.
+4) A function 'train_station_number' is used for returning list of train number
+5) A function 'funciton' is used for sorting the same data of the same day.

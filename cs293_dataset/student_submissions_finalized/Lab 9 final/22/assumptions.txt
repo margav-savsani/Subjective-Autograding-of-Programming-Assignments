@@ -1,0 +1,2 @@
+1. No loops in train path. In my BFS implementation,  I have assumed that there are no loops in train path, and did not flag
+already visited stations because if there are no loops, I won't visit the station again and it is trivial to flag it in that case.

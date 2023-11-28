@@ -1,0 +1,2 @@
+1) The journeys are sorted according to dept time and day of the week only.
+2) The journeys with no dept time are placed at top in the list.

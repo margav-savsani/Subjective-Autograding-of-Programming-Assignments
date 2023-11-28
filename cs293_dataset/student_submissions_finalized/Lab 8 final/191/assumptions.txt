@@ -1,0 +1,5 @@
+Roll number - 210050126
+Name - Pulkit Goyal
+
+When the root is nullptr, in the getMax function I have returned just T() which represents the default constructor.
+Created new functions like Heapify, recursive_delete, swap.

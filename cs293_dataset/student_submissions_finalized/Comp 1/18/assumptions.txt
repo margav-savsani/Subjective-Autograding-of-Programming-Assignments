@@ -1,0 +1,2 @@
+Backtrack is not counted as visiting a second time. The node has to be visited from another path to be counted as visited twice.
+

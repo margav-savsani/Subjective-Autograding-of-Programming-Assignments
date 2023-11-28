@@ -1,0 +1,1 @@
+When we move from one node to its child then we are not checking the parent node in the adjencany list of child so that graph is checked in one direction

@@ -1,0 +1,2 @@
+No significant assumptions
+dummy 4 is just a dummy node which is used to get the first element of linked list

@@ -1,0 +1,5 @@
+A person will not get out at a station and take same train at a later time
+i.e. If a person continues the Journey In same train then he wil not get out at a station and take the same train at another day
+(!This is a more Strict assumption, code would have been easier without this assumption)
+Transit Time is supplied as XXYY (XX hours and YY Minutes)
+Transit Time is less than 7 days

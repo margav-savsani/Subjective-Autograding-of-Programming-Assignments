@@ -1,0 +1,2 @@
+
+I am getting the timings of the train as the timings from its next station

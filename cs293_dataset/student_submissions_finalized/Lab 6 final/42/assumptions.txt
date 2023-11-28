@@ -1,0 +1,3 @@
+I've added a line in the clearJCRMatric function in planner.cpp, assigning the element of the matrix to a null pointer after it is deleted.
+
+The delete reviews aren't really working properly here, but as I'm not responsible for them I've left the implementations alone

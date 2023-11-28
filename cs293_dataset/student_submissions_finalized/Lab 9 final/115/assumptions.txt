@@ -1,0 +1,9 @@
+I am ignoring only one case which will not occur in practise. The train starts at one station, and finally goes into loop, but the starting station is not there in that loop.
+
+Case:
+       C->D
+       ^
+       |  |
+A--->--B<-E
+
+train will start from A and go to B->c->D->E->B infinite loop. infinite loop is any not possible, so I am ignoring it. 

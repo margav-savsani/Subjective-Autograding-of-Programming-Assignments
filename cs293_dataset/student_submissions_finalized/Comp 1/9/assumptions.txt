@@ -1,0 +1,1 @@
+I have assumed that while doing DFS we can traverse the same loop again for the second time and if you wanted it otherwise, it can easily be changed by introducing another variable and updating its value by +1.

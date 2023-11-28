@@ -1,0 +1,9 @@
+Name - Pulkit Goyal
+Roll number - 210050126
+
+--- I haven't created any extra function/member method.
+--- Everything is made in the given QuickSort functions.
+--- I have sorted according to the depTime.
+--- If depTime and day are same then I have sorted according to the arrTime
+--- depTime -1 comes at end and gets sorted according to arrTime
+

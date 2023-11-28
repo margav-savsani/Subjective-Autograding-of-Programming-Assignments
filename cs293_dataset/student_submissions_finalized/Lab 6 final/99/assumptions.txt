@@ -1,0 +1,11 @@
+ASSUMPTIONS
+
+In addCompletions, if the node is not the end of the word, return true
+(No new completions are added for this).
+
+The station names are only made of alphabets (either upper or lowercase).
+
+The words are stored in uppercase in the trie by default.
+The entire station names are case-sensitive, ie,
+Mumbai Central and MUMBAI CENTRAL will be stored in different places,
+but in the trie both are stored only under words MUMBAI and CENTRAL.

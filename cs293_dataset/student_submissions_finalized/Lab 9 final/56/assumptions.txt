@@ -1,0 +1,5 @@
+Name: Josyula Venkata Aditya
+Roll no: 210050075
+
+1. I have assumed that the journey codes are unique i.e. one journey code corresponds to one path in the graph
+2. I have also assumed that there are no loops in the train journeys i.e. a train journey doesn't encounter any station twice

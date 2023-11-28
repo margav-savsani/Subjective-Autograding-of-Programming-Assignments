@@ -1,0 +1,3 @@
+assumed the path of a train does not branch or loop at any point in its journey.
+in print function, assumed arrival/departure corresponds to starting station only.
+assumed unsorted lists for now, sorted lists would improve time complexity very much.

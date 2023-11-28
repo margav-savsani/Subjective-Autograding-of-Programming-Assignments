@@ -1,0 +1,2 @@
+I have implemneted functions height and balanced functions in AVL, height is an int type function which returns height of a node, balanced is a bool type function which returns true if a node is balnced els eit returns false.
+In BST i have implemented height function which is same as above.

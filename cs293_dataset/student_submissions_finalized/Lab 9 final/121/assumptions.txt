@@ -1,0 +1,7 @@
+1 - No cyclic loops are there in the graph of stations, don't know what would happen if they were 
+    there but have not taken any measures against it.
+2 - Indices of stations are unique. Equality of stnIndex implies same station in my code.
+3 - Journey code same means same train travelling in the same direction. If another train is present 
+    along the same path but different direction (say a train in return journey), it must have a 
+    different journey code.
+4 - Inputs of station names are there in the station names list and are valid.

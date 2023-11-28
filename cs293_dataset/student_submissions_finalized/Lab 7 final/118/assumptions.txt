@@ -1,0 +1,2 @@
+I have assumed that the trains are ordered according to -> Day of Week > Arrival Time > Departure Time
+i.e., first check day of week, if same, check arrTime, if same, check depTime.

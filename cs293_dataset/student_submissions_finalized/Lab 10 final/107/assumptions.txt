@@ -1,0 +1,7 @@
+Guramrit Singh
+210050061
+CS 293
+Lab 10
+
+Assumptions:
+1. A train must stop at a station at least once in 24 hours i.e. the journey time between two consecutive stations by any train can't exceed 24 hours.

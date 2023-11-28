@@ -1,0 +1,4 @@
+* Made a counter variable to count the total number of nodes inserted into the Heap
+* Obtained a path to a node by keeping the "virtual" indexes of the Heap nodes and storing them in a vector.
+* Inside the printHeap function I called the printHeap_tree function which is similar to as provided in one of the labs.
+* Inside the destructor called the recursive delete function to delete the memory allocated to the pointers.

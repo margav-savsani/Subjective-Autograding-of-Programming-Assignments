@@ -1,0 +1,13 @@
+#########################################################################
+Name : Karan Godara
+Roll No : 210050082
+DSA LAB : OUTLAB 10
+#########################################################################
+
+Assumptions:
+1. If given constraints are satified, a person can go from say A to B in train with journey code 120, B to C in train with journey code 130 and further ahead from C to D in train with journey code 120.
+Basically a person can take different train between a different journey by deboarding and reboarding it at later station(train maybe of same JC but runs on different day).
+2. Since we have been given only single boolean array corresponding to trains leaving a station on different days, we assume that train wil leave a station on the same day as it arrives.
+3. Since given a boolean array of a journey between two stations in some situations it might arrise cases such that if train would arrive at station say A after 4 days or if 2 days in both cases the boolean array would look same. In these cases we choose the least possible shift to find on which journey day we reach a station. 
+
+########################################################################

@@ -1,0 +1,1 @@
+edges wont be traversed in reverse dirction once traversed in a particular one

@@ -1,0 +1,7 @@
+I have assumed that all the station names should be unique and no clash of journey codes also.
+Also one line was missing from planner.cpp version provided to us which led to failure of code in certain test cases.
+I have corrected it by adding
+jCRMatrix[row][col]=nullptr;
+at line number 1048 in method clearJCRMatrixEntry.
+
+

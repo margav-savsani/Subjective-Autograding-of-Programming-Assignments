@@ -1,0 +1,21 @@
+### Name        : Atishay Jain
+### Roll Number : 210050026
+
+### CS293 LAB 7 ASSUMPTIONS :
+
+- Sorting Order:
+   I sorted the Train informations on the basis of a preference order -
+   1. days of week 
+   2. Arrival time
+   3. Departure time
+   That is, first basis for sorting is the day at which the train runs.
+   If it is same for two trains, then their arrival time is considered.
+   If it is also same, then there Departure time is considered.
+
+- I did not created a function Planner::partition as in my implementaion, the
+  partitioning is done inside the QuickSort function as well.
+
+- I have implemented both QuickSort and QuickSortSimple functions. You can uncomment one of them
+  in planner.cpp to test it.
+
+- I created two Function (bool compare) and (void swapStnInfo) in quicksort.cpp to compare two objects and swap two Nodes.

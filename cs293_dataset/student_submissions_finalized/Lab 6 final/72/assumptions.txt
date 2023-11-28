@@ -1,0 +1,7 @@
+
+
+    In kmp.cpp I have implemented the case insensitive matching of the pattern.
+
+    While implementing `delete`, if in a branch there is only one node with isWord->True and it has only one index(station) in it and if it is the Station name to be deleted, In that case after deleting the Station I deleted the entire branch because it is no longer required in our trie.
+
+    In planner.cpp there is a problem in the clearjCRMatrix function (which arises if we delete specific stations), Since in this lab we were to modify only kmp.cpp, trie.cpp and trie.h I didn't fix the bug in planner.cpp.

@@ -1,0 +1,4 @@
+a node will be visited twice only if it a part of some cycle in the graph.
+
+	so in final output, no of nodes visited twice = no of nodes in some cycle, no need to keep track of cycles 
+	because the traverse is in such a way that when a node visited twice would mean that it is part of some cycle 

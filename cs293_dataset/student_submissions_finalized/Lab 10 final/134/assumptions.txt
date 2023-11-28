@@ -1,0 +1,13 @@
+-> the journies have different journy codes,
+-> the train reaching adjacent station takes same time in any day
+-> the implementation works for circular week(or something which means that)
+-> two trains have differnt jcodes
+->jcodes cant be negative
+-> arr and dept days are same for any train in any station
+-> ...
+
+
+-> The code is incomplete, if given time, This could be much better, but owing to
+  timme constraints this is what i was able to do.
+-> the print function is not working right, but the final stations for any inputs are correct,
+this can be check by commenting out print function in main function 

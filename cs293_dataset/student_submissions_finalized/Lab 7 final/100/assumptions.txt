@@ -1,0 +1,1 @@
+1]assuming that if a station is end station for one train it is also end station for all trains.

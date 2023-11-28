@@ -1,0 +1,7 @@
+1] Maximum time a train stops at a staion is less than 24hrs.
+
+2] Maximum time a train travels at a strech between two consecutive stations is less than 24hrs.
+
+3] I have printed the source station, intermediate stations where train change is required and , destination station.
+
+4] Input format for Maximum transit time is in integer hrs.

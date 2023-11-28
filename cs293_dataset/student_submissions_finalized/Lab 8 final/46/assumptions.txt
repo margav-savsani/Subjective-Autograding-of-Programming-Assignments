@@ -1,0 +1,2 @@
+1) I have changed the signature of prinHeap function for ease
+

@@ -1,0 +1,2 @@
+printing the output in the terminal
+give input file as command argument

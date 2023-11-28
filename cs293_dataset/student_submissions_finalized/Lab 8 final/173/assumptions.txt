@@ -1,0 +1,21 @@
+To implement a heap with a binary tree with O(log n) time complexity, you need to store the total number of nodes as an instance variable.
+
+Suppose we had a heap of 10 total nodes.
+
+If we were to add a node...
+
+We increment the total number of nodes by one. Now we have 11 total nodes. We convert the new total number of nodes (11) to its binary representation: 1011.
+
+With the binary representation of the total nodes (1011), we get rid of the first digit. Afterwards, we use 011 to navigate through the tree to the next location to insert a node in. 0 means to go left and 1 means to go right. Therefore, with 011, we would go left, go right, and go right...which brings us to the next location to insert in.
+
+We examined one node per level, making the time complexity O(log n)
+	ref: https://stackoverflow.com/questions/18241192/implement-heap-using-a-binary-tree#comment46842275_21391589
+
+
+I initailized a global variable num in Heap.h to keep track of number of nodes in the tree
+
+
+	
+	Converting from decimal to binary representation
+	ref: *https://www.geeksforgeeks.org/program-decimal-binary-conversion/
+

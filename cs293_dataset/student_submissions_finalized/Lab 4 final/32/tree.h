@@ -1,0 +1,128 @@
+#ifndef BST_H
+#define BST_H
+
+
+// Header file for defining a Binary Search Tree
+// Reuse the binary Search Tree implemented in lab 3 as much as possible
+
+// struct TreeNode given below is almost the same as was given to you
+// in lab 3. The only exception is the addition of shortestPathLength
+// and longestPathLength fields along with a member function getImbalance.
+// Read the comments in the structure definition to understand the meanings
+// of these.
+//
+
+struct TreeNode{
+  int JourneyCode;	// Journey code
+  int price;		// Price
+  TreeNode *left;	// Left Child of this Node (NULL, if None)
+  TreeNode *right;	// Right Child of this Node (NULL, if None)
+  TreeNode *parent;	// The Parent Node, NULL in case of Root
+  int shortestPathLength = 99999; // Length of shortest path from this node to a leaf 
+                          // where a nullptr leaf contributes a path of length 0
+  int longestPathLength; // Length of longest path from this node to a leaf
+                         // where a nullptr leaf contributes a path of length 0
+  
+  // Constructors: There are 3 variants of the constructor given below.
+  // Please make sure you understand what each of these variants do.
+  // Ask your TA or the instructor if you have a doubt.
+  
+  TreeNode() : price(0), JourneyCode(0), left(nullptr), right(nullptr) {}
+  
+  TreeNode(int jrnyCode, int jrnyPrice) : price(jrnyPrice), JourneyCode(jrnyCode), left(nullptr), right(nullptr) {}
+  
+  TreeNode(int jrnyCode, int jrnyPrice, TreeNode *leftChild, TreeNode *rightChild, TreeNode *parent) : price(jrnyPrice), JourneyCode(jrnyCode), left(leftChild), right(rightChild), parent(parent) {}
+
+  int getImbalance(){
+    return (longestPathLength - shortestPathLength);
+  }
+    
+};
+
+// class BST given below is a slight modification of what it was in
+// lab 3.  A few new fields have been introduced, and some member functions
+// have been removed, since they are no longer needed for the current
+// assignment.
+
+// Note however that unlike in lab 3 where you had to build the BST using
+// ordering of prices, this time we will build the BST using ordering of
+// journey codes.
+
+class BST{
+  public:// Feel free to add more private/public variables and/or functions
+  // But do not modify the pre-existing function signatures
+  
+  TreeNode *root;
+  
+  // result variable is for testing purposes, Do not tamper with it!
+  vector<string> result;
+  
+
+  // ************************************************************
+  // Methods for Part I
+  
+  // Constructors!
+  BST() 
+  {
+  	root = nullptr; 
+  }
+  
+  BST(TreeNode *curr_root) 
+  {
+  	root = curr_root;
+  }
+
+  // Implement your own destructor
+  ~BST() {};
+  // Returns false, if given JourneyCode is already present in the BST
+	// Inserts the element and returns True otherwise
+	int insert(int JourneyCode, int price, TreeNode* l, TreeNode* prev);
+
+
+	
+	
+	// Returns false, if JourneyCode isn't present
+	// Deletes the corresponding entry and returns True otherwise
+	
+	// Functions that traverse the BST in various ways!
+	// type can be PRE_ORDER, POST_ORDER or IN_ORDER, which
+        // #defined numeric constants defined in BST.cpp
+        // This function prints on cout the journey codes (one per line)
+        // encountered on traversing the BST in the given traversal order
+	// Returns the imbalance of the root node of the BST
+  	int getImbalance();
+  
+
+        // ****************************************************************
+	// Methods for Part II
+
+	// Returns the count of journeys that are at least as expensive
+        // as lowerPriceBound and at most as expensive as upperPriceBound,
+        // both bounds included.
+        
+  
+
+  // This function prints the BST using ASCII characters using the
+  // format:
+  //
+  //   root
+  //       |-- left subtree
+  //       |__ right subtree
+  //
+  // where the left and right subtrees are printed recursively in
+  // the same format.
+  //
+  // We have done this for you! Please see BST.cpp for details
+  // You may use this for debugging purposes.
+  //
+  void printBST(const string& prefix, bool isLeft);
+  
+  
+  // The three functions below are for evaluation purposes, Do not tamper with them!
+  void getBST(const string& prefix, bool isLeft);
+  void clearResult();
+  vector<string> getResult();
+  
+};
+  
+#endif

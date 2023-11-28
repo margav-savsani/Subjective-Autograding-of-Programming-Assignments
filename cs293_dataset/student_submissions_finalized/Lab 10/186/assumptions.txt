@@ -1,0 +1,6 @@
+Name        : Atishay Jain
+Roll Number : 210050026
+CS293       : LAB 10
+
+Assumptions :
+1. If there is an indirect as well as direct journey, I will print both of them.

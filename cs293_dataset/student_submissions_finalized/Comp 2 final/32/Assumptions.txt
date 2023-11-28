@@ -1,0 +1,3 @@
+ASSUMPTIONS :
+
+Printed all similar nodes symmetrically, i.e. printed (a, b) for all (b, a)

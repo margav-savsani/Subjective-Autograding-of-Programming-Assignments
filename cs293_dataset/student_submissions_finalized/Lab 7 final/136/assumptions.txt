@@ -1,0 +1,1 @@
+daysOfWeek[7] and depTime are public members of TrainInfoPerStation

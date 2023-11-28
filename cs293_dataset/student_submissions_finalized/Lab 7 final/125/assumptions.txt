@@ -1,0 +1,6 @@
+The stations have been sorted by the following rule:
+-> First the days are compared, if a station has an earlier day, it appears first
+-> If the days are same, then the departure times are compared, the train with earlier departure time appears first
+-> Departure time -1 appears first
+
+Only QuicksortSimple has been implemented.

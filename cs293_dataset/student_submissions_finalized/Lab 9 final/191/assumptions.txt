@@ -1,0 +1,8 @@
+Name - Pulkit Goyal
+Roll number - 210050126
+
+--- I have assumed that a train follows only a particular train sequence, i.e,
+if A-B-C-D-E is a path then A-C-E or A-F-E etc can't be true for the current train.
+They may have train with a different journeyCode surely
+
+--- I have used printStationInfo to print trains and the trainInfoPerStation used is of that of the source station, so if a trian goes from A-B-C then direct journey A-C prints trains containing day, jrneyCode, arrival and departure time, etc at A 

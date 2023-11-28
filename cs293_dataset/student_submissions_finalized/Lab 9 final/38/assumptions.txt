@@ -1,0 +1,5 @@
+The total number of trains starting from any station is less than 100
+
+No train covers same station twice
+
+There are no two different trains with same journey codes

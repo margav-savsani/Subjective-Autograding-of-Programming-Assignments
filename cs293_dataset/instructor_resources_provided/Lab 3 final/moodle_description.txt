@@ -1,0 +1,9 @@
+Please upload your final BST.h and BST.cpp files only.
+
+No README files, and no other files or folders please! 
+
+Those not following this instruction may be penalized.
+
+# Submission stats
+Participants	200
+Submitted	172

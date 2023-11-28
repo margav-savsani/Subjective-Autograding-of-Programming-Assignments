@@ -1,0 +1,7 @@
+210050029
+LAB7 
+AYUSH AGARWAL
+
+1)Implemented both simple and normal quicksort. 
+2)Train is sorted firstly on day of week and if its same then it is sorted on basis of departure time.
+3)So in each day first Train that ends there will come.But there is no order in them since no meaning to sort trains ending on a station.

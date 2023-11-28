@@ -1,0 +1,11 @@
+i didnt implement a new print function, i used the one given in planner
+	so what i print is the total path of that journey 
+	even if we dont change train same journey code will be printed but with different arr and dep times
+	that is the info per station so the arr and dep times are different
+	
+	the print in planner prints the journey in a reverse order (srcstn at bottom)
+	
+i implemented maxstopovers only
+did not implement transit time.
+
+i assumed no circular journeys in the admin inputs

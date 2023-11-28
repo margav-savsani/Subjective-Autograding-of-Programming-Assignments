@@ -1,0 +1,5 @@
+A train doesn't spend more than 24 hours between adjancent stations.
+MaxTransitTime is only considered when switching two trains at a station.
+Each train functions atleast once per week.
+Source and destination station are not the same.
+If no journey exists, nothing is outputted.

@@ -1,0 +1,1 @@
+In recursiveAddCompletions and addCompletions functions the currCompletions is returned by reference so that the changes made to it are reflected outside these functions. This is done to use in collections function.

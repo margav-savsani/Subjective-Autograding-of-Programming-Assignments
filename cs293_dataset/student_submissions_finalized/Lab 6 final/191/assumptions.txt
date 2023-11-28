@@ -1,0 +1,1 @@
+I have implemented KMP such that case doesn't matter, i.e., good matches with Good

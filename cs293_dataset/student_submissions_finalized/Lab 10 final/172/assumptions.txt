@@ -1,0 +1,5 @@
+The time period of each journey between 2 stations is assumed to be less than 24 hours.
+The maxtransittime is assumed to be provided in hours.
+The transit time output is printed in 24 hours format, last 2 digits are minutes and the rest are hours.
+Only 2 consecutive trains with different journeycodes is considered as a differnet journey.
+

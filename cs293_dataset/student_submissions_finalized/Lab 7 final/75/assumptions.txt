@@ -1,0 +1,6 @@
+Assumptions:
+
+1. The stations are compared as follows:
+  a. The days (starting from Sunday) where first train arrives are checked.
+  b. If those are same, then the departure times are compared (-1 is given higher priority, because it will mean train is not going to leave the station, hence has lesser priority than the train which is going to leave at some time)
+  c. If both the departure times are same (non-negative or -1), then the arrival times are checked.

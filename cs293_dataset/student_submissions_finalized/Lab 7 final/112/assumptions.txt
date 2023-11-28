@@ -1,0 +1,5 @@
+I have sorted the trainInfoPerStation elements by day and depTime
+
+For the same day, trains having depTime == -1 will be at the beginning of the sorted list.
+
+I just called quicksortsimple from inside quicksort. Not sure if this is what the qn asked for.

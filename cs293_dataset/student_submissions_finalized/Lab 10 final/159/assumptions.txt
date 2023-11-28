@@ -1,0 +1,7 @@
+1.In printing all journeys i assumed that if it print "NO JOURNEYS" or 
+if it doesnt print anything both have same meaning that is no journeys are
+there.
+2.at source station a particular journey code has many days starting 
+with sun,.... i took 1st day only considering user will take 1st
+train only since i dont know which day user decided to go.
+

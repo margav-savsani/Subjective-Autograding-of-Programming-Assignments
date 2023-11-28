@@ -1,0 +1,5 @@
+1 - No train runs between two stations on the same day twice.
+2 - If destination is reached, the traveller would not like to further
+    travel even if there are more stops he is willing to take.
+3 - Departure time of train is always larger than Arrival time on same
+    date and also smaller than the maxTransitTime user gives.

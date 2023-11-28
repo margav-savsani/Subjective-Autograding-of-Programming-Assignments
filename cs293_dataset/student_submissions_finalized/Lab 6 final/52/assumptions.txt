@@ -1,0 +1,1 @@
+I have stored a char letter in each Trie Node also.

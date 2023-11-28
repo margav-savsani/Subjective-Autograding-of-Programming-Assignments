@@ -1,0 +1,2 @@
+the code prints different journeys separated by '========================'
+the journeys may look the same but the corresponds to different days and the printStationInfo prints all the data of that journey

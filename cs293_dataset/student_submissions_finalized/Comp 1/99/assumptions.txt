@@ -1,0 +1,5 @@
+ASSUMPTIONS
+
+Nodes that are present in a cycle are visited twice.
+Nodes from which backtracking happens are visited once.
+While inserting in BST, if the values are repeated, the repeated value goes to the left subtree.	

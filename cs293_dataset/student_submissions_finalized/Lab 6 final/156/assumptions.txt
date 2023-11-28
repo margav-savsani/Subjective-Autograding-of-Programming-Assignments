@@ -1,0 +1,1 @@
+> The KMPMatch function returns the first word of the first occurence of the pattern (if present).

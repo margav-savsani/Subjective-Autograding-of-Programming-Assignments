@@ -1,0 +1,26 @@
+210050091 Madur Adarsh Reddy
+
+Assumptions:
+
+* The train visits a station only once (there are no loops)
+* The maxTransitTime is on a per transit basis
+* Any type of transits are possible. But once the person reaches the destination he must stop there.
+* Since there might be different journeys on different days (due to the fact that the train may not be a daily), I have put option to
+choose an option for the first day (all can also be chosen - will give all possibilities)
+
+
+Printing has been done in the following format:
+
+Day 1
+Train A (with departure time, station)
+Transit time 
+Train B 
+and so on ..
+Day 2
+Train A (with departure time, station)
+Transit time 
+Train B 
+and so on ..
+...
+
+Direct journeys have been mentioned specially 

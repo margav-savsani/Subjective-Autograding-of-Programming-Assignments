@@ -1,0 +1,3 @@
+Assumed in the DFS traversal the 'parent'/previous node will not be chosen again.
+
+Assumed number of edges will always be in bounds as supplied, as in no checks for number of edges is made.

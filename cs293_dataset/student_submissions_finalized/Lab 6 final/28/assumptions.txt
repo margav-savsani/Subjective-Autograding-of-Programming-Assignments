@@ -1,0 +1,2 @@
+I made a search function which I used and no other assumptions are made.
+I also made the KMP search case insensitive.

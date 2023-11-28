@@ -1,0 +1,3 @@
+1. This can be solved for now by making a highly reasonable assumption that along a journey, a train never travels between two consecutive stops for 24 hours or more at a stretch.
+2. The stopping time for a train at a station (where the train arrives at the station, stops for some time, and then leaves the station) may be assumed to be less than 24 hours -- this is a very reasonable assumption. 
+3. daysOfWeek array for a station corresponds to arrival days

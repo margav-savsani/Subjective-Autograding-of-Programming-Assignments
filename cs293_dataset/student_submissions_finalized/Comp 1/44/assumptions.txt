@@ -1,0 +1,23 @@
+Suppose current node is i and it is going to j. This can happen only if
+1) j has not been visited twice already
+2) j has never been visited from i
+
+Secondly, suppose i was visited from p, and the next node to visit is j 
+i.e p--> i --> j. This can happen if
+1) i is visited once and j!=p OR
+2) if j==p then i must be visited twice already
+
+Two bool variables have been created for each node to store whether that particular node is visited once or twice. 
+
+The code functions correctly. 
+
+Following data structures have been created for use:
+1) TreeNode, BST
+2) Node, Graph
+3) listStruct, list
+
+To print BSTs each BST has been stored in the implemented list implemented in .h file. 
+
+To print the adjacency list of each node. Uncomment the last few lines of the printResults.
+
+All the BSTs are printed together at last.   

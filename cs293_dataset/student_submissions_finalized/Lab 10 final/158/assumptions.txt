@@ -1,0 +1,25 @@
+21d180043 - Vijay
+
+
+*************************************************************************************************************************
+IMPORTANT: maxTransitTime is difference in time between Arrival of train at a station and Departure of train from station
+*************************************************************************************************************************
+
+| A train jc 123 travelling from A to B and a train of jc 123 leaving from B at any point of time (even not within the MaxTransitPeriod) shall
+| be considered as the same journey with 0 stopovers. A person can arrive at B on say a Thursday 3:00pm and leave on a train with
+| journeyCode 123 which leaves on Saturday from the same station, even if the maxTansitPeriod were only, say, 5hours.
+|
+| That is, a change of journeyCode is necessary for a stopOver to be counted.
+
+| Also, a round trip is not considered valid. Once a passenger reaches B, he will no longer be interested in finding some routes which 
+| lead elsewhere from B and later back to B.
+| Justification: If at all such a customer appears, they can search for trains with same source and destination 
+| with at least 1 stopOver and make plans accordingly.
+
+| maxTransitTime is supplied in hours:minutes format.
+
+| No passenger will wait for a transit period of more than 24*7 hours or 24*7*1440 minutes. 
+
+| A direct journey is one with 0 stopovers.
+
+

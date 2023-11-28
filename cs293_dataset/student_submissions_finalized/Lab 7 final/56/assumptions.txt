@@ -1,0 +1,9 @@
+Name: Josyula Venkata Aditya
+Roll no: 210050075
+
+1. I sort the list based on 
+    a. Day of the week
+    b. Departure time
+
+2. A non null Station info list is passed to the quicksort function
+3. I am assuming that the list is already extended(nodes are already split)

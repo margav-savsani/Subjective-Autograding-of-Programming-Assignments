@@ -1,0 +1,5 @@
+i have made a class graph_train which will store infor about train
+
+Formed a function add and traversing the the lists.
+
+

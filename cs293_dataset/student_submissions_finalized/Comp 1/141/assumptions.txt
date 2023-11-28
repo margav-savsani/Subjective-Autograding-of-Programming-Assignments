@@ -1,0 +1,5 @@
+Assumptions : 
+
+1. DFS cannot backtrack to any "parent"
+2. The number of edges is less than the maximum number of permissible edges
+3. The graph is "simple"

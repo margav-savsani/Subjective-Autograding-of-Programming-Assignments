@@ -1,0 +1,5 @@
+I assumed that case of station name does not matter when creating branches .
+	'mumbai central' and 'MUMBAI central' will go under same branch.
+	the prefix 'mum' will list out both.
+
+I assumed that when we delete all stations under a branch that branch is to be left as is without deleting the nodes (isWord will be set to false)

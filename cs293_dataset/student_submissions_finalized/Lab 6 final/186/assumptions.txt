@@ -1,0 +1,9 @@
+Assumptions :
+1. I assumed that we will insert the exact word given into the trie, that is,
+   case sensitive. So, on completions, if a station is PUNE CANT and you give 
+   prefix as pun , then it may not work correctly as Trie is case sensitive.
+2. However, I have made KMP implementation as case insensitive (for BONUS MARKS) as
+   Professor told in piazza to do this for Bonus.
+3. I assumed that other functionalities like deleting from Dictionary, deleting review,
+   showing Reviews from a keyword etc are implemented already in problem. 
+   So, I did not change those.

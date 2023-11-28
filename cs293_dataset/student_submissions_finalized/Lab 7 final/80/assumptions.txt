@@ -1,0 +1,9 @@
+Assumed that the sorting was required according to day, then according to departure time.
+
+If a train ends at a station, its departure time is -1. i.e it is sorted to appear first, before other trains.
+
+If trains depart at the same time, they are assumed to be equal and they can be sorted in any order. No preference given either way.
+
+
+
+

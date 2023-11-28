@@ -1,0 +1,4 @@
+Sorted according to day of week, then departure time, then arrival time
+If departure time is -1, then it's considered earlier
+If arrival time is -1, then it's considered earlier
+I have implemented both Quicksort and QuicksortSimple

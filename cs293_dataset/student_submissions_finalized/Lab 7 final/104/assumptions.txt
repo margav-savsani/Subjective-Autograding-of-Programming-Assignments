@@ -1,0 +1,3 @@
+I have sorted according to departure time.
+Also if departure time is -1, it will appear at the beginning of sorted list. (I have used -1 directly)
+If some journeys have exactly similar times, then they may appear in any order but will be together nevertheless.

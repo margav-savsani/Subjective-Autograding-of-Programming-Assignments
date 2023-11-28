@@ -1,0 +1,2 @@
+ASSUMPTIONS
+the modified DFS does not visit the parent while carrying out DFS on its children.

@@ -1,0 +1,3 @@
+All inputs should only contain Capital letters.
+Completions gives error message(like assertion) when prefix is not found in trie.
+

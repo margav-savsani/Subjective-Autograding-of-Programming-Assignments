@@ -1,0 +1,1 @@
+Assuming the vertices can't be visited again by immediate parents and that a vertex maintains direction until backtracking out of it

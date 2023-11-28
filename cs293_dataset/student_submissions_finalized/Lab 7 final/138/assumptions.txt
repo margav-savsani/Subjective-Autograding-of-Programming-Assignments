@@ -1,0 +1,2 @@
+1. Sorting is done first on the basis of days and then on the basis of department time.
+2. In case the departure time and the day is same, then the order of those entries is arbitrary.

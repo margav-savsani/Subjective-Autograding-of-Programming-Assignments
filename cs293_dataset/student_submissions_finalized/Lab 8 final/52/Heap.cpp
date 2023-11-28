@@ -1,0 +1,159 @@
+#ifndef STD_HEADERS_H
+#include "std_headers.h"
+#endif
+
+#ifndef HEAP_H
+#include "Heap.h"
+#endif
+
+#include <vector>
+
+// Fills vector v with binary representation of n with LSB at index 0 and so on
+template<typename T>
+void Heap<T>::binary(int n, vector<int>& v){
+  while(n>0){
+    v.push_back(n%2);
+    n /= 2;
+  }
+}
+
+// Inserts node in heap
+template<typename T>
+void Heap<T>::insert(T obj) {
+  if(n==0){
+    root = new TreeNode<T>(obj);
+    n++;
+    return;
+  }
+
+  vector<int> path;
+  binary(n+1, path);
+  int l = path.size();
+
+  // Reach till node whose child will be new node
+  TreeNode<T>* curr = root;
+  for (int i = l-2; i > 0; i--)
+  {
+    if(path[i]){
+      curr = curr->right;
+    }
+    else{
+      curr = curr->left;
+    }
+  }
+  // Reached
+
+  // Insert node
+  TreeNode<T>* node = new TreeNode<T>(obj);
+  if(path[0]){
+    curr->right = node;
+  }
+  else{
+    curr->left = node;
+  }
+  node->parent = curr;
+
+  // Balance heap again
+  while(node->parent != nullptr && node->parent->object < node->object){
+    swap(node->object, node->parent->object);
+    node = node->parent;
+  }
+
+  n++;
+
+  return;
+}
+
+// Delete root of Heap
+template<typename T>
+void Heap<T>::delMax() {
+  if(n==1){
+    delete root;
+    root = nullptr;
+    n--;
+    return;
+  }
+
+  vector<int> path;
+  binary(n, path);
+  int l = path.size();
+
+  // Reach to parent of node to be deleted
+  TreeNode<T>* curr = root;
+  for (int i = l-2; i > 0; i--)
+  {
+    if(path[i]){
+      curr = curr->right;
+    }
+    else{
+      curr = curr->left;
+    }
+  }
+
+  // Delete node
+  if(path[0]){
+    swap(root->object, curr->right->object);
+    delete curr->right;
+    curr->right = nullptr;
+  }
+  else{
+    swap(root->object, curr->left->object);
+    delete curr->left;
+    curr->left = nullptr;
+  }
+  
+  n--;
+  // Heapify to restore heap property
+  Heapify(root);
+}
+
+// Prints Heap
+template<typename T>
+void Heap<T>::printHeap(TreeNode<T> *node) {
+  printBinaryTree(node, "", false);
+  return;
+}
+
+// Helper function for printing
+template<typename T>
+void printBinaryTree(TreeNode<T> *root, const string& prefix, bool isLeft){
+  if( root != nullptr )   {
+    cout << prefix;
+    
+    cout << (isLeft ? "|--" : "|__" );
+    
+    // print the value of the node
+    cout << root->object;
+    cout << endl;
+    TreeNode<T> *curr = root;
+    root = root->left;
+    // enter the next tree level - left and right branch
+    printBinaryTree(root, prefix + (isLeft ? "│   " : "    "), true);
+    root = curr->right;
+    printBinaryTree(root, prefix + (isLeft ? "│   " : "    "), false);
+    root = curr;
+  }
+  else {
+    cout << "NULL tree" << endl;
+  }
+}
+
+// Heapify
+template<typename T>
+void Heapify(TreeNode<T> *node){
+  TreeNode<T> * max = node;
+  if(node->left != nullptr && node->object < node->left->object){
+    max = node->left;
+  }
+  if(node->right != nullptr && max->object < node->right->object){
+    max = node->right;
+  }
+
+  if(max != node){
+    swap(node->object, max->object);
+    Heapify(max);
+  }
+}
+
+
+  

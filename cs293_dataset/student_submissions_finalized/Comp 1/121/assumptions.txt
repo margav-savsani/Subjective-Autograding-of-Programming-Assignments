@@ -1,0 +1,3 @@
+1. no particular assumptions but :
+ - no edge is travelled bidirectionally
+ - number of twice visited is not same as nodes in a cycle

@@ -1,0 +1,8 @@
+I created a function called longestpath in tree.h , which helps to update the height of nodes at every succsessful insertion .
+
+getjourneycode function was added to retrieve the journey code when needed .
+
+also created getimbalance function .
+
+
+

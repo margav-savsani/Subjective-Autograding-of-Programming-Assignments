@@ -1,0 +1,1 @@
+assumed that journey codes are not negative numbers and the data is such that there are no cycles in the graph

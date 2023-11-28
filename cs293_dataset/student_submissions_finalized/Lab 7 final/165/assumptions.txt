@@ -1,0 +1,1 @@
+I have implemented only QuickSortSimple. Please comment out the QuickSort call in planner.cpp while executing.

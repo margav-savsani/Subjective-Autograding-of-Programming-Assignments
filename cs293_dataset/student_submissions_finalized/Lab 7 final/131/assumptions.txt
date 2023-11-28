@@ -1,0 +1,1 @@
+sorted according to day starting from sunday and then arrival time

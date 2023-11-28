@@ -1,0 +1,5 @@
+None of the paths printed contains cycles.
+
+For a particular journey code, all the timings are printed since
+there's no way to know which time at an earlier station corresponds 
+to which time at a later one.

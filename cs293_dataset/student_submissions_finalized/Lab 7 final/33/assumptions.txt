@@ -1,0 +1,13 @@
+ASSUMPTIONS :-
+
+    Planner.h :-
+====================
+  # Added one more function to it i.e, Partition( , , ) which divides the whole list/array into two parts( makes partitions ) .
+  # No other extra functions were added to it in addition to given functions .
+  
+  Quicksort.cpp :-
+====================
+  # Most of my code and my implementation were made from the pseudo code which was given in the 213 Lecture slides .
+  # Added two more functions greaterthan( , ) and lessthan( , ) which were used to compare the object values( arrival time ) present in the problem .
+  # No other extra functions were added other than those given in the initial file .
+   

@@ -1,0 +1,5 @@
+1) Used recursive implementation of modified DFS
+2) Extra Conditions --
+   a) If DFS path travels from node A to node B, then anytime in the future path, it shouldnt travel from B to A by DFS movement.
+      (except by backtracking)
+   b) After a DFS backtracks from Node C to Node D, it cannot travel immediately from D to C, but can travel afterwards.

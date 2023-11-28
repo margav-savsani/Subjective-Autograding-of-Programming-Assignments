@@ -1,0 +1,5 @@
+ASSUMPTIONS:
+
+1. Assuming unique journey code for each path
+2. Assuming there will be no cycle in the graph with same journey code completely.
+

@@ -1,0 +1,2 @@
+The reviews are case sensitive.
+The train journeys are not case sensitive.

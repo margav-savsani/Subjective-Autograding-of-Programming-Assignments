@@ -1,0 +1,9 @@
+Name : Soham Joshi
+Lab : 07
+Roll : 210051004
+===============================================================================
+
+Assumptions : 
+1. Given stnInfoList is valid
+2. Sorting done on basis of day and arrival time 
+3. In case extended list is not given, sorting done on basis of the first arrival. 

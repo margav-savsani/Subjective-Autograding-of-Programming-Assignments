@@ -1,0 +1,5 @@
+Here in this DFS, instead of checking whether a node is visited or not, We use a new variable which keeps count of number of times the node is visited if the count is 2, then the algorithm backtracks otherwise it agin continues as it is.
+
+For the adjacency list we use an array of list of integers, every time the randomgenerator genrates a pair of numbers both of them are checked if they are repeated and then inserts into the list of the integrs.
+
+BST printing is taken from lab4

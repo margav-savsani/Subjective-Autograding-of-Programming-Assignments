@@ -1,0 +1,8 @@
+Name : Soham Joshi
+Roll no : 210051004
+Lab : 10
+
+===============================================================================
+
+1. The graph cannot have cycles
+2. The maxStopOvers must be an integer

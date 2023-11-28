@@ -1,0 +1,2 @@
+With my code 1-2-3-4-2, no of visited_twice would be 4 and no of visited_once would be 0
+Also number of Cycles is wrong

@@ -1,0 +1,4 @@
+i have divide the linked list in n/K parts on the 0th recursion level and put the heads of each sublist
+in a array called heads.
+this array allows me to access any object in O(K) time: index = index/K + index%K
+i can reach index/K in constant time thanks to heads arr and then index%K ahead in O(K) time.

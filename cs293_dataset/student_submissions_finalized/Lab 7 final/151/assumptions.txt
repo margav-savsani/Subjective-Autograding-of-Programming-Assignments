@@ -1,0 +1,3 @@
+ASSUMPTIONS:
+
+The sorting is done based on the arrival times of trains in the stations.

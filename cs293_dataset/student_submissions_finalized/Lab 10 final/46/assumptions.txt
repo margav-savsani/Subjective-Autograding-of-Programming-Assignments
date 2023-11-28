@@ -1,0 +1,2 @@
+1) I have assumned that there will be cycles which causes infinte loop until the limit is reached
+2) I have assumed that train started from a station A(say) reaches the station B(say) at time which is least of all possible times of arrival of that particular train to B 

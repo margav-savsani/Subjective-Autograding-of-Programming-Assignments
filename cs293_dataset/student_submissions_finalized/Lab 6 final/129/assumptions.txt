@@ -1,0 +1,6 @@
+I have assumed that if there are two words with same prefix in a string my completion function would print it twice ;
+For eg if I want to find LOKMANYA TILAK TERMINUS MUMBAI and I write LOK T T , It would give me:
+0 LOKMANYA TILAK TERMINUS MUMBAI
+1 LOKMANYA TILAK TERMINUS MUMBAI
+Both of them are the same stations , so to avoid this I checked it , but it wa incrementing my time-complexity so I commented that part out , it is there in 
+addCompletions function, if you want to check you can uncomment that part out.

@@ -1,0 +1,1 @@
+Imported some function from previous labs BST and followed instructions given according to piazza.

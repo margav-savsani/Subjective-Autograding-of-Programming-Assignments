@@ -1,0 +1,2 @@
+In the printHeap(TreeNode <T> *x) function I used |__ for representing right subtree and |-- for representing left subtree and if root is null pointer , this
+function does'nt do anything.

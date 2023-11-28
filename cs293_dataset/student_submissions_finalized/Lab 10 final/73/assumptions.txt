@@ -1,0 +1,21 @@
+The line printing next to the details of the train are to be done after reaching the next stop
+    Eg:
+
+    Day:Sun
+    JourneyCode: 331 Arr Time: Starts  Dep: 1900
+    Please change to Train with Journey code: 431
+
+    after reaching the next stop we are changing to the train with journey code 431
+
+After reaching the destination we will stop
+    Eg:
+    
+    Day:Sun
+    JourneyCode: 331 Arr Time: 830 Dep: 900
+    The Next stop With this train is Your Destination
+
+    The next stop of this train is the Destination
+    it will stop printing at that point
+
+The inputs maxTransitTime should be given as number of hours
+    Eg:5

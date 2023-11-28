@@ -1,0 +1,6 @@
+
+
+ASSUMPTIONS:
+1. Sorted according to Day, Departure then arrival time.
+2. -1 Departure time set at starting.
+3. I have placed 3 functions, Partition1, pivotchooser1 and swap in quicksort to help solving the problem.

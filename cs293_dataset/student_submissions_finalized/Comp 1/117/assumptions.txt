@@ -1,0 +1,3 @@
+Equal value goes in right tree
+If a node is reachable by a cycle, it's visited twice
+Always starting the DFS from the smallest node in the connectedComponent

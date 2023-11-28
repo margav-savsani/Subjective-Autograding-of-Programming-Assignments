@@ -1,0 +1,4 @@
+1]taking the parent node again for DFS.
+2]assumming that nodes will be starting from 1 to numNode
+3]assuming that user will enter numEdges less than or equals to (numNodes)choose(2)
+4]I'm assuming that a node that's not in any cycle can be visited twice as it's parent stored on stack and visited twice can call it again.

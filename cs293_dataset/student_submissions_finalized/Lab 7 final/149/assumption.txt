@@ -1,0 +1,1 @@
+Arrival time is used for comparision. The program will render two TrainInfoPerStation objects with same if they are on the same day and with same arrival time. Departure time won't be checked further.

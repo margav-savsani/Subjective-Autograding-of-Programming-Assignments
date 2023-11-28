@@ -1,0 +1,6 @@
+the no. ofnodes visited twice = no of nodes part of some cycle
+
+ 
+ As i am traversing the graph i am making it directed while backtracing.
+ 
+ 		      

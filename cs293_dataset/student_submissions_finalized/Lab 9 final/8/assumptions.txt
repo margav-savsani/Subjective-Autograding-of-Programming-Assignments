@@ -1,0 +1,2 @@
+- each journey code corresponds to a single train
+- a train cannot come back to its original station

@@ -1,0 +1,2 @@
+1.Assuming that the maxTransitTime will be given in hourly format (i.e. 600 if its 6 AM and 1800 if its 6 PM)
+

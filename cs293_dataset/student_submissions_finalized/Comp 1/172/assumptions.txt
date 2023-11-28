@@ -1,0 +1,5 @@
+Assumptions:
+In my implementation DFS always starts from 1.
+I am making edges directed as I am going through the graph and and the direction of traversal through the graph is only in one direction(if there is an edge 1->2 and I am traversing from 1->2 then I dont go to 1 from 2 again)
+If I backtrack at a point then I am changing the direction of edge (i.e when I visit that vertex again, I go to that vertex only when the direction is appropriate(from current node to that vertex)), relative to the initial direction, by doing this number of vertices visited twice becomes equal to the number of vertices in cycle and only those vertices present in a cycle will be visited twice in my implementation 
+I have also printed the nodes visited once and twice in my output.

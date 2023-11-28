@@ -1,0 +1,1 @@
+If a node B has been directly visited from a node A, then node A cannot be directly visited from node B.

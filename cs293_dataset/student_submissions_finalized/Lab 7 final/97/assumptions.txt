@@ -1,0 +1,3 @@
+I have assumed that ordering of time was to be done on arrival times
+Have included and used a vector to store the n/k additional memory
+

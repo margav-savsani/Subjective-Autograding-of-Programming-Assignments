@@ -1,0 +1,4 @@
+assumed here once the passenger boards the train at one station he won't transit unless there is requirement
+for transit
+
+assumed that transits happen on same day and transit duration is not more than 24hours

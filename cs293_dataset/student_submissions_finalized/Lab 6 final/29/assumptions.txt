@@ -1,0 +1,1 @@
+'A' is taken as zero and all are taken in capital letter.

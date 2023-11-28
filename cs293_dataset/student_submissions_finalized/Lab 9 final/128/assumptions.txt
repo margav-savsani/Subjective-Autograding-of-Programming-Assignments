@@ -1,0 +1,2 @@
+-> Train journeys are not circular and are unique
+-> Using the variable stopSeq is not permitted, hence we must traverse the graph

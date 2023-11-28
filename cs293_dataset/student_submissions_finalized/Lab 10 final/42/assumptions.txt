@@ -1,0 +1,3 @@
+I assumed that journeys where he gets down from a train on a particular day, and then boards a train with the same journey code on another day are not valid journeys.
+
+I also printed the transit time in HHMM format, following the format for the arrival and departure times

@@ -1,0 +1,8 @@
+Ankan Sarkar, 210050013
+
+I am stating the assumptions made here. I am sorting firstly by the day of the train. An extra function 'day' is implemented which returns the day given the train object. Then, if the days
+same, then I am comparing by 'arrival time'. The train with earlier arrival time is listed before than a train with later arrival time. For randomizing the pivot, I am storing the pointer
+of n/K train objects being equally spaced by a length K. Then upon each recursion, I am choosing one of these pointers randomly and then also setting a number of steps between 0 & K-1 which
+specifies how many steps to go ahead of this pointer. So, a maximum of K steps will be moved making it O(K). Lastly, since quicksort has a vast number of edge cases, my code might given
+incorrect results for some of the testcases. But since the process is very muich random, repeating the same testcases a few times will eventually lead to correct output. I have tried to cover
+as many edge cases as I could but still some might get skipped.

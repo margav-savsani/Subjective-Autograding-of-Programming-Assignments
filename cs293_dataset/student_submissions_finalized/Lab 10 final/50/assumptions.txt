@@ -1,0 +1,4 @@
+Assumptions:
+1) daysOfWeek array contains just one "true" bool value
+2) I have printed just the starting journey
+3) "trains" of "toStations" have arrival and departure times for the station to which a train is going

@@ -1,0 +1,6 @@
+Ankan Sarkar, 210050013
+
+My BFS implementation does not have a visited list which keeps track of which station is visited. This is because there can be no trains back and forth between two stations havng the same
+ journey code. The reason why I separated the source and the non-source case is stated clearly in the comments. Please go through the comments written in my algorithm to understand the steps.
+ My code prints all direct trains from source and destination. However, my algo might print the trains more than one time, i.e, the same train(say 231) might get printed twice while listing
+ all the trains. Other than this glitch, my code works perfectly fine.

@@ -1,0 +1,5 @@
+Suppose there is a journey of journey code 431 which runs on Mon, Tue
+from A->B->C.
+Here I listed the possible journeys from A to C as A->C: 431(Mon) and A->C: 431(Tue) instead of A->B: 431(Mon) and B->C: 431(Tue) and so on(4combinations)
+
+I considered the change of train of the same journey code only if the transit time is within the maxTransitTime.

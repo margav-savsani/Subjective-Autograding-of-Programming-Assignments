@@ -1,0 +1,5 @@
+https://sphinx-rtd-tutorial.readthedocs.io/en/latest/docstrings.html
+https://doxygen.nl/manual/docblocks.html#docstructure
+https://doxygen.nl/manual/starting.html
+https://shunsvineyard.info/2019/09/19/use-sphinx-for-python-documentation/
+https://opensource.com/article/22/5/document-source-code-doxygen-linux

@@ -1,0 +1,11 @@
+In this lab, we will take forward the task that we started in Lab 9, i.e. to help passengers plan their journeys. In Lab 9, we considered only direct journeys from a source station to a destination station. In this lab, we will allow journeys with change of trains. However, a passenger may have constraints on how many change of trains she/he/they may want to use, and also on the maximum amount of time he/she/they are willing to wait at a transit station for a connecting train.
+
+Read the problem_statement carefully before starting your implementation.
+
+To compile, use g++ -g -o planner main.cpp
+
+Please submit only printJourney.cpp and assumptions.txt in a tar zipped folder named <roll_number>_L10
+
+# Submission stats
+Participants	200
+Submitted	164

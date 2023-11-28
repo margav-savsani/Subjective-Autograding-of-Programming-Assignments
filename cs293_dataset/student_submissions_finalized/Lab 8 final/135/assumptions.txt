@@ -1,0 +1,2 @@
+For getMax function assumed it will not be called on empty Heap
+If called on empty heap it will return an instance of type T constructed with the default constructor of that class

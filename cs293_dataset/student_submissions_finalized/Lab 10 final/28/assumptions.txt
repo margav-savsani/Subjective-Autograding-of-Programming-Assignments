@@ -1,0 +1,7 @@
+I created a class Networkobj which is the most fundamental of all 
+I used that in a class Node which represents a vertex/node of the graph on which journey information is stored.
+I created three different functions which are:
+            presentadd()->It returns the traininfoperstation pointer if the train is present in the given linked list.
+            alternateBFS()->I implemented a modified form of BFS which is different from the standard BFS.
+            printPlanJourneys()->For printing all the Journeys which are possible.
+            

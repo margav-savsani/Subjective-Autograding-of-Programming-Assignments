@@ -1,0 +1,6 @@
+1) It doesn't make any sense to travel to the predecessor of a node fromt the node, although its in its adjacency list
+2) Results depends on which node in the connected component was the modified DFS started from, and 
+    in my code, i have assumed it to start with the lowest value
+3) No two nodes have the same value
+4) Input values are non negative
+5) If the input number of nodes and edges are not possible, then we gracefully terminate the program with a message

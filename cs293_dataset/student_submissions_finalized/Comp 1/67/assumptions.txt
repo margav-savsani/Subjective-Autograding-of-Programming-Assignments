@@ -1,0 +1,1 @@
+- Any edge that is visited once from node A to B doesn't allow visiting from B to A after that.

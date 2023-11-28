@@ -1,0 +1,8 @@
+
+ASSUMPTIONS:
+
+1. I sorted the expanded list based on day of the week and the Departure time of the train. If 2 trains have departure time equal and day of arrival also equal then I'm sorting according to Arrival time.
+	
+2. As per the question I used O(K) space + 2(or)3 extra constant spaces(as discussed on piazza). I stored n%K==0 objects in a vector.
+
+3. I'm clearing every vector after finishing the recursion as it can cause problem if I call function again as it is static.

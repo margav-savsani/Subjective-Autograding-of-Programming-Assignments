@@ -1,0 +1,4 @@
+- All the strings are stored in lowercase in the trie.
+- The filter is case insensitive.(kmp is case insensitive)
+- Assumed that all station names have only english alphabets.
+- Assumed that all patterns being searched have english alphabets only.

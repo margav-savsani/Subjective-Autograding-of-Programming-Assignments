@@ -1,0 +1,3 @@
+Assumed number of edges input is less than nc2
+
+Assumed that we are never expected to re-explore the edge we just came from i.e never move back to parent

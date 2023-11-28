@@ -1,0 +1,2 @@
+1. The arrival time, stop sequence, departure time are acc. to the source station
+2. From a station, there do not exist two trains going to different stations and having the same journey code.

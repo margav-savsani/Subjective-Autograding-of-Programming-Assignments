@@ -1,0 +1,6 @@
+ASSUMPTIONS->
+
+1. userInputs.txt doesnt contain correct test cases, if journeycode is not found then the order of inputs doesnt match the required fields. Try entering admin or userInputs manually or use usertest Cases with better outputs .
+
+
+

@@ -1,0 +1,5 @@
+ASSUMPTIONS->
+
+Only those journeys are being compared which run on the same days of the week (atleast one common).
+
+Arrival and departure time means the time of the train when we are boarding or changing train at stations.

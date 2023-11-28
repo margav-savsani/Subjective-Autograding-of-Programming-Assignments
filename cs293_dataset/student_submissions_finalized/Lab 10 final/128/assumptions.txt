@@ -1,0 +1,3 @@
+The rider takes the first train available during transit
+The jorneys are printed in reverse order, using the given printStationInfo function without modification
+The days on which a train runs is printed as a binary string of length 7, just as in the Input format

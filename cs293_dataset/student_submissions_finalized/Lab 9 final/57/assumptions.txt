@@ -1,0 +1,4 @@
+210050089
+Koyi Sree Nikhil
+I assumed if train is going from A to B (A -> B)
+then same train will never comback to A from B (B ->A).

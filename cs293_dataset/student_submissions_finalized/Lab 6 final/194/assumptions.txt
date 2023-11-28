@@ -1,0 +1,2 @@
+No assumptions made
+For the review search for some reason the review appears on log file and not on terminal and I am not able to figure out why.

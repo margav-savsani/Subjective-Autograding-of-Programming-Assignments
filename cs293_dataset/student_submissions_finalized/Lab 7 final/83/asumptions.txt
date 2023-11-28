@@ -1,0 +1,5 @@
+In quick sort implementation I have assumed that start will never be less than end. 
+That is I have didn't taken the case start > end in consideration.
+
+
+

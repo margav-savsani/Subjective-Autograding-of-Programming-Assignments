@@ -1,0 +1,1 @@
+For the bonus part of the question, I have deleted the initial "|__" which gets printed before root. This is extra line because root isn't a left or right child of any node. 

@@ -1,0 +1,1 @@
+I have assumed that when searching for a substring in the reviews (KMP), the search is case-insensitive. That is, if I have 2 reviews- "This is a good journey" and "This journey was Good.", searching for reviews with "good" will show both. Similarly, searching for reviews with "Good" or even "gOOd" will show both.

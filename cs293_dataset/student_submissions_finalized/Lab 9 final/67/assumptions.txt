@@ -1,0 +1,2 @@
+- Path of a train of a given journey code doesn't form a loop.
+- A journey code defines a unique sequence of stations for all days.

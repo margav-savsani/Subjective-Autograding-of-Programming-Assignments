@@ -1,0 +1,7 @@
+1) myTree file contains my BST code. 
+2) myAVL file is an extension of myTree. 
+3) myAVL has two functions rotation and double rotation, they work perfectly fine for all 4 cases, LL, RR, LR, RL. 
+4) myTree has BST insert, to proceed with AVL insert I needed height of each node, but there is some issue which I am not able to resolve even after hours. So, since heights of nodes are not calculated I cannot check for balance at each node. 
+
+5) get_balance function is also ready, it is inside myAVL.cpp, but I can't use it since my height issue is not resolved. 
+6) once I get the height working, I just need to call get_balance and call rotation and doubleRotation functions to successfully run insert on AVL.  

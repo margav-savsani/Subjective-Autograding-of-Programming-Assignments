@@ -1,0 +1,3 @@
+All the trains ending at a station are placed at the top.
+
+

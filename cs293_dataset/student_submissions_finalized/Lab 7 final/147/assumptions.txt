@@ -1,0 +1,3 @@
+CS293-Lab7
+Assumptions:
+If the departure time also happens to be same, I do not distinguish them by arrival time further, so any of them (in particular, whichever was the second argument to the call) is given to be smaller. So the order in which they appear in the sorted list may vary.

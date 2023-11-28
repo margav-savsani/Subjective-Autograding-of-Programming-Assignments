@@ -1,0 +1,2 @@
+- Reviews with rating equal to that of threshold are also printed.
+- The number of reviews in heap at any time is always less than 2^31

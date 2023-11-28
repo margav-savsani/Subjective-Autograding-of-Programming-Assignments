@@ -1,0 +1,1 @@
+I have assumed that a train only traverses one path, i.e., if a train goes through A-B-C-D-E then it can't go through A-C-E or A-F-D-E etc.

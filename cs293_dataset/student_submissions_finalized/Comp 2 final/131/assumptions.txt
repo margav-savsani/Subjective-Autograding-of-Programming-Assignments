@@ -1,0 +1,8 @@
+*make sure any test case has less than 100 nodes or precisely less than 100 similar nodes else  change this value of 100 accordingly in graph.h constructor of class node 
+*the same edges may be printed multiple times in the collapsed graph , ignore repition (else diffinately more space and time complexity can be increased but avoided at this step)
+
+* to run:
+ g++ -g -o executablefilename main.cpp
+ ./executablefilename inputfilename
+ These instructions were used all the labs so far , my version of vs code doesnt work with if I input data from a file using '<' symbol
+  

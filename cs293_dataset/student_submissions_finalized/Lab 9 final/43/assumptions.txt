@@ -1,0 +1,29 @@
+My printJourney prints the Journeys as the whole journey 
+with including the stops between them like :
+Journey 1:
+Station 1 to 
+---
+prints the traininfo from 1 to 2
+---
+Station 2
+
+Station 2 to 
+---
+prints the traininfo from 2 to 3
+---
+Station 3
+
+Journey 2:
+Station 1 to 
+---
+prints the traininfo from 1 to 2
+---
+Station 2
+
+Station 2 to 
+---
+prints the traininfo from 2 to 3
+---
+Station 3
+
+and so on ....:)

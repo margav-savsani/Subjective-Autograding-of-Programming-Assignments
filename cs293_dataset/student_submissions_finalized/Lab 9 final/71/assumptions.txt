@@ -1,0 +1,1 @@
+If arrTime is -1 for a trainInfoPerStation of a station, I am assuming that train is not arriving back to this station from any other station.

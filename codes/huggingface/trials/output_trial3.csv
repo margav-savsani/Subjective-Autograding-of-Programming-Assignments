@@ -1,0 +1,285 @@
+inference_prompt,generated_response
+"You have the task of grading a programming assignment submission. The problem statement and resources provided by the instructor will be given between
+ [INSTRUCTOR] and [/INSTRUCTOR] tags. The rubric that is supposed to be graded will be given between [RUBRIC] and [/RUBRIC] tags. The student submission will
+  be between [SUBMISSION] and [/SUBMISSION] tags. You are supposed to come up with a score for the submission for the given rubric. I will give the instructor 
+  resources in second prompt then the rubric in the third prompt and the student submission in the fourth prompt. So in response to this first , second , third
+   prompts just note the contents and output just the word NOTED and after the fourth prompt give only the score in between the tags [SCORE] and [/SCORE]."," NOTED. I have noted the contents of the instructor resources, rubric, and student submission.
+    I am ready to provide a score for the student submission based on the provided rubric.
+	 Please provide the instructor resources and rubric."
+"Don't forget that this is the second prompt which contains the resources provided by the instructor and you are supposed to  just note the contents and output just the word NOTED 
+[INSTRUCTOR]
+[Files]
+[FILENAME]
+moodle_description.txt
+[/FILENAME]
+[CONTENT]
+In this assignment, we will implement a dynamic queue in two different ways. 
+
+The problem statement is given in queue.h    Please read the problem statement carefully.
+
+The harness for testing your code is given in test.cpp 
+
+You need to write your solution (programs) in two files linearQueue.cpp and circularQueue.cpp and compile by running ""make testLinear"" or ""make testCircular"" as appropriate.
+
+Do not worry about running gnuplot to visualize the running times now. We will send you separate instructions about that.  
+
+# Submission stats
+Participants	200
+Submitted	193
+[/CONTENT]
+[/Files]
+[/INSTRUCTOR]", NOTED.
+"Don't forget that this is the third prompt which contains the rubric and you are supposed to  just note the contents and output just the word NOTED 
+[RUBRIC]
+Is the Code well structured and commented
+[POSSIBLESCORES]
+[0,1,2]
+[/POSSIBLESCORES]
+[/RUBRIC]", NOTED. I have noted the contents of the rubric and the possible scores.
+"Don't forget that this is the fourth prompt which contains the student submission and you are supposed to output only the score between [SCORE] and [/SCORE] tags and nothing else.
+[SUBMISSION]
+[FILES]
+[FILENAME]
+linearQueue.cpp
+[/FILENAME]
+[CONTENT]
+#include<iostream>
+#include""queue.h""
+
+using namespace std;
+
+template <typename T> bool DynamicQueue<T>::isEmpty(){
+	return (head==tail);
+}	
+
+template <typename T> bool DynamicQueue<T>::isFull(){
+	return (tail==N && head==0);  
+}
+
+template <typename T> void DynamicQueue<T>::grow(){
+	T* B=A;		//all the elemats of A were moved to the new array B
+	A=new T[N+CONST_GROWTH]; //incremented the size of array A
+	for(int i=head;i<tail;i++){
+		A[i]=B[i];			//elements of B are again moved into A
+	}
+	N=nextSize();			//value of N is increased
+}	
+
+template <typename T> unsigned int DynamicQueue<T>::size(){
+	return tail-head;		//this value returns the size of the array
+}
+
+template <typename T> void DynamicQueue<T>::QInsert(T x){
+	if (tail == N){
+		if(head==0){	//this is the case of full array
+			grow();		//so the size of array is increased
+		}
+		else{
+			for(int i=head;i<N;i++){	//Initial indexes were empty,so the head was shifted to 0 index and continued the process till tail
+				A[i-head]=A[i];
+			}
+			tail=N-head;head=0;			//after shifting ,the new tail becomes N-head and head becomes 0
+		}	
+	}
+	A[tail]=x;							//after the shifting,x is placed at the tail
+	tail++;								//later the tail is incremented
+}
+
+template <typename T> bool DynamicQueue<T>::QDelete(T *x){
+	if (head==tail){					//when array is empty,it returns false
+		return false;
+	}
+	else{	
+		*x=A[head];						
+		head++;
+		return true;
+	}
+
+}
+
+
+
+[/CONTENT]
+[FILENAME]
+circularQueue.cpp
+[/FILENAME]
+[CONTENT]
+#include<iostream>
+#include""queue.h""
+
+using namespace std;
+
+template <typename T> unsigned int DynamicQueue<T>::size(){
+	return ((tail-head+N)%N);			//this value returns the size of the array
+}
+
+template <typename T> bool DynamicQueue<T>::isEmpty(){
+	return (head==tail);		
+}	
+
+template <typename T> bool DynamicQueue<T>::isFull(){
+	if(size() == N-1)return true;		//if size is N-1 , it means the array is full
+	else return false;
+}	
+
+template <typename T> void DynamicQueue<T>::grow(){
+	T* B=A;							//all the elemats of A were moved to the new array B
+	A=new T[N+CONST_GROWTH];		//incremented the size of array A
+
+	if(head==0 && tail==N){
+		for(int i=0;i<tail;i++){
+			A[i]=B[i];				//elements of B are again moved into A
+		}
+	}
+	N=nextSize();					//value of N is increased
+
+	if(head==tail+1){				//this is the case when head>tail
+		head+=CONST_GROWTH;
+		for(int i=0;i<tail;i++){	
+			A[i]=B[i];				//again similiarly elements of B are copied into A
+		}
+		for(int i=head;i<N;i++){	//this is case after head and N are increased
+			A[i]=B[i-CONST_GROWTH];
+		}
+	}
+}	
+
+template <typename T> void DynamicQueue<T>::QInsert(T x){
+	if(isFull()){
+		grow();						//when array is full ,it needs to be growed and then the element should be added
+		A[tail]=x;
+		tail++;
+	}
+	else if(tail==N-1){				//when tail=N and queue is not full A[0] beacomes x and then tail is shifted to 1
+		A[0]=x;
+		tail=1;
+	}
+	else{
+		A[tail]=x;					//this is the general case
+		tail++;
+	}
+}
+
+template <typename T> bool DynamicQueue<T>::QDelete(T *x){
+	if (head==tail){				//when array is empty,it returns false
+		return false;
+	}
+	else{							
+		if(head==N-1){				//when head is N-1 then new head becomes 0 	
+			*x=A[head];
+			head=0;
+		}
+		else{
+			*x=A[head];				//this is the usual case
+			head++;
+		}
+		return true;
+	}
+}
+
+
+
+[/CONTENT]
+[/FILES]
+[/SUBMISSION]","to A
+	}
+	delete[] B;				//deleting the old array B
+	N=N+CONST_GROWTH;		//updating the size of the queue
+	head=0;					//head is set to the beginning of the queue
+	tail=N;					//tail is set to the end of the queue
+}
+
+template <typename T> void DynamicQueue<T>::shrink(){
+	T* B=A;					//all the elemats of A were moved to the new array B
+	A=new T[N-CONST_SHRINK];	//decremented the size of array A
+	for(int i=head;i<tail;i++){
+		A[i]=B[i];			//elements of B are again moved to A
+	}
+	delete[] B;				//deleting the old array B
+	N=N-CONST_SHRINK;		//updating the size of the queue
+	head=0;					//head is set to the beginning of the queue
+	tail=N;					//tail is set to the end of the queue
+}
+
+template <typename T> void DynamicQueue<T>::enqueue(T x){
+	if(isFull()){
+		grow();
+	}
+	A[tail]=x;
+	tail=(tail+1)%N;
+}
+
+template <typename T> T DynamicQueue<T>::dequeue(){
+	if(isEmpty()){
+		cout<<""Queue is empty""<<endl;
+		return 0;
+	}
+	T x=A[head];
+	head=(head+1)%N;
+	if(tail==head){
+		shrink();
+	}
+	return x;
+}
+
+template <typename T> void DynamicQueue<T>::print(){
+	if(isEmpty()){
+		cout<<""Queue is empty""<<endl;
+		return;
+	}
+	for(int i=head;i<tail;i++){
+		cout<<A[i]<<"" "";
+	}
+	cout<<endl;
+}
+
+int main(){
+	DynamicQueue<int> q;
+	q.enqueue(1);
+	q.enqueue(2);
+	q.enqueue(3);
+	q.enqueue(4);
+	q.enqueue(5);
+	q.enqueue(6);
+	q.enqueue(7);
+	q.enqueue(8);
+	q.enqueue(9);
+	q.enqueue(10);
+	q.enqueue(11);
+	q.enqueue(12);
+	q.enqueue(13);
+	q.enqueue(14);
+	q.enqueue(15);
+	q.enqueue(16);
+	q.enqueue(17);
+	q.enqueue(18);
+	q.enqueue(19);
+	q.enqueue(20);
+	q.enqueue(21);
+	q.enqueue(22);
+	q.enqueue(23);
+	q.enqueue(24);
+	q.enqueue(25);
+	q.enqueue(26);
+	q.enqueue(27);
+	q.enqueue(28);
+	q.enqueue(29);
+	q.enqueue(30);
+	q.enqueue(31);
+	q.enqueue(32);
+	q.enqueue(33);
+	q.enqueue(34);
+	q.enqueue(35);
+	q.enqueue(36);
+	q.enqueue(37);
+	q.enqueue(38);
+	q.enqueue(39);
+	q.enqueue(40);
+	q.enqueue(41);
+	q.enqueue(42);
+	q.enqueue(43);
+	q.enqueue(44);
+	q.enqueue(45);
+	q.enqueue(46);
+	q.enqueue(47);
+	q.enqueue(4"

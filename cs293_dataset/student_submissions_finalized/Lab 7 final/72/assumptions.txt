@@ -1,0 +1,11 @@
+1] Apart from the n/K objects we are allowed to use I used a constant number of listOfObjects<TrainInfoPerStation *> objects in my code 2 in Quicksort Implementation and 3 in my partition Function which remian constant through out the program and not created every time the function is called.
+
+2] I used a partition function whose signature is int Partition(listOfObjects<TrainInfoPerStation *> *stnInfoList, int start, int end, listOfObjects<TrainInfoPerStation *> *myRandPoin, int ran); .
+
+3] I have implemented both versions of the quicksort and both of them uses the same partition function.
+
+4] I declared an additional function lessthan() two compare TrainInfoPerStation objects.
+
+5] For generating the random pivot I didn't explicitly declared a function I wrote that part of code within Quicksort() Comments show where it is implementd.
+
+6] I sorted trains w.r.t day then deptTime (if deptTime is -1 Then it is listed at the start.). If this gives a tie then I used arrTime to sort them.

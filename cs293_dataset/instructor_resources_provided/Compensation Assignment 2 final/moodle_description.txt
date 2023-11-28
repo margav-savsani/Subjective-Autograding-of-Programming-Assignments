@@ -1,0 +1,19 @@
+Please put all your .h and .cpp files in a directory named <roll_number>_C2 and then run
+
+tar -zcvf <roll_number>_C2.tgz <roll_number>_C2
+
+Check that your submission contains nothing other than the .h and .cpp files you wanted to submit.
+
+You MUST have a main.cpp file in your set of files submitted.
+
+Remember the following:
+
+1. We will simply run tar -zxvf <roll_number>_C2.tgz and then g++ -g main.cpp to compile.  You must make sure that all dependencies, if any, are taken care of in main.cpp
+
+2. We will run your code simply using ./a.out < graphFile, where the format of graphFile is specified in the problem statement.  Your program should generate its output ONLY IN THE SPECIFIED FORMAT (see problem statement for details) in a file named outgraph.txt
+
+3. DO NOT USE STL LIBRARY FOR IMPLEMENTING YOUR SOLUTION.  THIS IS A DATA STRUCTURES LAB AND WE WANT TO IMPLEMENT THE DATA STRUCTURES OURSELVES.
+
+# Submission stats
+Participants	200
+Submitted	122

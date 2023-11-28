@@ -1,0 +1,1 @@
+converted pattern and text in KMP to uppercase for bonus marks

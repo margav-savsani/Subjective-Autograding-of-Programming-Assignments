@@ -1,0 +1,8 @@
+* I have Implemented aa BFS search for finding all the journeys.
+* The comparisons made between arrival and departure of two train is based upon the (dep_day -arr_day)*24 + (dep - arr)/100;
+* The Struct present in the BFS queue stores the list of trains (as integers), list of stations (as integers)
+  a list of arrival time of the trains at the respective stations and the number of stop sequences untill then.
+* Since BFS requires storing the elements in a Queue, this method takes a lot of memeory while running.
+* Whenever we encounter a destination station, we append it to the FINAL_ANS queue which can then be printed at the completition of the BFS.
+* I have used the QUEUE ADT made in lab 1 to store most of the quantities in the program.
+* Currently my algorithm has a mistake in the sense that there are many repeated Journeys being present in the Queue.

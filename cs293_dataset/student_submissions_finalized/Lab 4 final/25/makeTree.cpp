@@ -1,0 +1,54 @@
+#include <stdlib.h>
+#include <iostream>
+#include <cassert>
+#include "sort.cpp"
+
+using namespace std;
+
+void inorder(TreeNode* head){
+    if (head==nullptr) return;
+
+    inorder(head->left);
+    cout<<head->JourneyCode<<endl;
+    inorder(head->right);
+}
+
+int main(int argc, char** argv)
+{
+    if(argc != 3)
+    {
+        cout<<"Incorrect number of arguments"<<endl;
+        exit(0);
+    }
+
+    int num_entries = atoi(argv[1]); // Number of journeys to enter
+    int pivot_chooser = atoi(argv[2]); // Function to be used for choosing pivot
+
+    assert(1<=pivot_chooser && pivot_chooser<=4); // Valid choice of pivot chooser function
+    
+    // Write your code here to accept input of journeys, input one per line as a (code, price) pair
+    // Also write code here to obtain different inputs as in the various parts of the question
+    // Add functionality to time your code (chrono may be helpful here)
+
+    SorterTree *original = new SorterTree(pivot_chooser, num_entries);
+    SorterTree *s = new SorterTree(*original);
+
+    cout<<"Quicksort the array\n--------------------------------------------------"<<endl;
+
+    s->Quicksort(0, num_entries-1);
+    s->printArray();
+    cout<<"No of comparisons = "<<s->getComparisons()<<endl;
+
+    cout<<"---------------------------------------------------"<<endl;
+
+    s = original;
+    cout<<"Quicksort with Insert BST\n------------------------------"<<endl;
+    s->QuicksortWithBSTInsert(nullptr, 0, num_entries-1, s->getTree()->getRoot());
+    s->getTree()->printBST("");
+    cout<<"Inorder Traversal, showing BST made from sorted array"<<endl;
+    inorder(s->getTree()->getRoot());
+    cout<<"imbalance is "<<s->getTree()->getImbalance()<<endl;
+    cout<<"No of comparisons = "<<s->getComparisons()<<endl;
+    cout<<"---------------------------------------------------"<<endl;
+
+}

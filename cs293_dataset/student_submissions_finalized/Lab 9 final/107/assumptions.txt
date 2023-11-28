@@ -1,0 +1,7 @@
+Guramrit Singh
+210050061
+CS 293
+Lab 9
+
+Assumptions:
+1. There will be no train (Journey Code) such that it cycles i.e. the train goes from A->B and then B->A

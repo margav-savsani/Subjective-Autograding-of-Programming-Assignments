@@ -1,0 +1,8 @@
+I have used the recursive implementation of DFS for this lab. I am visiting a node only if the following three conditions are met:
+
+    1) should not be visited more than two times
+    2) should not be the parent of this node
+    3) should not be a node from which we have already backtracked
+
+The parent is decided when the first time we reach a node from another one. Due to point '3' above, the number of nodes visited once and visited twice will vary but its consistent with my 
+algorithm.

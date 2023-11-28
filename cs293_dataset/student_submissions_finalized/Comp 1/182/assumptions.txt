@@ -1,0 +1,1 @@
+i removed the adjacent variable  from node class and implemented seperately using listofbjects class from the previous labs

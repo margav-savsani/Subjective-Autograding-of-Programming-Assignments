@@ -1,0 +1,8 @@
+Ankan Sarkar, 210050013
+
+My code works on the algorithm of dfs using recursion. There are a lot of static variables in my entire code. I am calculating the maxtransitTime to be difference of the departure of the 2nd 
+trains minus the arrival time of the 1st. There is no restriction on this time but days aren't considered while listing journeys. Moreover, say if the 1st train arrives at 1600 hrs and the 
+2nd train departs at 600 hours on the nest day, then the transition time is calculated by completing the day, i.e., (2400-1600)+600=1400 hours. Let me also state how my code prints a route. 
+Lets say we have a route, namely A->B->C. Then, my code will print A's name then on the next line that train's info, followed by B's name and then its info and lastly, C's name and then its 
+info. At the very end, "============" will get printed if a route ends. This helps in demarcation of the routes. Please go through my comments to understand the working of my code as they 
+are pretty detailed.

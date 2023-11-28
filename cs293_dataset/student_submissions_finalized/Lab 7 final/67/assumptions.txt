@@ -1,0 +1,2 @@
+- Sorted according to day, followed by departure time.
+- Assumed K=4 (As given in the updated_quicksort.cpp file)

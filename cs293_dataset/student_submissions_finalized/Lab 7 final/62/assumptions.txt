@@ -1,0 +1,4 @@
+Kartik S. Nair - 210050083
+
+If two trains have the same depTime on the same day their order of appearance doesnt matter.
+If a train does not depart from a station/ i.e ends there, it should be shown at the end of that days trains.

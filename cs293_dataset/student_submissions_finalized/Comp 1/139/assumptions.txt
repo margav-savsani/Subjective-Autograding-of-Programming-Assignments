@@ -1,0 +1,2 @@
+Only the print function is taken from prev BST lab.
+No other assumptions made other than given in piazza and problem statement.

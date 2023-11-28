@@ -1,0 +1,4 @@
+the assumptions i have taken are that once we backtrace from a node through an edge it is not visited again
+
+algorithm used:
+initially we are actually creating 2 directed edges in the adjacency list but later once we fix the orientation we have to make it a directed edge by removing the other edge and if it backtraces from a edge we need to remove that edge after the node is visited once

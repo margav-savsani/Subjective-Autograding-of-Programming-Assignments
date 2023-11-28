@@ -1,0 +1,3 @@
+I am assuming that there are only alphabets in the station names.
+I am also ignoring the case of the letters while storing in the trie, thus "mumbai" and "Mumbai" get stored in the same node of the trie but at different positions in the linked list associated with that node
+My kmp is case insensitive

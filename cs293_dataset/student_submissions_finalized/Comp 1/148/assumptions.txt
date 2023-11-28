@@ -1,0 +1,1 @@
+Say I went from 1-2 once, and now I am again at 2. Now I won't go from 1-2 again by this path. I think this assumption is reasonable and would allow us to prevent redundant paths.

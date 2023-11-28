@@ -1,0 +1,2 @@
+No cyclic chains
+a train can't branch out at a node

@@ -1,0 +1,1 @@
+Traversal is in such a way that we can traverse through the adjacent nodes if it is not parent of the current node and the adjacent nodes is not backtraced atleast one and no of times node is visited is less than two

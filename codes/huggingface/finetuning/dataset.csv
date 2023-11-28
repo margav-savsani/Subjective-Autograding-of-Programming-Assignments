@@ -1,0 +1,3614 @@
+dataset_type,inference_prompt,finetuning_prompt
+train,"<s>[INST] <<SYS>>
+You are a helpful, respectful and honest assistant. Always answer as helpfully as possible, while being safe. Your answers should not include any harmful, unethical, racist, sexist, toxic, dangerous, or illegal content. Please ensure that your responses are socially unbiased and positive in nature.\n\nIf a question does not make any sense, or is not factually coherent, explain why instead of answering something not correct. If you don't know the answer to a question, please don't share false information. You have the task of grading a programming assignment submission. The problem statement and resources provided by the instructor will be given between [INSTRUCTOR] and [/INSTRUCTOR] tags. The rubric that is supposed to be graded will be given between [RUBRIC] and [/RUBRIC] tags. The student submission will be between [STUDENT] and [/STUDENT] tags. Your output should match the exact format [GRADE]
+(Marks that you give)
+[/GRADE]
+<</SYS>>
+
+[INSTRUCTOR]
+[Files]
+[FILENAME]
+moodle_description.txt
+[/FILENAME]
+[CONTENT]
+In this assignment, we will implement a dynamic queue in two different ways. 
+
+The problem statement is given in queue.h    Please read the problem statement carefully.
+
+The harness for testing your code is given in test.cpp 
+
+You need to write your solution (programs) in two files linearQueue.cpp and circularQueue.cpp and compile by running ""make testLinear"" or ""make testCircular"" as appropriate.
+
+Do not worry about running gnuplot to visualize the running times now. We will send you separate instructions about that.  
+
+# Submission stats
+Participants	200
+Submitted	193
+[/CONTENT]
+[FILENAME]
+queue.h
+[/FILENAME]
+[CONTENT]
+#ifndef DYNAMIC_QUEUE_H
+#define DYNAMIC_QUEUE_H
+
+// You have learnt about queues in CS 213.  A queue stores an ordered sequence of elements, and allows
+// two operations: insert (at tail of queue) and delete (from head of queue).
+//
+// In this lab, we will implement a queue of a generic type using an array in two different ways.
+
+// In the first implementation, called linearQueue, consecutive elements in the queue are stored at
+// array locations with consecutive indices.  Thus, the first element in linearQueue must always be at
+// the array location with the smallest index (need not be 0) compared to other elements in linearQueue.
+// As an example, if linearQueue is implemented using an array A of size 10, and if there are 3
+// elements in the queue, the consecutive elements could be at locations A[3], A[4], A[5].
+
+// In the second implementation, called circularQueue, consecutive elements in the queue are stored at
+// array locations that are consecutive *modulo the array size*.  Thus, the first element in circularQueue
+// may not always be at the array location with the smallest index compared to other elements in
+// circularQueue.
+// As an example, if circularQueue is implemented using an array A of size 10, and if there are 3
+// elements in the queue, the consecutive elements could be at locations A[9], A[0], A[1].
+//
+// When the number of elements in the queue becomes larger than the array size, you have to grow the
+// array size linearly, i.e. by a fixed increment.  You must not grow the array size under any other
+// condition.  If needed, you can re-arrange the list elements in your array to ensure that you
+// don't grow the array size unless the queue contains more elements than the array size.  Note that this
+// will incur additional time/space overhead.  So think carefully about how you would like to implement this.
+//
+// Finally, we will compare the overall run-time for both the above implementations for a series of
+// inserts and deletes from the implemented queues.
+//
+// Comparison graph: x-axis is number of operations (insert/delete), y-axis run-time;
+// Expect to see different graphs depending on the sequence of inserts and deletes.
+//
+// Make sure to document your code properly using suitable comments
+//
+// This file contains the declaration of a template class DynamicQueue.
+// You are required to provide implementations of the member functions for linearQueue and circularQueue in
+// separate files named linearQueue.cpp and circularQueue.cpp.  
+//
+// Your code must compile using the provided make file.  We may change the way the function main in test.cpp
+// inserts and deletes elements. test.cpp is provided to help you run your tests.  
+//
+//
+// FILES
+// DO NOT MODIFY this file, submit as-is
+// Write the CPP code for the member functions for the two implementations in files
+// LinearQueue.cpp and CircularQueue.cpp
+// Your code will be evaluated by compiling and running test.c, where we may change the way inserts
+// and deletes are done.
+
+// While testing, you can change the constant values given below if you want
+
+#define CONST_GROWTH 1000
+#define INIT_SIZE 1000
+
+template <typename T> class DynamicQueue {
+private:
+  T *A; // the array used for implementing the dynamic dequeue
+  unsigned int N; // the current size of array A
+  unsigned int head; // index where next element of queue will be deleted from
+  unsigned int tail; // index where next element will be inserted
+  unsigned int nextSize() { return N+CONST_GROWTH; }
+public:
+  DynamicQueue() // default constructor
+  {
+    A = new T[INIT_SIZE];
+    if (A != nullptr) N = INIT_SIZE;
+    else N = 0;
+    head = tail = 0;
+  } 
+  ~DynamicQueue(){delete[] A;}; // default destructor
+  
+  bool isEmpty(); // is the queue empty?
+  bool isFull(); // is the queue full?
+  void grow(); // grow the queue to its next size 
+  unsigned int size(); // return the current number of elements in the queue
+  void QInsert(T x); // insert given element at tail of the queue; grow array size as necessary
+  bool QDelete(T *x); // delete element at head of the queue and place it in *T; returns false if queue is empty, true otherwise
+};
+
+#endif
+
+[/CONTENT]
+[FILENAME]
+test.cpp
+[/FILENAME]
+[CONTENT]
+#include <iostream>
+#include <stdexcept>
+#include <cstdlib>
+#include <chrono>
+
+#include ""queue.h""
+#include ""linearQueue.cpp""
+
+using namespace std;
+using namespace std::chrono;
+
+void do_insert_delete(DynamicQueue<int>&, int, int&, int&);
+
+int main() {
+  try {
+    DynamicQueue<int> myQueue; // Queue of integers
+    int num_ins, num_del;
+    int total_num_ops = 10000;
+    int points_to_plot = 100;
+    
+    for (int i = 0; i < points_to_plot; i++) {
+      auto start = std::chrono::high_resolution_clock::now();
+      
+      do_insert_delete(myQueue, total_num_ops, num_ins, num_del);
+      
+      auto stop = high_resolution_clock::now();
+      
+      auto duration = duration_cast<microseconds>(stop - start);
+      cout << (num_ins + num_del) << "" "" << duration.count() << endl;
+    }
+
+    return 0;
+  }
+  catch (exception const& ex) {
+    cerr << ""Exception "" << ex.what() << endl;
+    return -1;
+  }
+}
+
+void do_insert_delete(DynamicQueue<int>& q, int N, int& num_ins, int& num_del)
+{
+  int element;
+  int modulus = 100;
+  int thresh_for_del = 20;
+
+  // Simple insertion deletion strategy: delete one element after every thresh_for_del steps
+  
+  srand(time(0));
+  
+  for (int i=0; i < N; i++) {
+    if ((i > 0) && (i % thresh_for_del == 0)) {
+      // Delete element from queue
+      if (q.QDelete(&element)) {
+	// Don't count deletions from empty queue
+	num_del++;
+      }
+    }
+    else {
+      // Insert random element in queue
+      element = rand() % modulus;
+      q.QInsert(element);
+      num_ins++;
+    }
+  }
+
+  return;
+}
+
+[/CONTENT]
+[FILENAME]
+Makefile
+[/FILENAME]
+[CONTENT]
+testLinear: queue.h linearQueue.cpp test.cpp
+	g++ -o testLinear test.cpp
+
+testCircular: queue.h circularQueue.cpp test.cpp
+	g++ -o testCircular test.cpp
+
+[/CONTENT]
+[/Files]
+[/INSTRUCTOR]
+
+[RUBRIC]
+Is the Code well structured and commented
+[POSSIBLESCORES]
+[0,1,2]
+[/POSSIBLESCORES]
+[/RUBRIC]
+
+[STUDENT]
+[FILES]
+[FILENAME]
+linearQueue.cpp
+[/FILENAME]
+[CONTENT]
+#include <iostream>
+#include ""queue.h""
+
+using namespace std;
+
+template<typename T>
+
+bool DynamicQueue<T>::isFull()
+{
+    if(tail == N)
+    {
+        return true;
+    }
+    return false;
+}
+
+template<typename T>
+bool DynamicQueue<T>::isEmpty()
+{
+    if (head == tail)
+    {
+        return true;
+    }
+    return false;
+
+}
+template<typename T>
+void DynamicQueue<T>::grow()
+{
+    int nextsize = nextSize();
+    int *B = new int[nextsize];
+    for(int i = head;i<tail;i++)
+    {
+        B[i-head] = A[i];
+    }
+    N = nextsize;
+    head = 0;
+    tail = tail - head;
+    A = B;
+}
+template<typename T>
+unsigned int DynamicQueue<T>::size()
+{
+    if(head == tail)
+    {
+        return 0;
+    }
+        return tail - head;
+}
+template<typename T>
+void DynamicQueue<T>::QInsert(T x)
+{
+    if(tail == N)
+    {
+        grow();
+        A[tail] = x;
+        tail = tail + 1;
+    }
+
+    A[tail] = x;
+    tail = tail + 1;
+}
+template<typename T>
+bool DynamicQueue<T>::QDelete(T *x)
+{
+    if(head == tail)
+    {
+        return false;
+    }
+    *x = A[head];
+    head = head +1;
+    return true;
+}
+
+
+
+[/CONTENT]
+[FILENAME]
+CircularQueue.cpp
+[/FILENAME]
+[CONTENT]
+#include <iostream>
+#include ""queue.h""
+
+using namespace std;
+
+template<typename T>
+bool DynamicQueue<T>::isFull()
+{
+    if((tail+1)%N == head)
+    {
+        return true;
+    }
+    return false;
+}
+
+template<typename T>
+bool DynamicQueue<T>::isEmpty()
+{
+    if (head == tail)
+    {
+        return true;
+    }
+    return false;
+
+}
+
+template<typename T>
+void DynamicQueue<T>::grow()
+{
+    int nextsize = nextSize();
+    int *B = new int[nextsize];
+    if(tail>head)
+        for(int i = head;i<tail;i++)
+        {
+            B[i-head] = A[i%N];
+        }
+    else
+    {
+        for(int i=head; i<N+tail+1;i++)
+        {
+            B[i-head] = A[i%N];
+        }
+    }
+    N = nextsize;
+    head = 0;
+    tail = N+tail-head;
+    A = B;
+}
+
+template<typename T>
+unsigned int DynamicQueue<T>::size()
+{
+    if(isEmpty())
+    {
+        return 0;
+    }
+    if(tail>head)
+    {
+        return tail - head;
+    }
+    else
+    {
+        return N + tail - head;
+    }
+}
+
+template<typename T>
+void DynamicQueue<T>::QInsert(T x)
+{
+    if(isFull())
+    {
+        grow();
+        A[tail] = x;
+        tail = (tail + 1)%N;
+    }
+
+    A[tail] = x;
+    tail = (tail + 1)%N;
+}
+
+template<typename T>
+bool DynamicQueue<T>::QDelete(T *x)
+{
+    if(isEmpty())
+    {
+        return false;
+    }
+    *x = A[head];
+    head = (head +1)%N;
+    return true;
+}
+
+[/CONTENT]
+[/FILES]
+[/STUDENT] [/INST]","<s>[INST] <<SYS>>
+You are a helpful, respectful and honest assistant. Always answer as helpfully as possible, while being safe. Your answers should not include any harmful, unethical, racist, sexist, toxic, dangerous, or illegal content. Please ensure that your responses are socially unbiased and positive in nature.\n\nIf a question does not make any sense, or is not factually coherent, explain why instead of answering something not correct. If you don't know the answer to a question, please don't share false information. You have the task of grading a programming assignment submission. The problem statement and resources provided by the instructor will be given between [INSTRUCTOR] and [/INSTRUCTOR] tags. The rubric that is supposed to be graded will be given between [RUBRIC] and [/RUBRIC] tags. The student submission will be between [STUDENT] and [/STUDENT] tags. Your output should match the exact format [GRADE]
+(Marks that you give)
+[/GRADE]
+<</SYS>>
+
+[INSTRUCTOR]
+[Files]
+[FILENAME]
+moodle_description.txt
+[/FILENAME]
+[CONTENT]
+In this assignment, we will implement a dynamic queue in two different ways. 
+
+The problem statement is given in queue.h    Please read the problem statement carefully.
+
+The harness for testing your code is given in test.cpp 
+
+You need to write your solution (programs) in two files linearQueue.cpp and circularQueue.cpp and compile by running ""make testLinear"" or ""make testCircular"" as appropriate.
+
+Do not worry about running gnuplot to visualize the running times now. We will send you separate instructions about that.  
+
+# Submission stats
+Participants	200
+Submitted	193
+[/CONTENT]
+[FILENAME]
+queue.h
+[/FILENAME]
+[CONTENT]
+#ifndef DYNAMIC_QUEUE_H
+#define DYNAMIC_QUEUE_H
+
+// You have learnt about queues in CS 213.  A queue stores an ordered sequence of elements, and allows
+// two operations: insert (at tail of queue) and delete (from head of queue).
+//
+// In this lab, we will implement a queue of a generic type using an array in two different ways.
+
+// In the first implementation, called linearQueue, consecutive elements in the queue are stored at
+// array locations with consecutive indices.  Thus, the first element in linearQueue must always be at
+// the array location with the smallest index (need not be 0) compared to other elements in linearQueue.
+// As an example, if linearQueue is implemented using an array A of size 10, and if there are 3
+// elements in the queue, the consecutive elements could be at locations A[3], A[4], A[5].
+
+// In the second implementation, called circularQueue, consecutive elements in the queue are stored at
+// array locations that are consecutive *modulo the array size*.  Thus, the first element in circularQueue
+// may not always be at the array location with the smallest index compared to other elements in
+// circularQueue.
+// As an example, if circularQueue is implemented using an array A of size 10, and if there are 3
+// elements in the queue, the consecutive elements could be at locations A[9], A[0], A[1].
+//
+// When the number of elements in the queue becomes larger than the array size, you have to grow the
+// array size linearly, i.e. by a fixed increment.  You must not grow the array size under any other
+// condition.  If needed, you can re-arrange the list elements in your array to ensure that you
+// don't grow the array size unless the queue contains more elements than the array size.  Note that this
+// will incur additional time/space overhead.  So think carefully about how you would like to implement this.
+//
+// Finally, we will compare the overall run-time for both the above implementations for a series of
+// inserts and deletes from the implemented queues.
+//
+// Comparison graph: x-axis is number of operations (insert/delete), y-axis run-time;
+// Expect to see different graphs depending on the sequence of inserts and deletes.
+//
+// Make sure to document your code properly using suitable comments
+//
+// This file contains the declaration of a template class DynamicQueue.
+// You are required to provide implementations of the member functions for linearQueue and circularQueue in
+// separate files named linearQueue.cpp and circularQueue.cpp.  
+//
+// Your code must compile using the provided make file.  We may change the way the function main in test.cpp
+// inserts and deletes elements. test.cpp is provided to help you run your tests.  
+//
+//
+// FILES
+// DO NOT MODIFY this file, submit as-is
+// Write the CPP code for the member functions for the two implementations in files
+// LinearQueue.cpp and CircularQueue.cpp
+// Your code will be evaluated by compiling and running test.c, where we may change the way inserts
+// and deletes are done.
+
+// While testing, you can change the constant values given below if you want
+
+#define CONST_GROWTH 1000
+#define INIT_SIZE 1000
+
+template <typename T> class DynamicQueue {
+private:
+  T *A; // the array used for implementing the dynamic dequeue
+  unsigned int N; // the current size of array A
+  unsigned int head; // index where next element of queue will be deleted from
+  unsigned int tail; // index where next element will be inserted
+  unsigned int nextSize() { return N+CONST_GROWTH; }
+public:
+  DynamicQueue() // default constructor
+  {
+    A = new T[INIT_SIZE];
+    if (A != nullptr) N = INIT_SIZE;
+    else N = 0;
+    head = tail = 0;
+  } 
+  ~DynamicQueue(){delete[] A;}; // default destructor
+  
+  bool isEmpty(); // is the queue empty?
+  bool isFull(); // is the queue full?
+  void grow(); // grow the queue to its next size 
+  unsigned int size(); // return the current number of elements in the queue
+  void QInsert(T x); // insert given element at tail of the queue; grow array size as necessary
+  bool QDelete(T *x); // delete element at head of the queue and place it in *T; returns false if queue is empty, true otherwise
+};
+
+#endif
+
+[/CONTENT]
+[FILENAME]
+test.cpp
+[/FILENAME]
+[CONTENT]
+#include <iostream>
+#include <stdexcept>
+#include <cstdlib>
+#include <chrono>
+
+#include ""queue.h""
+#include ""linearQueue.cpp""
+
+using namespace std;
+using namespace std::chrono;
+
+void do_insert_delete(DynamicQueue<int>&, int, int&, int&);
+
+int main() {
+  try {
+    DynamicQueue<int> myQueue; // Queue of integers
+    int num_ins, num_del;
+    int total_num_ops = 10000;
+    int points_to_plot = 100;
+    
+    for (int i = 0; i < points_to_plot; i++) {
+      auto start = std::chrono::high_resolution_clock::now();
+      
+      do_insert_delete(myQueue, total_num_ops, num_ins, num_del);
+      
+      auto stop = high_resolution_clock::now();
+      
+      auto duration = duration_cast<microseconds>(stop - start);
+      cout << (num_ins + num_del) << "" "" << duration.count() << endl;
+    }
+
+    return 0;
+  }
+  catch (exception const& ex) {
+    cerr << ""Exception "" << ex.what() << endl;
+    return -1;
+  }
+}
+
+void do_insert_delete(DynamicQueue<int>& q, int N, int& num_ins, int& num_del)
+{
+  int element;
+  int modulus = 100;
+  int thresh_for_del = 20;
+
+  // Simple insertion deletion strategy: delete one element after every thresh_for_del steps
+  
+  srand(time(0));
+  
+  for (int i=0; i < N; i++) {
+    if ((i > 0) && (i % thresh_for_del == 0)) {
+      // Delete element from queue
+      if (q.QDelete(&element)) {
+	// Don't count deletions from empty queue
+	num_del++;
+      }
+    }
+    else {
+      // Insert random element in queue
+      element = rand() % modulus;
+      q.QInsert(element);
+      num_ins++;
+    }
+  }
+
+  return;
+}
+
+[/CONTENT]
+[FILENAME]
+Makefile
+[/FILENAME]
+[CONTENT]
+testLinear: queue.h linearQueue.cpp test.cpp
+	g++ -o testLinear test.cpp
+
+testCircular: queue.h circularQueue.cpp test.cpp
+	g++ -o testCircular test.cpp
+
+[/CONTENT]
+[/Files]
+[/INSTRUCTOR]
+
+[RUBRIC]
+Is the Code well structured and commented
+[POSSIBLESCORES]
+[0,1,2]
+[/POSSIBLESCORES]
+[/RUBRIC]
+
+[STUDENT]
+[FILES]
+[FILENAME]
+linearQueue.cpp
+[/FILENAME]
+[CONTENT]
+#include <iostream>
+#include ""queue.h""
+
+using namespace std;
+
+template<typename T>
+
+bool DynamicQueue<T>::isFull()
+{
+    if(tail == N)
+    {
+        return true;
+    }
+    return false;
+}
+
+template<typename T>
+bool DynamicQueue<T>::isEmpty()
+{
+    if (head == tail)
+    {
+        return true;
+    }
+    return false;
+
+}
+template<typename T>
+void DynamicQueue<T>::grow()
+{
+    int nextsize = nextSize();
+    int *B = new int[nextsize];
+    for(int i = head;i<tail;i++)
+    {
+        B[i-head] = A[i];
+    }
+    N = nextsize;
+    head = 0;
+    tail = tail - head;
+    A = B;
+}
+template<typename T>
+unsigned int DynamicQueue<T>::size()
+{
+    if(head == tail)
+    {
+        return 0;
+    }
+        return tail - head;
+}
+template<typename T>
+void DynamicQueue<T>::QInsert(T x)
+{
+    if(tail == N)
+    {
+        grow();
+        A[tail] = x;
+        tail = tail + 1;
+    }
+
+    A[tail] = x;
+    tail = tail + 1;
+}
+template<typename T>
+bool DynamicQueue<T>::QDelete(T *x)
+{
+    if(head == tail)
+    {
+        return false;
+    }
+    *x = A[head];
+    head = head +1;
+    return true;
+}
+
+
+
+[/CONTENT]
+[FILENAME]
+CircularQueue.cpp
+[/FILENAME]
+[CONTENT]
+#include <iostream>
+#include ""queue.h""
+
+using namespace std;
+
+template<typename T>
+bool DynamicQueue<T>::isFull()
+{
+    if((tail+1)%N == head)
+    {
+        return true;
+    }
+    return false;
+}
+
+template<typename T>
+bool DynamicQueue<T>::isEmpty()
+{
+    if (head == tail)
+    {
+        return true;
+    }
+    return false;
+
+}
+
+template<typename T>
+void DynamicQueue<T>::grow()
+{
+    int nextsize = nextSize();
+    int *B = new int[nextsize];
+    if(tail>head)
+        for(int i = head;i<tail;i++)
+        {
+            B[i-head] = A[i%N];
+        }
+    else
+    {
+        for(int i=head; i<N+tail+1;i++)
+        {
+            B[i-head] = A[i%N];
+        }
+    }
+    N = nextsize;
+    head = 0;
+    tail = N+tail-head;
+    A = B;
+}
+
+template<typename T>
+unsigned int DynamicQueue<T>::size()
+{
+    if(isEmpty())
+    {
+        return 0;
+    }
+    if(tail>head)
+    {
+        return tail - head;
+    }
+    else
+    {
+        return N + tail - head;
+    }
+}
+
+template<typename T>
+void DynamicQueue<T>::QInsert(T x)
+{
+    if(isFull())
+    {
+        grow();
+        A[tail] = x;
+        tail = (tail + 1)%N;
+    }
+
+    A[tail] = x;
+    tail = (tail + 1)%N;
+}
+
+template<typename T>
+bool DynamicQueue<T>::QDelete(T *x)
+{
+    if(isEmpty())
+    {
+        return false;
+    }
+    *x = A[head];
+    head = (head +1)%N;
+    return true;
+}
+
+[/CONTENT]
+[/FILES]
+[/STUDENT] [/INST] [SCORE]
+1
+[\SCORE]"
+train,"<s>[INST] <<SYS>>
+You are a helpful, respectful and honest assistant. Always answer as helpfully as possible, while being safe. Your answers should not include any harmful, unethical, racist, sexist, toxic, dangerous, or illegal content. Please ensure that your responses are socially unbiased and positive in nature.\n\nIf a question does not make any sense, or is not factually coherent, explain why instead of answering something not correct. If you don't know the answer to a question, please don't share false information. You have the task of grading a programming assignment submission. The problem statement and resources provided by the instructor will be given between [INSTRUCTOR] and [/INSTRUCTOR] tags. The rubric that is supposed to be graded will be given between [RUBRIC] and [/RUBRIC] tags. The student submission will be between [STUDENT] and [/STUDENT] tags. Your output should match the exact format [GRADE]
+(Marks that you give)
+[/GRADE]
+<</SYS>>
+
+[INSTRUCTOR]
+[Files]
+[FILENAME]
+moodle_description.txt
+[/FILENAME]
+[CONTENT]
+In this assignment, we will implement a dynamic queue in two different ways. 
+
+The problem statement is given in queue.h    Please read the problem statement carefully.
+
+The harness for testing your code is given in test.cpp 
+
+You need to write your solution (programs) in two files linearQueue.cpp and circularQueue.cpp and compile by running ""make testLinear"" or ""make testCircular"" as appropriate.
+
+Do not worry about running gnuplot to visualize the running times now. We will send you separate instructions about that.  
+
+# Submission stats
+Participants	200
+Submitted	193
+[/CONTENT]
+[FILENAME]
+queue.h
+[/FILENAME]
+[CONTENT]
+#ifndef DYNAMIC_QUEUE_H
+#define DYNAMIC_QUEUE_H
+
+// You have learnt about queues in CS 213.  A queue stores an ordered sequence of elements, and allows
+// two operations: insert (at tail of queue) and delete (from head of queue).
+//
+// In this lab, we will implement a queue of a generic type using an array in two different ways.
+
+// In the first implementation, called linearQueue, consecutive elements in the queue are stored at
+// array locations with consecutive indices.  Thus, the first element in linearQueue must always be at
+// the array location with the smallest index (need not be 0) compared to other elements in linearQueue.
+// As an example, if linearQueue is implemented using an array A of size 10, and if there are 3
+// elements in the queue, the consecutive elements could be at locations A[3], A[4], A[5].
+
+// In the second implementation, called circularQueue, consecutive elements in the queue are stored at
+// array locations that are consecutive *modulo the array size*.  Thus, the first element in circularQueue
+// may not always be at the array location with the smallest index compared to other elements in
+// circularQueue.
+// As an example, if circularQueue is implemented using an array A of size 10, and if there are 3
+// elements in the queue, the consecutive elements could be at locations A[9], A[0], A[1].
+//
+// When the number of elements in the queue becomes larger than the array size, you have to grow the
+// array size linearly, i.e. by a fixed increment.  You must not grow the array size under any other
+// condition.  If needed, you can re-arrange the list elements in your array to ensure that you
+// don't grow the array size unless the queue contains more elements than the array size.  Note that this
+// will incur additional time/space overhead.  So think carefully about how you would like to implement this.
+//
+// Finally, we will compare the overall run-time for both the above implementations for a series of
+// inserts and deletes from the implemented queues.
+//
+// Comparison graph: x-axis is number of operations (insert/delete), y-axis run-time;
+// Expect to see different graphs depending on the sequence of inserts and deletes.
+//
+// Make sure to document your code properly using suitable comments
+//
+// This file contains the declaration of a template class DynamicQueue.
+// You are required to provide implementations of the member functions for linearQueue and circularQueue in
+// separate files named linearQueue.cpp and circularQueue.cpp.  
+//
+// Your code must compile using the provided make file.  We may change the way the function main in test.cpp
+// inserts and deletes elements. test.cpp is provided to help you run your tests.  
+//
+//
+// FILES
+// DO NOT MODIFY this file, submit as-is
+// Write the CPP code for the member functions for the two implementations in files
+// LinearQueue.cpp and CircularQueue.cpp
+// Your code will be evaluated by compiling and running test.c, where we may change the way inserts
+// and deletes are done.
+
+// While testing, you can change the constant values given below if you want
+
+#define CONST_GROWTH 1000
+#define INIT_SIZE 1000
+
+template <typename T> class DynamicQueue {
+private:
+  T *A; // the array used for implementing the dynamic dequeue
+  unsigned int N; // the current size of array A
+  unsigned int head; // index where next element of queue will be deleted from
+  unsigned int tail; // index where next element will be inserted
+  unsigned int nextSize() { return N+CONST_GROWTH; }
+public:
+  DynamicQueue() // default constructor
+  {
+    A = new T[INIT_SIZE];
+    if (A != nullptr) N = INIT_SIZE;
+    else N = 0;
+    head = tail = 0;
+  } 
+  ~DynamicQueue(){delete[] A;}; // default destructor
+  
+  bool isEmpty(); // is the queue empty?
+  bool isFull(); // is the queue full?
+  void grow(); // grow the queue to its next size 
+  unsigned int size(); // return the current number of elements in the queue
+  void QInsert(T x); // insert given element at tail of the queue; grow array size as necessary
+  bool QDelete(T *x); // delete element at head of the queue and place it in *T; returns false if queue is empty, true otherwise
+};
+
+#endif
+
+[/CONTENT]
+[FILENAME]
+test.cpp
+[/FILENAME]
+[CONTENT]
+#include <iostream>
+#include <stdexcept>
+#include <cstdlib>
+#include <chrono>
+
+#include ""queue.h""
+#include ""linearQueue.cpp""
+
+using namespace std;
+using namespace std::chrono;
+
+void do_insert_delete(DynamicQueue<int>&, int, int&, int&);
+
+int main() {
+  try {
+    DynamicQueue<int> myQueue; // Queue of integers
+    int num_ins, num_del;
+    int total_num_ops = 10000;
+    int points_to_plot = 100;
+    
+    for (int i = 0; i < points_to_plot; i++) {
+      auto start = std::chrono::high_resolution_clock::now();
+      
+      do_insert_delete(myQueue, total_num_ops, num_ins, num_del);
+      
+      auto stop = high_resolution_clock::now();
+      
+      auto duration = duration_cast<microseconds>(stop - start);
+      cout << (num_ins + num_del) << "" "" << duration.count() << endl;
+    }
+
+    return 0;
+  }
+  catch (exception const& ex) {
+    cerr << ""Exception "" << ex.what() << endl;
+    return -1;
+  }
+}
+
+void do_insert_delete(DynamicQueue<int>& q, int N, int& num_ins, int& num_del)
+{
+  int element;
+  int modulus = 100;
+  int thresh_for_del = 20;
+
+  // Simple insertion deletion strategy: delete one element after every thresh_for_del steps
+  
+  srand(time(0));
+  
+  for (int i=0; i < N; i++) {
+    if ((i > 0) && (i % thresh_for_del == 0)) {
+      // Delete element from queue
+      if (q.QDelete(&element)) {
+	// Don't count deletions from empty queue
+	num_del++;
+      }
+    }
+    else {
+      // Insert random element in queue
+      element = rand() % modulus;
+      q.QInsert(element);
+      num_ins++;
+    }
+  }
+
+  return;
+}
+
+[/CONTENT]
+[FILENAME]
+Makefile
+[/FILENAME]
+[CONTENT]
+testLinear: queue.h linearQueue.cpp test.cpp
+	g++ -o testLinear test.cpp
+
+testCircular: queue.h circularQueue.cpp test.cpp
+	g++ -o testCircular test.cpp
+
+[/CONTENT]
+[/Files]
+[/INSTRUCTOR]
+
+[RUBRIC]
+Is the Code well structured and commented
+[POSSIBLESCORES]
+[0,1,2]
+[/POSSIBLESCORES]
+[/RUBRIC]
+
+[STUDENT]
+[FILES]
+[FILENAME]
+linearQueue.cpp
+[/FILENAME]
+[CONTENT]
+#include <iostream>
+#include ""queue.h""
+using namespace std;
+
+template <typename T> bool DynamicQueue<T> :: isEmpty(){
+    if(head == tail) return true; //when location of head and tail overlap, the linear queue is empty
+    else return false;
+}
+
+template <typename T> bool DynamicQueue<T> :: isFull(){
+    if(tail - head == N) return true; // when number of elements between head and tail equals the size of the queue, the linear queue is full
+    else return false;
+}
+
+template <typename T> void DynamicQueue<T> :: grow(){
+    int previous_N = N; // storing the original value of N in previous_N variable
+    N = nextSize(); // this function returns new size of the queue and N is updated accordingly
+    T *B = new T[N]; // a new array of new size is created
+    for(int i = 0; i < previous_N; i++) B[i] = A[i]; // original elements are copied to the new array
+
+    delete[] A;// freeing the heap storage
+    A = B;// changing the variable name back to the same
+}
+
+template <typename T> unsigned int DynamicQueue<T> :: size() {
+    return tail - head; // this returns number of elements in the linear queue
+}
+
+template <typename T> void DynamicQueue<T> :: QInsert(T x){
+    if(!isFull()){ //if queue is not full
+        if(tail != N){ //if tail is not at the end of the queue
+            A[tail] = x; //appending element at the end
+        }
+        else{ // if tail is at the end of the queue
+            T *B = new T[N]; //new array creation
+            for(int i = head; i < tail; i++){
+                B[i - head] = A[i]; // copying elements to the new array starting from index 0
+            }
+            head = 0;
+            tail = tail - head;
+            delete[] A; // removing heap storage
+            A = B;  // reallocating memory
+        }
+    }
+    else{ //if queue is full
+        grow(); // calling grow() function
+        A[tail] = x; // appending element at the end of the grown queue
+    }
+    tail++;// new position of tail
+}
+
+template <typename T> bool DynamicQueue<T> :: QDelete(T *x){
+    if(isEmpty()) return false; // if queue is empty , delete operation can't be done
+    else{ // if queue is not empty
+        int x_size = *(&x + 1) - x; //x_size stores size of array x
+        T *y = new T[N];
+        for(int i = 0; i < x_size; i++){
+            y[i] = x[i]; // copying elements to new aray
+        }
+        y[x_size] = A[head]; // storing head element in the y array
+        x = y; // reallocating memory
+        return true;
+
+    }
+}
+[/CONTENT]
+[FILENAME]
+circularQueue.cpp
+[/FILENAME]
+[CONTENT]
+#include <iostream>
+#include ""queue.h""
+using namespace std;
+
+template <typename T> bool DynamicQueue<T> :: isEmpty(){
+    if(head == tail) return true; // if head and tail have same index, queue is empty
+    else return false;
+}
+
+template <typename T> bool DynamicQueue<T> :: isFull(){
+    if(tail - head == N) return true; // like a linear queue
+    else if ((tail < head)&&( head - tail == 1)) return true; // special case for circular queue when tail is behind head
+    else return false;
+}
+
+template <typename T> void DynamicQueue<T> :: grow(){
+    int previous_N = N; // storing the original value of N in previous_N variable
+    N = nextSize(); 
+    T *B = new T[N];
+    for(int i = 0; i < previous_N; i++) B[i] = A[i]; // copying elements to the new array
+
+    delete[] A;
+    A = B;
+}
+
+template <typename T> unsigned int DynamicQueue<T> :: size() {
+    return tail - head;
+}
+
+template <typename T> void DynamicQueue<T> :: QInsert(T x){
+    if(size() == N - 1) grow(); // grow when one space is left so that we don't have the case where head == tail
+    if(!isFull()){
+        A[tail%N] = x;
+        tail = tail%N;
+    }
+    else{
+        grow();
+        A[tail] = x;
+    }
+    tail++;
+}
+
+template <typename T> bool DynamicQueue<T> :: QDelete(T *x){
+    if(isEmpty()) return false;
+    else{
+        int x_size = *(&x + 1) - x; // size of array x
+        T *y = new T[N];
+        for(int i = 0; i < x_size; i++){
+            y[i] = x[i];
+        }
+        y[x_size] = A[head];
+        x = y;
+        return true;
+    }
+}
+[/CONTENT]
+[/FILES]
+[/STUDENT] [/INST]","<s>[INST] <<SYS>>
+You are a helpful, respectful and honest assistant. Always answer as helpfully as possible, while being safe. Your answers should not include any harmful, unethical, racist, sexist, toxic, dangerous, or illegal content. Please ensure that your responses are socially unbiased and positive in nature.\n\nIf a question does not make any sense, or is not factually coherent, explain why instead of answering something not correct. If you don't know the answer to a question, please don't share false information. You have the task of grading a programming assignment submission. The problem statement and resources provided by the instructor will be given between [INSTRUCTOR] and [/INSTRUCTOR] tags. The rubric that is supposed to be graded will be given between [RUBRIC] and [/RUBRIC] tags. The student submission will be between [STUDENT] and [/STUDENT] tags. Your output should match the exact format [GRADE]
+(Marks that you give)
+[/GRADE]
+<</SYS>>
+
+[INSTRUCTOR]
+[Files]
+[FILENAME]
+moodle_description.txt
+[/FILENAME]
+[CONTENT]
+In this assignment, we will implement a dynamic queue in two different ways. 
+
+The problem statement is given in queue.h    Please read the problem statement carefully.
+
+The harness for testing your code is given in test.cpp 
+
+You need to write your solution (programs) in two files linearQueue.cpp and circularQueue.cpp and compile by running ""make testLinear"" or ""make testCircular"" as appropriate.
+
+Do not worry about running gnuplot to visualize the running times now. We will send you separate instructions about that.  
+
+# Submission stats
+Participants	200
+Submitted	193
+[/CONTENT]
+[FILENAME]
+queue.h
+[/FILENAME]
+[CONTENT]
+#ifndef DYNAMIC_QUEUE_H
+#define DYNAMIC_QUEUE_H
+
+// You have learnt about queues in CS 213.  A queue stores an ordered sequence of elements, and allows
+// two operations: insert (at tail of queue) and delete (from head of queue).
+//
+// In this lab, we will implement a queue of a generic type using an array in two different ways.
+
+// In the first implementation, called linearQueue, consecutive elements in the queue are stored at
+// array locations with consecutive indices.  Thus, the first element in linearQueue must always be at
+// the array location with the smallest index (need not be 0) compared to other elements in linearQueue.
+// As an example, if linearQueue is implemented using an array A of size 10, and if there are 3
+// elements in the queue, the consecutive elements could be at locations A[3], A[4], A[5].
+
+// In the second implementation, called circularQueue, consecutive elements in the queue are stored at
+// array locations that are consecutive *modulo the array size*.  Thus, the first element in circularQueue
+// may not always be at the array location with the smallest index compared to other elements in
+// circularQueue.
+// As an example, if circularQueue is implemented using an array A of size 10, and if there are 3
+// elements in the queue, the consecutive elements could be at locations A[9], A[0], A[1].
+//
+// When the number of elements in the queue becomes larger than the array size, you have to grow the
+// array size linearly, i.e. by a fixed increment.  You must not grow the array size under any other
+// condition.  If needed, you can re-arrange the list elements in your array to ensure that you
+// don't grow the array size unless the queue contains more elements than the array size.  Note that this
+// will incur additional time/space overhead.  So think carefully about how you would like to implement this.
+//
+// Finally, we will compare the overall run-time for both the above implementations for a series of
+// inserts and deletes from the implemented queues.
+//
+// Comparison graph: x-axis is number of operations (insert/delete), y-axis run-time;
+// Expect to see different graphs depending on the sequence of inserts and deletes.
+//
+// Make sure to document your code properly using suitable comments
+//
+// This file contains the declaration of a template class DynamicQueue.
+// You are required to provide implementations of the member functions for linearQueue and circularQueue in
+// separate files named linearQueue.cpp and circularQueue.cpp.  
+//
+// Your code must compile using the provided make file.  We may change the way the function main in test.cpp
+// inserts and deletes elements. test.cpp is provided to help you run your tests.  
+//
+//
+// FILES
+// DO NOT MODIFY this file, submit as-is
+// Write the CPP code for the member functions for the two implementations in files
+// LinearQueue.cpp and CircularQueue.cpp
+// Your code will be evaluated by compiling and running test.c, where we may change the way inserts
+// and deletes are done.
+
+// While testing, you can change the constant values given below if you want
+
+#define CONST_GROWTH 1000
+#define INIT_SIZE 1000
+
+template <typename T> class DynamicQueue {
+private:
+  T *A; // the array used for implementing the dynamic dequeue
+  unsigned int N; // the current size of array A
+  unsigned int head; // index where next element of queue will be deleted from
+  unsigned int tail; // index where next element will be inserted
+  unsigned int nextSize() { return N+CONST_GROWTH; }
+public:
+  DynamicQueue() // default constructor
+  {
+    A = new T[INIT_SIZE];
+    if (A != nullptr) N = INIT_SIZE;
+    else N = 0;
+    head = tail = 0;
+  } 
+  ~DynamicQueue(){delete[] A;}; // default destructor
+  
+  bool isEmpty(); // is the queue empty?
+  bool isFull(); // is the queue full?
+  void grow(); // grow the queue to its next size 
+  unsigned int size(); // return the current number of elements in the queue
+  void QInsert(T x); // insert given element at tail of the queue; grow array size as necessary
+  bool QDelete(T *x); // delete element at head of the queue and place it in *T; returns false if queue is empty, true otherwise
+};
+
+#endif
+
+[/CONTENT]
+[FILENAME]
+test.cpp
+[/FILENAME]
+[CONTENT]
+#include <iostream>
+#include <stdexcept>
+#include <cstdlib>
+#include <chrono>
+
+#include ""queue.h""
+#include ""linearQueue.cpp""
+
+using namespace std;
+using namespace std::chrono;
+
+void do_insert_delete(DynamicQueue<int>&, int, int&, int&);
+
+int main() {
+  try {
+    DynamicQueue<int> myQueue; // Queue of integers
+    int num_ins, num_del;
+    int total_num_ops = 10000;
+    int points_to_plot = 100;
+    
+    for (int i = 0; i < points_to_plot; i++) {
+      auto start = std::chrono::high_resolution_clock::now();
+      
+      do_insert_delete(myQueue, total_num_ops, num_ins, num_del);
+      
+      auto stop = high_resolution_clock::now();
+      
+      auto duration = duration_cast<microseconds>(stop - start);
+      cout << (num_ins + num_del) << "" "" << duration.count() << endl;
+    }
+
+    return 0;
+  }
+  catch (exception const& ex) {
+    cerr << ""Exception "" << ex.what() << endl;
+    return -1;
+  }
+}
+
+void do_insert_delete(DynamicQueue<int>& q, int N, int& num_ins, int& num_del)
+{
+  int element;
+  int modulus = 100;
+  int thresh_for_del = 20;
+
+  // Simple insertion deletion strategy: delete one element after every thresh_for_del steps
+  
+  srand(time(0));
+  
+  for (int i=0; i < N; i++) {
+    if ((i > 0) && (i % thresh_for_del == 0)) {
+      // Delete element from queue
+      if (q.QDelete(&element)) {
+	// Don't count deletions from empty queue
+	num_del++;
+      }
+    }
+    else {
+      // Insert random element in queue
+      element = rand() % modulus;
+      q.QInsert(element);
+      num_ins++;
+    }
+  }
+
+  return;
+}
+
+[/CONTENT]
+[FILENAME]
+Makefile
+[/FILENAME]
+[CONTENT]
+testLinear: queue.h linearQueue.cpp test.cpp
+	g++ -o testLinear test.cpp
+
+testCircular: queue.h circularQueue.cpp test.cpp
+	g++ -o testCircular test.cpp
+
+[/CONTENT]
+[/Files]
+[/INSTRUCTOR]
+
+[RUBRIC]
+Is the Code well structured and commented
+[POSSIBLESCORES]
+[0,1,2]
+[/POSSIBLESCORES]
+[/RUBRIC]
+
+[STUDENT]
+[FILES]
+[FILENAME]
+linearQueue.cpp
+[/FILENAME]
+[CONTENT]
+#include <iostream>
+#include ""queue.h""
+using namespace std;
+
+template <typename T> bool DynamicQueue<T> :: isEmpty(){
+    if(head == tail) return true; //when location of head and tail overlap, the linear queue is empty
+    else return false;
+}
+
+template <typename T> bool DynamicQueue<T> :: isFull(){
+    if(tail - head == N) return true; // when number of elements between head and tail equals the size of the queue, the linear queue is full
+    else return false;
+}
+
+template <typename T> void DynamicQueue<T> :: grow(){
+    int previous_N = N; // storing the original value of N in previous_N variable
+    N = nextSize(); // this function returns new size of the queue and N is updated accordingly
+    T *B = new T[N]; // a new array of new size is created
+    for(int i = 0; i < previous_N; i++) B[i] = A[i]; // original elements are copied to the new array
+
+    delete[] A;// freeing the heap storage
+    A = B;// changing the variable name back to the same
+}
+
+template <typename T> unsigned int DynamicQueue<T> :: size() {
+    return tail - head; // this returns number of elements in the linear queue
+}
+
+template <typename T> void DynamicQueue<T> :: QInsert(T x){
+    if(!isFull()){ //if queue is not full
+        if(tail != N){ //if tail is not at the end of the queue
+            A[tail] = x; //appending element at the end
+        }
+        else{ // if tail is at the end of the queue
+            T *B = new T[N]; //new array creation
+            for(int i = head; i < tail; i++){
+                B[i - head] = A[i]; // copying elements to the new array starting from index 0
+            }
+            head = 0;
+            tail = tail - head;
+            delete[] A; // removing heap storage
+            A = B;  // reallocating memory
+        }
+    }
+    else{ //if queue is full
+        grow(); // calling grow() function
+        A[tail] = x; // appending element at the end of the grown queue
+    }
+    tail++;// new position of tail
+}
+
+template <typename T> bool DynamicQueue<T> :: QDelete(T *x){
+    if(isEmpty()) return false; // if queue is empty , delete operation can't be done
+    else{ // if queue is not empty
+        int x_size = *(&x + 1) - x; //x_size stores size of array x
+        T *y = new T[N];
+        for(int i = 0; i < x_size; i++){
+            y[i] = x[i]; // copying elements to new aray
+        }
+        y[x_size] = A[head]; // storing head element in the y array
+        x = y; // reallocating memory
+        return true;
+
+    }
+}
+[/CONTENT]
+[FILENAME]
+circularQueue.cpp
+[/FILENAME]
+[CONTENT]
+#include <iostream>
+#include ""queue.h""
+using namespace std;
+
+template <typename T> bool DynamicQueue<T> :: isEmpty(){
+    if(head == tail) return true; // if head and tail have same index, queue is empty
+    else return false;
+}
+
+template <typename T> bool DynamicQueue<T> :: isFull(){
+    if(tail - head == N) return true; // like a linear queue
+    else if ((tail < head)&&( head - tail == 1)) return true; // special case for circular queue when tail is behind head
+    else return false;
+}
+
+template <typename T> void DynamicQueue<T> :: grow(){
+    int previous_N = N; // storing the original value of N in previous_N variable
+    N = nextSize(); 
+    T *B = new T[N];
+    for(int i = 0; i < previous_N; i++) B[i] = A[i]; // copying elements to the new array
+
+    delete[] A;
+    A = B;
+}
+
+template <typename T> unsigned int DynamicQueue<T> :: size() {
+    return tail - head;
+}
+
+template <typename T> void DynamicQueue<T> :: QInsert(T x){
+    if(size() == N - 1) grow(); // grow when one space is left so that we don't have the case where head == tail
+    if(!isFull()){
+        A[tail%N] = x;
+        tail = tail%N;
+    }
+    else{
+        grow();
+        A[tail] = x;
+    }
+    tail++;
+}
+
+template <typename T> bool DynamicQueue<T> :: QDelete(T *x){
+    if(isEmpty()) return false;
+    else{
+        int x_size = *(&x + 1) - x; // size of array x
+        T *y = new T[N];
+        for(int i = 0; i < x_size; i++){
+            y[i] = x[i];
+        }
+        y[x_size] = A[head];
+        x = y;
+        return true;
+    }
+}
+[/CONTENT]
+[/FILES]
+[/STUDENT] [/INST] [SCORE]
+2
+[\SCORE]"
+train,"<s>[INST] <<SYS>>
+You are a helpful, respectful and honest assistant. Always answer as helpfully as possible, while being safe. Your answers should not include any harmful, unethical, racist, sexist, toxic, dangerous, or illegal content. Please ensure that your responses are socially unbiased and positive in nature.\n\nIf a question does not make any sense, or is not factually coherent, explain why instead of answering something not correct. If you don't know the answer to a question, please don't share false information. You have the task of grading a programming assignment submission. The problem statement and resources provided by the instructor will be given between [INSTRUCTOR] and [/INSTRUCTOR] tags. The rubric that is supposed to be graded will be given between [RUBRIC] and [/RUBRIC] tags. The student submission will be between [STUDENT] and [/STUDENT] tags. Your output should match the exact format [GRADE]
+(Marks that you give)
+[/GRADE]
+<</SYS>>
+
+[INSTRUCTOR]
+[Files]
+[FILENAME]
+moodle_description.txt
+[/FILENAME]
+[CONTENT]
+In this assignment, we will implement a dynamic queue in two different ways. 
+
+The problem statement is given in queue.h    Please read the problem statement carefully.
+
+The harness for testing your code is given in test.cpp 
+
+You need to write your solution (programs) in two files linearQueue.cpp and circularQueue.cpp and compile by running ""make testLinear"" or ""make testCircular"" as appropriate.
+
+Do not worry about running gnuplot to visualize the running times now. We will send you separate instructions about that.  
+
+# Submission stats
+Participants	200
+Submitted	193
+[/CONTENT]
+[FILENAME]
+queue.h
+[/FILENAME]
+[CONTENT]
+#ifndef DYNAMIC_QUEUE_H
+#define DYNAMIC_QUEUE_H
+
+// You have learnt about queues in CS 213.  A queue stores an ordered sequence of elements, and allows
+// two operations: insert (at tail of queue) and delete (from head of queue).
+//
+// In this lab, we will implement a queue of a generic type using an array in two different ways.
+
+// In the first implementation, called linearQueue, consecutive elements in the queue are stored at
+// array locations with consecutive indices.  Thus, the first element in linearQueue must always be at
+// the array location with the smallest index (need not be 0) compared to other elements in linearQueue.
+// As an example, if linearQueue is implemented using an array A of size 10, and if there are 3
+// elements in the queue, the consecutive elements could be at locations A[3], A[4], A[5].
+
+// In the second implementation, called circularQueue, consecutive elements in the queue are stored at
+// array locations that are consecutive *modulo the array size*.  Thus, the first element in circularQueue
+// may not always be at the array location with the smallest index compared to other elements in
+// circularQueue.
+// As an example, if circularQueue is implemented using an array A of size 10, and if there are 3
+// elements in the queue, the consecutive elements could be at locations A[9], A[0], A[1].
+//
+// When the number of elements in the queue becomes larger than the array size, you have to grow the
+// array size linearly, i.e. by a fixed increment.  You must not grow the array size under any other
+// condition.  If needed, you can re-arrange the list elements in your array to ensure that you
+// don't grow the array size unless the queue contains more elements than the array size.  Note that this
+// will incur additional time/space overhead.  So think carefully about how you would like to implement this.
+//
+// Finally, we will compare the overall run-time for both the above implementations for a series of
+// inserts and deletes from the implemented queues.
+//
+// Comparison graph: x-axis is number of operations (insert/delete), y-axis run-time;
+// Expect to see different graphs depending on the sequence of inserts and deletes.
+//
+// Make sure to document your code properly using suitable comments
+//
+// This file contains the declaration of a template class DynamicQueue.
+// You are required to provide implementations of the member functions for linearQueue and circularQueue in
+// separate files named linearQueue.cpp and circularQueue.cpp.  
+//
+// Your code must compile using the provided make file.  We may change the way the function main in test.cpp
+// inserts and deletes elements. test.cpp is provided to help you run your tests.  
+//
+//
+// FILES
+// DO NOT MODIFY this file, submit as-is
+// Write the CPP code for the member functions for the two implementations in files
+// LinearQueue.cpp and CircularQueue.cpp
+// Your code will be evaluated by compiling and running test.c, where we may change the way inserts
+// and deletes are done.
+
+// While testing, you can change the constant values given below if you want
+
+#define CONST_GROWTH 1000
+#define INIT_SIZE 1000
+
+template <typename T> class DynamicQueue {
+private:
+  T *A; // the array used for implementing the dynamic dequeue
+  unsigned int N; // the current size of array A
+  unsigned int head; // index where next element of queue will be deleted from
+  unsigned int tail; // index where next element will be inserted
+  unsigned int nextSize() { return N+CONST_GROWTH; }
+public:
+  DynamicQueue() // default constructor
+  {
+    A = new T[INIT_SIZE];
+    if (A != nullptr) N = INIT_SIZE;
+    else N = 0;
+    head = tail = 0;
+  } 
+  ~DynamicQueue(){delete[] A;}; // default destructor
+  
+  bool isEmpty(); // is the queue empty?
+  bool isFull(); // is the queue full?
+  void grow(); // grow the queue to its next size 
+  unsigned int size(); // return the current number of elements in the queue
+  void QInsert(T x); // insert given element at tail of the queue; grow array size as necessary
+  bool QDelete(T *x); // delete element at head of the queue and place it in *T; returns false if queue is empty, true otherwise
+};
+
+#endif
+
+[/CONTENT]
+[FILENAME]
+test.cpp
+[/FILENAME]
+[CONTENT]
+#include <iostream>
+#include <stdexcept>
+#include <cstdlib>
+#include <chrono>
+
+#include ""queue.h""
+#include ""linearQueue.cpp""
+
+using namespace std;
+using namespace std::chrono;
+
+void do_insert_delete(DynamicQueue<int>&, int, int&, int&);
+
+int main() {
+  try {
+    DynamicQueue<int> myQueue; // Queue of integers
+    int num_ins, num_del;
+    int total_num_ops = 10000;
+    int points_to_plot = 100;
+    
+    for (int i = 0; i < points_to_plot; i++) {
+      auto start = std::chrono::high_resolution_clock::now();
+      
+      do_insert_delete(myQueue, total_num_ops, num_ins, num_del);
+      
+      auto stop = high_resolution_clock::now();
+      
+      auto duration = duration_cast<microseconds>(stop - start);
+      cout << (num_ins + num_del) << "" "" << duration.count() << endl;
+    }
+
+    return 0;
+  }
+  catch (exception const& ex) {
+    cerr << ""Exception "" << ex.what() << endl;
+    return -1;
+  }
+}
+
+void do_insert_delete(DynamicQueue<int>& q, int N, int& num_ins, int& num_del)
+{
+  int element;
+  int modulus = 100;
+  int thresh_for_del = 20;
+
+  // Simple insertion deletion strategy: delete one element after every thresh_for_del steps
+  
+  srand(time(0));
+  
+  for (int i=0; i < N; i++) {
+    if ((i > 0) && (i % thresh_for_del == 0)) {
+      // Delete element from queue
+      if (q.QDelete(&element)) {
+	// Don't count deletions from empty queue
+	num_del++;
+      }
+    }
+    else {
+      // Insert random element in queue
+      element = rand() % modulus;
+      q.QInsert(element);
+      num_ins++;
+    }
+  }
+
+  return;
+}
+
+[/CONTENT]
+[FILENAME]
+Makefile
+[/FILENAME]
+[CONTENT]
+testLinear: queue.h linearQueue.cpp test.cpp
+	g++ -o testLinear test.cpp
+
+testCircular: queue.h circularQueue.cpp test.cpp
+	g++ -o testCircular test.cpp
+
+[/CONTENT]
+[/Files]
+[/INSTRUCTOR]
+
+[RUBRIC]
+Is the Code well structured and commented
+[POSSIBLESCORES]
+[0,1,2]
+[/POSSIBLESCORES]
+[/RUBRIC]
+
+[STUDENT]
+[FILES]
+[FILENAME]
+linearQueue.cpp
+[/FILENAME]
+[CONTENT]
+#include<iostream>
+using namespace std;
+
+template <typename T> 
+bool DynamicQueue<T> :: isEmpty()
+{
+//tail equals to head means linear Queue is empty.
+    return (tail-head)==0;
+}
+template <typename T> 
+bool DynamicQueue<T> :: isFull()
+{
+    return (tail-head)==N;
+}
+template <typename T> 
+void DynamicQueue<T> :: grow()
+{
+//I created a dynamic array named B with next size.
+    T *B = new T[N];
+    for(int i=0; i<size(); i++)
+    {
+        B[i]=A[i+head]; //copying data of old array to new array.
+    }
+    A = new T[nextSize()]; //redifining array A, with nextSize()
+    A=B;
+    tail=tail-head; //new tail
+    head=0; //new head
+    N=nextSize();
+}
+template <typename T> 
+unsigned int DynamicQueue<T> :: size()
+{
+    return (tail-head); //size of linear queue is given by (tail-head)
+}
+template <typename T> 
+void DynamicQueue<T> :: QInsert(T x)
+{
+    if(tail==N) //is tail reaches at end, grow() function is called
+    {
+        grow();
+    }
+    A[tail]=x; //adding element
+    tail=tail+1; //new tail
+}
+template <typename T> 
+bool DynamicQueue<T> :: QDelete(T *x)
+{
+    if(isEmpty()) //if queue is empty, function returns false
+    {
+        return false;
+    }
+    *x = A[head]; //storing value at head before deletion in *x(value at address x)
+    head = head+1; //updating head.
+    
+    return true; //function returns the boolean value of !isEmpty()
+}
+
+[/CONTENT]
+[FILENAME]
+circularQueue.cpp
+[/FILENAME]
+[CONTENT]
+#include <iostream>
+using namespace std;
+
+template <typename T>
+bool DynamicQueue<T>::isEmpty()
+{
+//Circular Array is empty, if head equals to tail
+//I have defined this as, head can't be equal to tail if it is't empty.
+    return head==tail;
+}
+template <typename T>
+bool DynamicQueue<T>::isFull()
+{
+//if (tail+1)%N equal's head, it means that queue is full
+    if((tail+1)%N==head)
+    {
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+template <typename T>
+void DynamicQueue<T>::grow()
+{
+//I defined a new array named B with N size
+    T *B = new T[N];
+    for(int i=0; i<N; i++)
+    {
+         B[i]=A[(head+i)%N]; //copying data
+    }
+    A = new T[nextSize()]; //redifinig array A with nextSize()
+    A = B;
+    head=0; //new head
+    tail=N-1; //new tail
+    N = nextSize(); //updating N
+}
+template <typename T>
+unsigned int DynamicQueue<T>::size()
+{
+    return (N-head+tail)%(N); //size of queue
+}
+template <typename T>
+void DynamicQueue<T>::QInsert(T x)
+{
+    if(isFull()) //if queue is full, then its size must be grown
+    {
+         grow();
+    }
+    A[tail]=x;
+    tail = (tail+1)%N; 
+}
+template <typename T>
+bool DynamicQueue<T>::QDelete(T *x)
+{
+    if(isEmpty()) //is queue is empty, this function returns false
+    {
+         return false;
+    }
+    *x = A[head]; //storing value (that will be deleted) in address x
+    head=(head+1)%N;
+    return true;
+}
+
+[/CONTENT]
+[/FILES]
+[/STUDENT] [/INST]","<s>[INST] <<SYS>>
+You are a helpful, respectful and honest assistant. Always answer as helpfully as possible, while being safe. Your answers should not include any harmful, unethical, racist, sexist, toxic, dangerous, or illegal content. Please ensure that your responses are socially unbiased and positive in nature.\n\nIf a question does not make any sense, or is not factually coherent, explain why instead of answering something not correct. If you don't know the answer to a question, please don't share false information. You have the task of grading a programming assignment submission. The problem statement and resources provided by the instructor will be given between [INSTRUCTOR] and [/INSTRUCTOR] tags. The rubric that is supposed to be graded will be given between [RUBRIC] and [/RUBRIC] tags. The student submission will be between [STUDENT] and [/STUDENT] tags. Your output should match the exact format [GRADE]
+(Marks that you give)
+[/GRADE]
+<</SYS>>
+
+[INSTRUCTOR]
+[Files]
+[FILENAME]
+moodle_description.txt
+[/FILENAME]
+[CONTENT]
+In this assignment, we will implement a dynamic queue in two different ways. 
+
+The problem statement is given in queue.h    Please read the problem statement carefully.
+
+The harness for testing your code is given in test.cpp 
+
+You need to write your solution (programs) in two files linearQueue.cpp and circularQueue.cpp and compile by running ""make testLinear"" or ""make testCircular"" as appropriate.
+
+Do not worry about running gnuplot to visualize the running times now. We will send you separate instructions about that.  
+
+# Submission stats
+Participants	200
+Submitted	193
+[/CONTENT]
+[FILENAME]
+queue.h
+[/FILENAME]
+[CONTENT]
+#ifndef DYNAMIC_QUEUE_H
+#define DYNAMIC_QUEUE_H
+
+// You have learnt about queues in CS 213.  A queue stores an ordered sequence of elements, and allows
+// two operations: insert (at tail of queue) and delete (from head of queue).
+//
+// In this lab, we will implement a queue of a generic type using an array in two different ways.
+
+// In the first implementation, called linearQueue, consecutive elements in the queue are stored at
+// array locations with consecutive indices.  Thus, the first element in linearQueue must always be at
+// the array location with the smallest index (need not be 0) compared to other elements in linearQueue.
+// As an example, if linearQueue is implemented using an array A of size 10, and if there are 3
+// elements in the queue, the consecutive elements could be at locations A[3], A[4], A[5].
+
+// In the second implementation, called circularQueue, consecutive elements in the queue are stored at
+// array locations that are consecutive *modulo the array size*.  Thus, the first element in circularQueue
+// may not always be at the array location with the smallest index compared to other elements in
+// circularQueue.
+// As an example, if circularQueue is implemented using an array A of size 10, and if there are 3
+// elements in the queue, the consecutive elements could be at locations A[9], A[0], A[1].
+//
+// When the number of elements in the queue becomes larger than the array size, you have to grow the
+// array size linearly, i.e. by a fixed increment.  You must not grow the array size under any other
+// condition.  If needed, you can re-arrange the list elements in your array to ensure that you
+// don't grow the array size unless the queue contains more elements than the array size.  Note that this
+// will incur additional time/space overhead.  So think carefully about how you would like to implement this.
+//
+// Finally, we will compare the overall run-time for both the above implementations for a series of
+// inserts and deletes from the implemented queues.
+//
+// Comparison graph: x-axis is number of operations (insert/delete), y-axis run-time;
+// Expect to see different graphs depending on the sequence of inserts and deletes.
+//
+// Make sure to document your code properly using suitable comments
+//
+// This file contains the declaration of a template class DynamicQueue.
+// You are required to provide implementations of the member functions for linearQueue and circularQueue in
+// separate files named linearQueue.cpp and circularQueue.cpp.  
+//
+// Your code must compile using the provided make file.  We may change the way the function main in test.cpp
+// inserts and deletes elements. test.cpp is provided to help you run your tests.  
+//
+//
+// FILES
+// DO NOT MODIFY this file, submit as-is
+// Write the CPP code for the member functions for the two implementations in files
+// LinearQueue.cpp and CircularQueue.cpp
+// Your code will be evaluated by compiling and running test.c, where we may change the way inserts
+// and deletes are done.
+
+// While testing, you can change the constant values given below if you want
+
+#define CONST_GROWTH 1000
+#define INIT_SIZE 1000
+
+template <typename T> class DynamicQueue {
+private:
+  T *A; // the array used for implementing the dynamic dequeue
+  unsigned int N; // the current size of array A
+  unsigned int head; // index where next element of queue will be deleted from
+  unsigned int tail; // index where next element will be inserted
+  unsigned int nextSize() { return N+CONST_GROWTH; }
+public:
+  DynamicQueue() // default constructor
+  {
+    A = new T[INIT_SIZE];
+    if (A != nullptr) N = INIT_SIZE;
+    else N = 0;
+    head = tail = 0;
+  } 
+  ~DynamicQueue(){delete[] A;}; // default destructor
+  
+  bool isEmpty(); // is the queue empty?
+  bool isFull(); // is the queue full?
+  void grow(); // grow the queue to its next size 
+  unsigned int size(); // return the current number of elements in the queue
+  void QInsert(T x); // insert given element at tail of the queue; grow array size as necessary
+  bool QDelete(T *x); // delete element at head of the queue and place it in *T; returns false if queue is empty, true otherwise
+};
+
+#endif
+
+[/CONTENT]
+[FILENAME]
+test.cpp
+[/FILENAME]
+[CONTENT]
+#include <iostream>
+#include <stdexcept>
+#include <cstdlib>
+#include <chrono>
+
+#include ""queue.h""
+#include ""linearQueue.cpp""
+
+using namespace std;
+using namespace std::chrono;
+
+void do_insert_delete(DynamicQueue<int>&, int, int&, int&);
+
+int main() {
+  try {
+    DynamicQueue<int> myQueue; // Queue of integers
+    int num_ins, num_del;
+    int total_num_ops = 10000;
+    int points_to_plot = 100;
+    
+    for (int i = 0; i < points_to_plot; i++) {
+      auto start = std::chrono::high_resolution_clock::now();
+      
+      do_insert_delete(myQueue, total_num_ops, num_ins, num_del);
+      
+      auto stop = high_resolution_clock::now();
+      
+      auto duration = duration_cast<microseconds>(stop - start);
+      cout << (num_ins + num_del) << "" "" << duration.count() << endl;
+    }
+
+    return 0;
+  }
+  catch (exception const& ex) {
+    cerr << ""Exception "" << ex.what() << endl;
+    return -1;
+  }
+}
+
+void do_insert_delete(DynamicQueue<int>& q, int N, int& num_ins, int& num_del)
+{
+  int element;
+  int modulus = 100;
+  int thresh_for_del = 20;
+
+  // Simple insertion deletion strategy: delete one element after every thresh_for_del steps
+  
+  srand(time(0));
+  
+  for (int i=0; i < N; i++) {
+    if ((i > 0) && (i % thresh_for_del == 0)) {
+      // Delete element from queue
+      if (q.QDelete(&element)) {
+	// Don't count deletions from empty queue
+	num_del++;
+      }
+    }
+    else {
+      // Insert random element in queue
+      element = rand() % modulus;
+      q.QInsert(element);
+      num_ins++;
+    }
+  }
+
+  return;
+}
+
+[/CONTENT]
+[FILENAME]
+Makefile
+[/FILENAME]
+[CONTENT]
+testLinear: queue.h linearQueue.cpp test.cpp
+	g++ -o testLinear test.cpp
+
+testCircular: queue.h circularQueue.cpp test.cpp
+	g++ -o testCircular test.cpp
+
+[/CONTENT]
+[/Files]
+[/INSTRUCTOR]
+
+[RUBRIC]
+Is the Code well structured and commented
+[POSSIBLESCORES]
+[0,1,2]
+[/POSSIBLESCORES]
+[/RUBRIC]
+
+[STUDENT]
+[FILES]
+[FILENAME]
+linearQueue.cpp
+[/FILENAME]
+[CONTENT]
+#include<iostream>
+using namespace std;
+
+template <typename T> 
+bool DynamicQueue<T> :: isEmpty()
+{
+//tail equals to head means linear Queue is empty.
+    return (tail-head)==0;
+}
+template <typename T> 
+bool DynamicQueue<T> :: isFull()
+{
+    return (tail-head)==N;
+}
+template <typename T> 
+void DynamicQueue<T> :: grow()
+{
+//I created a dynamic array named B with next size.
+    T *B = new T[N];
+    for(int i=0; i<size(); i++)
+    {
+        B[i]=A[i+head]; //copying data of old array to new array.
+    }
+    A = new T[nextSize()]; //redifining array A, with nextSize()
+    A=B;
+    tail=tail-head; //new tail
+    head=0; //new head
+    N=nextSize();
+}
+template <typename T> 
+unsigned int DynamicQueue<T> :: size()
+{
+    return (tail-head); //size of linear queue is given by (tail-head)
+}
+template <typename T> 
+void DynamicQueue<T> :: QInsert(T x)
+{
+    if(tail==N) //is tail reaches at end, grow() function is called
+    {
+        grow();
+    }
+    A[tail]=x; //adding element
+    tail=tail+1; //new tail
+}
+template <typename T> 
+bool DynamicQueue<T> :: QDelete(T *x)
+{
+    if(isEmpty()) //if queue is empty, function returns false
+    {
+        return false;
+    }
+    *x = A[head]; //storing value at head before deletion in *x(value at address x)
+    head = head+1; //updating head.
+    
+    return true; //function returns the boolean value of !isEmpty()
+}
+
+[/CONTENT]
+[FILENAME]
+circularQueue.cpp
+[/FILENAME]
+[CONTENT]
+#include <iostream>
+using namespace std;
+
+template <typename T>
+bool DynamicQueue<T>::isEmpty()
+{
+//Circular Array is empty, if head equals to tail
+//I have defined this as, head can't be equal to tail if it is't empty.
+    return head==tail;
+}
+template <typename T>
+bool DynamicQueue<T>::isFull()
+{
+//if (tail+1)%N equal's head, it means that queue is full
+    if((tail+1)%N==head)
+    {
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+template <typename T>
+void DynamicQueue<T>::grow()
+{
+//I defined a new array named B with N size
+    T *B = new T[N];
+    for(int i=0; i<N; i++)
+    {
+         B[i]=A[(head+i)%N]; //copying data
+    }
+    A = new T[nextSize()]; //redifinig array A with nextSize()
+    A = B;
+    head=0; //new head
+    tail=N-1; //new tail
+    N = nextSize(); //updating N
+}
+template <typename T>
+unsigned int DynamicQueue<T>::size()
+{
+    return (N-head+tail)%(N); //size of queue
+}
+template <typename T>
+void DynamicQueue<T>::QInsert(T x)
+{
+    if(isFull()) //if queue is full, then its size must be grown
+    {
+         grow();
+    }
+    A[tail]=x;
+    tail = (tail+1)%N; 
+}
+template <typename T>
+bool DynamicQueue<T>::QDelete(T *x)
+{
+    if(isEmpty()) //is queue is empty, this function returns false
+    {
+         return false;
+    }
+    *x = A[head]; //storing value (that will be deleted) in address x
+    head=(head+1)%N;
+    return true;
+}
+
+[/CONTENT]
+[/FILES]
+[/STUDENT] [/INST] [SCORE]
+2
+[\SCORE]"
+train,"<s>[INST] <<SYS>>
+You are a helpful, respectful and honest assistant. Always answer as helpfully as possible, while being safe. Your answers should not include any harmful, unethical, racist, sexist, toxic, dangerous, or illegal content. Please ensure that your responses are socially unbiased and positive in nature.\n\nIf a question does not make any sense, or is not factually coherent, explain why instead of answering something not correct. If you don't know the answer to a question, please don't share false information. You have the task of grading a programming assignment submission. The problem statement and resources provided by the instructor will be given between [INSTRUCTOR] and [/INSTRUCTOR] tags. The rubric that is supposed to be graded will be given between [RUBRIC] and [/RUBRIC] tags. The student submission will be between [STUDENT] and [/STUDENT] tags. Your output should match the exact format [GRADE]
+(Marks that you give)
+[/GRADE]
+<</SYS>>
+
+[INSTRUCTOR]
+[Files]
+[FILENAME]
+moodle_description.txt
+[/FILENAME]
+[CONTENT]
+In this assignment, we will implement a dynamic queue in two different ways. 
+
+The problem statement is given in queue.h    Please read the problem statement carefully.
+
+The harness for testing your code is given in test.cpp 
+
+You need to write your solution (programs) in two files linearQueue.cpp and circularQueue.cpp and compile by running ""make testLinear"" or ""make testCircular"" as appropriate.
+
+Do not worry about running gnuplot to visualize the running times now. We will send you separate instructions about that.  
+
+# Submission stats
+Participants	200
+Submitted	193
+[/CONTENT]
+[FILENAME]
+queue.h
+[/FILENAME]
+[CONTENT]
+#ifndef DYNAMIC_QUEUE_H
+#define DYNAMIC_QUEUE_H
+
+// You have learnt about queues in CS 213.  A queue stores an ordered sequence of elements, and allows
+// two operations: insert (at tail of queue) and delete (from head of queue).
+//
+// In this lab, we will implement a queue of a generic type using an array in two different ways.
+
+// In the first implementation, called linearQueue, consecutive elements in the queue are stored at
+// array locations with consecutive indices.  Thus, the first element in linearQueue must always be at
+// the array location with the smallest index (need not be 0) compared to other elements in linearQueue.
+// As an example, if linearQueue is implemented using an array A of size 10, and if there are 3
+// elements in the queue, the consecutive elements could be at locations A[3], A[4], A[5].
+
+// In the second implementation, called circularQueue, consecutive elements in the queue are stored at
+// array locations that are consecutive *modulo the array size*.  Thus, the first element in circularQueue
+// may not always be at the array location with the smallest index compared to other elements in
+// circularQueue.
+// As an example, if circularQueue is implemented using an array A of size 10, and if there are 3
+// elements in the queue, the consecutive elements could be at locations A[9], A[0], A[1].
+//
+// When the number of elements in the queue becomes larger than the array size, you have to grow the
+// array size linearly, i.e. by a fixed increment.  You must not grow the array size under any other
+// condition.  If needed, you can re-arrange the list elements in your array to ensure that you
+// don't grow the array size unless the queue contains more elements than the array size.  Note that this
+// will incur additional time/space overhead.  So think carefully about how you would like to implement this.
+//
+// Finally, we will compare the overall run-time for both the above implementations for a series of
+// inserts and deletes from the implemented queues.
+//
+// Comparison graph: x-axis is number of operations (insert/delete), y-axis run-time;
+// Expect to see different graphs depending on the sequence of inserts and deletes.
+//
+// Make sure to document your code properly using suitable comments
+//
+// This file contains the declaration of a template class DynamicQueue.
+// You are required to provide implementations of the member functions for linearQueue and circularQueue in
+// separate files named linearQueue.cpp and circularQueue.cpp.  
+//
+// Your code must compile using the provided make file.  We may change the way the function main in test.cpp
+// inserts and deletes elements. test.cpp is provided to help you run your tests.  
+//
+//
+// FILES
+// DO NOT MODIFY this file, submit as-is
+// Write the CPP code for the member functions for the two implementations in files
+// LinearQueue.cpp and CircularQueue.cpp
+// Your code will be evaluated by compiling and running test.c, where we may change the way inserts
+// and deletes are done.
+
+// While testing, you can change the constant values given below if you want
+
+#define CONST_GROWTH 1000
+#define INIT_SIZE 1000
+
+template <typename T> class DynamicQueue {
+private:
+  T *A; // the array used for implementing the dynamic dequeue
+  unsigned int N; // the current size of array A
+  unsigned int head; // index where next element of queue will be deleted from
+  unsigned int tail; // index where next element will be inserted
+  unsigned int nextSize() { return N+CONST_GROWTH; }
+public:
+  DynamicQueue() // default constructor
+  {
+    A = new T[INIT_SIZE];
+    if (A != nullptr) N = INIT_SIZE;
+    else N = 0;
+    head = tail = 0;
+  } 
+  ~DynamicQueue(){delete[] A;}; // default destructor
+  
+  bool isEmpty(); // is the queue empty?
+  bool isFull(); // is the queue full?
+  void grow(); // grow the queue to its next size 
+  unsigned int size(); // return the current number of elements in the queue
+  void QInsert(T x); // insert given element at tail of the queue; grow array size as necessary
+  bool QDelete(T *x); // delete element at head of the queue and place it in *T; returns false if queue is empty, true otherwise
+};
+
+#endif
+
+[/CONTENT]
+[FILENAME]
+test.cpp
+[/FILENAME]
+[CONTENT]
+#include <iostream>
+#include <stdexcept>
+#include <cstdlib>
+#include <chrono>
+
+#include ""queue.h""
+#include ""linearQueue.cpp""
+
+using namespace std;
+using namespace std::chrono;
+
+void do_insert_delete(DynamicQueue<int>&, int, int&, int&);
+
+int main() {
+  try {
+    DynamicQueue<int> myQueue; // Queue of integers
+    int num_ins, num_del;
+    int total_num_ops = 10000;
+    int points_to_plot = 100;
+    
+    for (int i = 0; i < points_to_plot; i++) {
+      auto start = std::chrono::high_resolution_clock::now();
+      
+      do_insert_delete(myQueue, total_num_ops, num_ins, num_del);
+      
+      auto stop = high_resolution_clock::now();
+      
+      auto duration = duration_cast<microseconds>(stop - start);
+      cout << (num_ins + num_del) << "" "" << duration.count() << endl;
+    }
+
+    return 0;
+  }
+  catch (exception const& ex) {
+    cerr << ""Exception "" << ex.what() << endl;
+    return -1;
+  }
+}
+
+void do_insert_delete(DynamicQueue<int>& q, int N, int& num_ins, int& num_del)
+{
+  int element;
+  int modulus = 100;
+  int thresh_for_del = 20;
+
+  // Simple insertion deletion strategy: delete one element after every thresh_for_del steps
+  
+  srand(time(0));
+  
+  for (int i=0; i < N; i++) {
+    if ((i > 0) && (i % thresh_for_del == 0)) {
+      // Delete element from queue
+      if (q.QDelete(&element)) {
+	// Don't count deletions from empty queue
+	num_del++;
+      }
+    }
+    else {
+      // Insert random element in queue
+      element = rand() % modulus;
+      q.QInsert(element);
+      num_ins++;
+    }
+  }
+
+  return;
+}
+
+[/CONTENT]
+[FILENAME]
+Makefile
+[/FILENAME]
+[CONTENT]
+testLinear: queue.h linearQueue.cpp test.cpp
+	g++ -o testLinear test.cpp
+
+testCircular: queue.h circularQueue.cpp test.cpp
+	g++ -o testCircular test.cpp
+
+[/CONTENT]
+[/Files]
+[/INSTRUCTOR]
+
+[RUBRIC]
+Is the Code well structured and commented
+[POSSIBLESCORES]
+[0,1,2]
+[/POSSIBLESCORES]
+[/RUBRIC]
+
+[STUDENT]
+[FILES]
+[FILENAME]
+linearQueue.cpp
+[/FILENAME]
+[CONTENT]
+#include <iostream>
+#include <stdexcept>
+#include <cstdlib>
+#include <chrono>
+#define CONST_GROWTH 1000
+#include ""queue.h""
+using namespace std;
+
+template <typename T> bool DynamicQueue<T>::isEmpty(){
+
+    return(tail == head );
+    
+}
+
+template <typename T> bool DynamicQueue<T>::isFull(){
+
+    return(tail-head  == N );
+    
+}
+
+template <typename T> void DynamicQueue<T>::grow(){
+    T* b;
+    b = new T[this->nextSize()]; //creating an array with increased size
+    int c = tail-head;
+    for( int i=0 ; i< c ; i++ ){  //copying elements from original array to larger array
+            b[i]= A[((head+i)%N)];
+        }
+    tail = tail-head;
+    head=0;
+    N= this->nextSize();
+    delete[] A;
+    A = b;
+    
+}
+
+template <typename T> unsigned int  DynamicQueue<T>::size(){
+
+    return tail-head ;
+    
+}
+
+template <typename T> void DynamicQueue<T>::QInsert(T x){
+
+    if(this->isFull()){
+        this->grow();   //when the queue is full we need to increase its size
+        A[tail]=x;
+        tail++;
+        
+    
+    }
+    
+    else if(tail!=N){
+        A[tail]=x;
+        tail++;
+        
+    }
+    else{    //case where queue is not full but tail=N
+        for(int i = 0 ; i <tail-head ; i++ ){
+            A[i]=A[head+i];    //rearranging elements so that they start from index=0
+        }
+        tail=tail-head;
+        head=0;
+        A[tail]=x;
+        tail++;
+    }    
+    
+}
+
+template <typename T> bool DynamicQueue<T>::QDelete(T *x){
+
+    if(tail==head) return 0;
+    *x=A[head];
+    head++;
+
+    
+    return 1;
+
+}
+[/CONTENT]
+[FILENAME]
+circularQueue.cpp
+[/FILENAME]
+[CONTENT]
+#include <iostream>
+#include <stdexcept>
+#include <cstdlib>
+#include <chrono>
+#define CONST_GROWTH 1000
+#include ""queue.h""
+using namespace std;
+
+template <typename T> bool DynamicQueue<T>::isEmpty(){
+
+	return(tail == head );
+	
+}
+
+template <typename T> bool DynamicQueue<T>::isFull(){
+
+	return(tail  == N );  //I made sure that when the queue has N elements occupied tail becomes N
+	
+}
+
+template <typename T> void DynamicQueue<T>::grow(){
+	T* b;
+	b = new T[this->nextSize()];
+	int c;
+	if(tail !=N) c = ((N+tail-head)%N);    //c will be equal to size()
+    else c=N;
+	for( int i=0 ; i< c ; i++ ){
+		b[i]= A[((head+i)%N)];
+	}
+	tail = c;
+	head=0;
+
+	
+	N= this->nextSize();
+	delete[] A;
+	A = b;
+	
+}
+
+template <typename T> unsigned int  DynamicQueue<T>::size(){
+
+	if(tail==N) return N;
+	return ((N+tail-head)%N) ;
+	
+}
+
+template <typename T> void DynamicQueue<T>::QInsert(T x){
+
+	if(!this->isFull()){
+		A[tail]=x;
+		tail++;
+		tail= tail%N;
+		if(tail==head) tail=N;  //making sure that when queue is full tail =N
+		
+	}
+	
+	else{
+		this->grow();
+		A[tail]=x;
+		tail++;
+		
+	}	
+	
+}
+
+template <typename T> bool DynamicQueue<T>::QDelete(T *x){
+
+	if(tail==head) return 0;
+	*x=A[head];
+	head++;
+	head=head%N;
+	
+	return 1;
+
+}
+
+[/CONTENT]
+[/FILES]
+[/STUDENT] [/INST]","<s>[INST] <<SYS>>
+You are a helpful, respectful and honest assistant. Always answer as helpfully as possible, while being safe. Your answers should not include any harmful, unethical, racist, sexist, toxic, dangerous, or illegal content. Please ensure that your responses are socially unbiased and positive in nature.\n\nIf a question does not make any sense, or is not factually coherent, explain why instead of answering something not correct. If you don't know the answer to a question, please don't share false information. You have the task of grading a programming assignment submission. The problem statement and resources provided by the instructor will be given between [INSTRUCTOR] and [/INSTRUCTOR] tags. The rubric that is supposed to be graded will be given between [RUBRIC] and [/RUBRIC] tags. The student submission will be between [STUDENT] and [/STUDENT] tags. Your output should match the exact format [GRADE]
+(Marks that you give)
+[/GRADE]
+<</SYS>>
+
+[INSTRUCTOR]
+[Files]
+[FILENAME]
+moodle_description.txt
+[/FILENAME]
+[CONTENT]
+In this assignment, we will implement a dynamic queue in two different ways. 
+
+The problem statement is given in queue.h    Please read the problem statement carefully.
+
+The harness for testing your code is given in test.cpp 
+
+You need to write your solution (programs) in two files linearQueue.cpp and circularQueue.cpp and compile by running ""make testLinear"" or ""make testCircular"" as appropriate.
+
+Do not worry about running gnuplot to visualize the running times now. We will send you separate instructions about that.  
+
+# Submission stats
+Participants	200
+Submitted	193
+[/CONTENT]
+[FILENAME]
+queue.h
+[/FILENAME]
+[CONTENT]
+#ifndef DYNAMIC_QUEUE_H
+#define DYNAMIC_QUEUE_H
+
+// You have learnt about queues in CS 213.  A queue stores an ordered sequence of elements, and allows
+// two operations: insert (at tail of queue) and delete (from head of queue).
+//
+// In this lab, we will implement a queue of a generic type using an array in two different ways.
+
+// In the first implementation, called linearQueue, consecutive elements in the queue are stored at
+// array locations with consecutive indices.  Thus, the first element in linearQueue must always be at
+// the array location with the smallest index (need not be 0) compared to other elements in linearQueue.
+// As an example, if linearQueue is implemented using an array A of size 10, and if there are 3
+// elements in the queue, the consecutive elements could be at locations A[3], A[4], A[5].
+
+// In the second implementation, called circularQueue, consecutive elements in the queue are stored at
+// array locations that are consecutive *modulo the array size*.  Thus, the first element in circularQueue
+// may not always be at the array location with the smallest index compared to other elements in
+// circularQueue.
+// As an example, if circularQueue is implemented using an array A of size 10, and if there are 3
+// elements in the queue, the consecutive elements could be at locations A[9], A[0], A[1].
+//
+// When the number of elements in the queue becomes larger than the array size, you have to grow the
+// array size linearly, i.e. by a fixed increment.  You must not grow the array size under any other
+// condition.  If needed, you can re-arrange the list elements in your array to ensure that you
+// don't grow the array size unless the queue contains more elements than the array size.  Note that this
+// will incur additional time/space overhead.  So think carefully about how you would like to implement this.
+//
+// Finally, we will compare the overall run-time for both the above implementations for a series of
+// inserts and deletes from the implemented queues.
+//
+// Comparison graph: x-axis is number of operations (insert/delete), y-axis run-time;
+// Expect to see different graphs depending on the sequence of inserts and deletes.
+//
+// Make sure to document your code properly using suitable comments
+//
+// This file contains the declaration of a template class DynamicQueue.
+// You are required to provide implementations of the member functions for linearQueue and circularQueue in
+// separate files named linearQueue.cpp and circularQueue.cpp.  
+//
+// Your code must compile using the provided make file.  We may change the way the function main in test.cpp
+// inserts and deletes elements. test.cpp is provided to help you run your tests.  
+//
+//
+// FILES
+// DO NOT MODIFY this file, submit as-is
+// Write the CPP code for the member functions for the two implementations in files
+// LinearQueue.cpp and CircularQueue.cpp
+// Your code will be evaluated by compiling and running test.c, where we may change the way inserts
+// and deletes are done.
+
+// While testing, you can change the constant values given below if you want
+
+#define CONST_GROWTH 1000
+#define INIT_SIZE 1000
+
+template <typename T> class DynamicQueue {
+private:
+  T *A; // the array used for implementing the dynamic dequeue
+  unsigned int N; // the current size of array A
+  unsigned int head; // index where next element of queue will be deleted from
+  unsigned int tail; // index where next element will be inserted
+  unsigned int nextSize() { return N+CONST_GROWTH; }
+public:
+  DynamicQueue() // default constructor
+  {
+    A = new T[INIT_SIZE];
+    if (A != nullptr) N = INIT_SIZE;
+    else N = 0;
+    head = tail = 0;
+  } 
+  ~DynamicQueue(){delete[] A;}; // default destructor
+  
+  bool isEmpty(); // is the queue empty?
+  bool isFull(); // is the queue full?
+  void grow(); // grow the queue to its next size 
+  unsigned int size(); // return the current number of elements in the queue
+  void QInsert(T x); // insert given element at tail of the queue; grow array size as necessary
+  bool QDelete(T *x); // delete element at head of the queue and place it in *T; returns false if queue is empty, true otherwise
+};
+
+#endif
+
+[/CONTENT]
+[FILENAME]
+test.cpp
+[/FILENAME]
+[CONTENT]
+#include <iostream>
+#include <stdexcept>
+#include <cstdlib>
+#include <chrono>
+
+#include ""queue.h""
+#include ""linearQueue.cpp""
+
+using namespace std;
+using namespace std::chrono;
+
+void do_insert_delete(DynamicQueue<int>&, int, int&, int&);
+
+int main() {
+  try {
+    DynamicQueue<int> myQueue; // Queue of integers
+    int num_ins, num_del;
+    int total_num_ops = 10000;
+    int points_to_plot = 100;
+    
+    for (int i = 0; i < points_to_plot; i++) {
+      auto start = std::chrono::high_resolution_clock::now();
+      
+      do_insert_delete(myQueue, total_num_ops, num_ins, num_del);
+      
+      auto stop = high_resolution_clock::now();
+      
+      auto duration = duration_cast<microseconds>(stop - start);
+      cout << (num_ins + num_del) << "" "" << duration.count() << endl;
+    }
+
+    return 0;
+  }
+  catch (exception const& ex) {
+    cerr << ""Exception "" << ex.what() << endl;
+    return -1;
+  }
+}
+
+void do_insert_delete(DynamicQueue<int>& q, int N, int& num_ins, int& num_del)
+{
+  int element;
+  int modulus = 100;
+  int thresh_for_del = 20;
+
+  // Simple insertion deletion strategy: delete one element after every thresh_for_del steps
+  
+  srand(time(0));
+  
+  for (int i=0; i < N; i++) {
+    if ((i > 0) && (i % thresh_for_del == 0)) {
+      // Delete element from queue
+      if (q.QDelete(&element)) {
+	// Don't count deletions from empty queue
+	num_del++;
+      }
+    }
+    else {
+      // Insert random element in queue
+      element = rand() % modulus;
+      q.QInsert(element);
+      num_ins++;
+    }
+  }
+
+  return;
+}
+
+[/CONTENT]
+[FILENAME]
+Makefile
+[/FILENAME]
+[CONTENT]
+testLinear: queue.h linearQueue.cpp test.cpp
+	g++ -o testLinear test.cpp
+
+testCircular: queue.h circularQueue.cpp test.cpp
+	g++ -o testCircular test.cpp
+
+[/CONTENT]
+[/Files]
+[/INSTRUCTOR]
+
+[RUBRIC]
+Is the Code well structured and commented
+[POSSIBLESCORES]
+[0,1,2]
+[/POSSIBLESCORES]
+[/RUBRIC]
+
+[STUDENT]
+[FILES]
+[FILENAME]
+linearQueue.cpp
+[/FILENAME]
+[CONTENT]
+#include <iostream>
+#include <stdexcept>
+#include <cstdlib>
+#include <chrono>
+#define CONST_GROWTH 1000
+#include ""queue.h""
+using namespace std;
+
+template <typename T> bool DynamicQueue<T>::isEmpty(){
+
+    return(tail == head );
+    
+}
+
+template <typename T> bool DynamicQueue<T>::isFull(){
+
+    return(tail-head  == N );
+    
+}
+
+template <typename T> void DynamicQueue<T>::grow(){
+    T* b;
+    b = new T[this->nextSize()]; //creating an array with increased size
+    int c = tail-head;
+    for( int i=0 ; i< c ; i++ ){  //copying elements from original array to larger array
+            b[i]= A[((head+i)%N)];
+        }
+    tail = tail-head;
+    head=0;
+    N= this->nextSize();
+    delete[] A;
+    A = b;
+    
+}
+
+template <typename T> unsigned int  DynamicQueue<T>::size(){
+
+    return tail-head ;
+    
+}
+
+template <typename T> void DynamicQueue<T>::QInsert(T x){
+
+    if(this->isFull()){
+        this->grow();   //when the queue is full we need to increase its size
+        A[tail]=x;
+        tail++;
+        
+    
+    }
+    
+    else if(tail!=N){
+        A[tail]=x;
+        tail++;
+        
+    }
+    else{    //case where queue is not full but tail=N
+        for(int i = 0 ; i <tail-head ; i++ ){
+            A[i]=A[head+i];    //rearranging elements so that they start from index=0
+        }
+        tail=tail-head;
+        head=0;
+        A[tail]=x;
+        tail++;
+    }    
+    
+}
+
+template <typename T> bool DynamicQueue<T>::QDelete(T *x){
+
+    if(tail==head) return 0;
+    *x=A[head];
+    head++;
+
+    
+    return 1;
+
+}
+[/CONTENT]
+[FILENAME]
+circularQueue.cpp
+[/FILENAME]
+[CONTENT]
+#include <iostream>
+#include <stdexcept>
+#include <cstdlib>
+#include <chrono>
+#define CONST_GROWTH 1000
+#include ""queue.h""
+using namespace std;
+
+template <typename T> bool DynamicQueue<T>::isEmpty(){
+
+	return(tail == head );
+	
+}
+
+template <typename T> bool DynamicQueue<T>::isFull(){
+
+	return(tail  == N );  //I made sure that when the queue has N elements occupied tail becomes N
+	
+}
+
+template <typename T> void DynamicQueue<T>::grow(){
+	T* b;
+	b = new T[this->nextSize()];
+	int c;
+	if(tail !=N) c = ((N+tail-head)%N);    //c will be equal to size()
+    else c=N;
+	for( int i=0 ; i< c ; i++ ){
+		b[i]= A[((head+i)%N)];
+	}
+	tail = c;
+	head=0;
+
+	
+	N= this->nextSize();
+	delete[] A;
+	A = b;
+	
+}
+
+template <typename T> unsigned int  DynamicQueue<T>::size(){
+
+	if(tail==N) return N;
+	return ((N+tail-head)%N) ;
+	
+}
+
+template <typename T> void DynamicQueue<T>::QInsert(T x){
+
+	if(!this->isFull()){
+		A[tail]=x;
+		tail++;
+		tail= tail%N;
+		if(tail==head) tail=N;  //making sure that when queue is full tail =N
+		
+	}
+	
+	else{
+		this->grow();
+		A[tail]=x;
+		tail++;
+		
+	}	
+	
+}
+
+template <typename T> bool DynamicQueue<T>::QDelete(T *x){
+
+	if(tail==head) return 0;
+	*x=A[head];
+	head++;
+	head=head%N;
+	
+	return 1;
+
+}
+
+[/CONTENT]
+[/FILES]
+[/STUDENT] [/INST] [SCORE]
+0
+[\SCORE]"
+test,"<s>[INST] <<SYS>>
+You are a helpful, respectful and honest assistant. Always answer as helpfully as possible, while being safe. Your answers should not include any harmful, unethical, racist, sexist, toxic, dangerous, or illegal content. Please ensure that your responses are socially unbiased and positive in nature.\n\nIf a question does not make any sense, or is not factually coherent, explain why instead of answering something not correct. If you don't know the answer to a question, please don't share false information. You have the task of grading a programming assignment submission. The problem statement and resources provided by the instructor will be given between [INSTRUCTOR] and [/INSTRUCTOR] tags. The rubric that is supposed to be graded will be given between [RUBRIC] and [/RUBRIC] tags. The student submission will be between [STUDENT] and [/STUDENT] tags. Your output should match the exact format [GRADE]
+(Marks that you give)
+[/GRADE]
+<</SYS>>
+
+[INSTRUCTOR]
+[Files]
+[FILENAME]
+moodle_description.txt
+[/FILENAME]
+[CONTENT]
+In this assignment, we will implement a dynamic queue in two different ways. 
+
+The problem statement is given in queue.h    Please read the problem statement carefully.
+
+The harness for testing your code is given in test.cpp 
+
+You need to write your solution (programs) in two files linearQueue.cpp and circularQueue.cpp and compile by running ""make testLinear"" or ""make testCircular"" as appropriate.
+
+Do not worry about running gnuplot to visualize the running times now. We will send you separate instructions about that.  
+
+# Submission stats
+Participants	200
+Submitted	193
+[/CONTENT]
+[FILENAME]
+queue.h
+[/FILENAME]
+[CONTENT]
+#ifndef DYNAMIC_QUEUE_H
+#define DYNAMIC_QUEUE_H
+
+// You have learnt about queues in CS 213.  A queue stores an ordered sequence of elements, and allows
+// two operations: insert (at tail of queue) and delete (from head of queue).
+//
+// In this lab, we will implement a queue of a generic type using an array in two different ways.
+
+// In the first implementation, called linearQueue, consecutive elements in the queue are stored at
+// array locations with consecutive indices.  Thus, the first element in linearQueue must always be at
+// the array location with the smallest index (need not be 0) compared to other elements in linearQueue.
+// As an example, if linearQueue is implemented using an array A of size 10, and if there are 3
+// elements in the queue, the consecutive elements could be at locations A[3], A[4], A[5].
+
+// In the second implementation, called circularQueue, consecutive elements in the queue are stored at
+// array locations that are consecutive *modulo the array size*.  Thus, the first element in circularQueue
+// may not always be at the array location with the smallest index compared to other elements in
+// circularQueue.
+// As an example, if circularQueue is implemented using an array A of size 10, and if there are 3
+// elements in the queue, the consecutive elements could be at locations A[9], A[0], A[1].
+//
+// When the number of elements in the queue becomes larger than the array size, you have to grow the
+// array size linearly, i.e. by a fixed increment.  You must not grow the array size under any other
+// condition.  If needed, you can re-arrange the list elements in your array to ensure that you
+// don't grow the array size unless the queue contains more elements than the array size.  Note that this
+// will incur additional time/space overhead.  So think carefully about how you would like to implement this.
+//
+// Finally, we will compare the overall run-time for both the above implementations for a series of
+// inserts and deletes from the implemented queues.
+//
+// Comparison graph: x-axis is number of operations (insert/delete), y-axis run-time;
+// Expect to see different graphs depending on the sequence of inserts and deletes.
+//
+// Make sure to document your code properly using suitable comments
+//
+// This file contains the declaration of a template class DynamicQueue.
+// You are required to provide implementations of the member functions for linearQueue and circularQueue in
+// separate files named linearQueue.cpp and circularQueue.cpp.  
+//
+// Your code must compile using the provided make file.  We may change the way the function main in test.cpp
+// inserts and deletes elements. test.cpp is provided to help you run your tests.  
+//
+//
+// FILES
+// DO NOT MODIFY this file, submit as-is
+// Write the CPP code for the member functions for the two implementations in files
+// LinearQueue.cpp and CircularQueue.cpp
+// Your code will be evaluated by compiling and running test.c, where we may change the way inserts
+// and deletes are done.
+
+// While testing, you can change the constant values given below if you want
+
+#define CONST_GROWTH 1000
+#define INIT_SIZE 1000
+
+template <typename T> class DynamicQueue {
+private:
+  T *A; // the array used for implementing the dynamic dequeue
+  unsigned int N; // the current size of array A
+  unsigned int head; // index where next element of queue will be deleted from
+  unsigned int tail; // index where next element will be inserted
+  unsigned int nextSize() { return N+CONST_GROWTH; }
+public:
+  DynamicQueue() // default constructor
+  {
+    A = new T[INIT_SIZE];
+    if (A != nullptr) N = INIT_SIZE;
+    else N = 0;
+    head = tail = 0;
+  } 
+  ~DynamicQueue(){delete[] A;}; // default destructor
+  
+  bool isEmpty(); // is the queue empty?
+  bool isFull(); // is the queue full?
+  void grow(); // grow the queue to its next size 
+  unsigned int size(); // return the current number of elements in the queue
+  void QInsert(T x); // insert given element at tail of the queue; grow array size as necessary
+  bool QDelete(T *x); // delete element at head of the queue and place it in *T; returns false if queue is empty, true otherwise
+};
+
+#endif
+
+[/CONTENT]
+[FILENAME]
+test.cpp
+[/FILENAME]
+[CONTENT]
+#include <iostream>
+#include <stdexcept>
+#include <cstdlib>
+#include <chrono>
+
+#include ""queue.h""
+#include ""linearQueue.cpp""
+
+using namespace std;
+using namespace std::chrono;
+
+void do_insert_delete(DynamicQueue<int>&, int, int&, int&);
+
+int main() {
+  try {
+    DynamicQueue<int> myQueue; // Queue of integers
+    int num_ins, num_del;
+    int total_num_ops = 10000;
+    int points_to_plot = 100;
+    
+    for (int i = 0; i < points_to_plot; i++) {
+      auto start = std::chrono::high_resolution_clock::now();
+      
+      do_insert_delete(myQueue, total_num_ops, num_ins, num_del);
+      
+      auto stop = high_resolution_clock::now();
+      
+      auto duration = duration_cast<microseconds>(stop - start);
+      cout << (num_ins + num_del) << "" "" << duration.count() << endl;
+    }
+
+    return 0;
+  }
+  catch (exception const& ex) {
+    cerr << ""Exception "" << ex.what() << endl;
+    return -1;
+  }
+}
+
+void do_insert_delete(DynamicQueue<int>& q, int N, int& num_ins, int& num_del)
+{
+  int element;
+  int modulus = 100;
+  int thresh_for_del = 20;
+
+  // Simple insertion deletion strategy: delete one element after every thresh_for_del steps
+  
+  srand(time(0));
+  
+  for (int i=0; i < N; i++) {
+    if ((i > 0) && (i % thresh_for_del == 0)) {
+      // Delete element from queue
+      if (q.QDelete(&element)) {
+	// Don't count deletions from empty queue
+	num_del++;
+      }
+    }
+    else {
+      // Insert random element in queue
+      element = rand() % modulus;
+      q.QInsert(element);
+      num_ins++;
+    }
+  }
+
+  return;
+}
+
+[/CONTENT]
+[FILENAME]
+Makefile
+[/FILENAME]
+[CONTENT]
+testLinear: queue.h linearQueue.cpp test.cpp
+	g++ -o testLinear test.cpp
+
+testCircular: queue.h circularQueue.cpp test.cpp
+	g++ -o testCircular test.cpp
+
+[/CONTENT]
+[/Files]
+[/INSTRUCTOR]
+
+[RUBRIC]
+Is the Code well structured and commented
+[POSSIBLESCORES]
+[0,1,2]
+[/POSSIBLESCORES]
+[/RUBRIC]
+
+[STUDENT]
+[FILES]
+[FILENAME]
+linearQueue.cpp
+[/FILENAME]
+[CONTENT]
+#include<iostream>
+using namespace std;
+#define CONST_GROWTH 1000
+#define INIT_SIZE 1000
+#include ""queue.h""
+template <typename T> bool DynamicQueue<T> :: isEmpty()
+{
+    if (head == tail)               //empty if both tail and head are same then no element 
+        return true;
+    else 
+        return false;
+}
+template <typename T> bool DynamicQueue<T> :: isFull()      //full if tail =N and head =0 if any of this is false then there is space in it
+{
+    if(size()==N)
+        return true;
+    else 
+        return false;
+}
+template <typename T> void DynamicQueue<T> :: grow()
+{
+    if (tail==N && head==0)        //grow will work only when it is full
+    {
+        T* A1;          //take a dummy arr and copy the elements in it
+        A1=new T[N];
+        A1=A;
+        A=new T[N+CONST_GROWTH];    //increase the size of original array
+        N=nextSize();
+        for (unsigned int i=head;i<tail;i++)    //copy back the elements in it
+            A[i]=A1[i];
+        return;
+    }
+    else 
+        return;
+}
+template <typename T> unsigned DynamicQueue<T> :: size() // size is tail-head 
+//here tail stores the index next to last elements index
+//head stores first elements index
+{
+    return tail-head;
+}
+template <typename T> void DynamicQueue<T> :: QInsert(T x)
+{
+    if (tail-head==N)       //we will grow if Queue is full and then add the element to it
+        grow();
+    else if (tail==N)       //if its not full but tail==N then change the head and tail values and the array values
+    {                       //because starting elements may be empty
+        unsigned int k=size();
+        for(unsigned int i=0;i<k;i++)
+            A[i]=A[i+head];
+        tail=k;
+        head=0;
+    }
+    A[tail]=x;              //add the element
+    tail++;
+}
+template <typename T> bool DynamicQueue<T> :: QDelete(T *x)
+{
+    if (head==tail)     //do only if queue is non empty 
+    {
+        return false;
+    }
+    else
+    {
+        *x=A[head];     //copy the element into x
+        head++;         //remove the first element by incr the head
+        return true;
+    }
+}           //by saran 210050036
+[/CONTENT]
+[FILENAME]
+circularQueue.cpp
+[/FILENAME]
+[CONTENT]
+#include<iostream>
+using namespace std;
+#define CONST_GROWTH 1000
+#define INIT_SIZE 1000
+#include ""queue.h""
+
+template <typename T> bool DynamicQueue<T> :: isEmpty()
+{
+    if (size()==0)         //empty when head is equal to tail
+        return true;        
+    else 
+        return false;
+}
+template <typename T> bool DynamicQueue<T> :: isFull()
+{
+    if (size()==N)           //if size is max cap then it is N
+        return true;
+    else 
+        return false;
+}
+template <typename T> void DynamicQueue<T> :: grow()
+{
+    if (isFull())           //we should add only when array is full(i.e N)
+    {
+        T *A1;              //we will create a dummy array
+        A1=new T[N+1];        //copy the elements of A in it
+        unsigned int k=size();
+        A1=A;               //incr the size of A
+        A=new T[N+CONST_GROWTH+1]; //incr additionally by 1 because head == tail may also indicate full if we dont incr by 1
+        N=nextSize();
+        for(unsigned int i=0;i<k;i++)   //place the elements back form head 0 to tail=prev max size in original array
+            A[i]=A1[(i+head)%(N+1)];
+        head=0;
+        tail=k;
+        return;
+    }
+    else
+        return;
+}
+template <typename T> unsigned int DynamicQueue<T> :: size()
+//there will be 2 cases T>H and other one
+{
+    if (tail>=head)      //if T>H then it is like linear
+        return tail-head;
+    else                //in other case where H>=T ,it is like copy the n+1 elements in the array and place at last then it will be like a linear array 
+        return (N+tail-head+1);
+}
+template <typename T> void DynamicQueue<T> :: QInsert(T x)
+{
+    if (isFull())       //if full grow the size
+        grow();
+    A[tail]=x;          //add element at tail
+    tail=(tail+1)%(N+1);  //modify the tail
+}
+template <typename T> bool DynamicQueue<T> :: QDelete(T *x)
+{
+    if (isEmpty())  //if empty we cant do anyuthing
+    {
+        return false;
+    }
+    else
+    {
+        *x=A[head];         //copy the element that we are del
+        head=(head+1)%(N+1);    //incr head value
+        return true;
+    }
+}                   //by saran 210050036
+[/CONTENT]
+[/FILES]
+[/STUDENT] [/INST]","<s>[INST] <<SYS>>
+You are a helpful, respectful and honest assistant. Always answer as helpfully as possible, while being safe. Your answers should not include any harmful, unethical, racist, sexist, toxic, dangerous, or illegal content. Please ensure that your responses are socially unbiased and positive in nature.\n\nIf a question does not make any sense, or is not factually coherent, explain why instead of answering something not correct. If you don't know the answer to a question, please don't share false information. You have the task of grading a programming assignment submission. The problem statement and resources provided by the instructor will be given between [INSTRUCTOR] and [/INSTRUCTOR] tags. The rubric that is supposed to be graded will be given between [RUBRIC] and [/RUBRIC] tags. The student submission will be between [STUDENT] and [/STUDENT] tags. Your output should match the exact format [GRADE]
+(Marks that you give)
+[/GRADE]
+<</SYS>>
+
+[INSTRUCTOR]
+[Files]
+[FILENAME]
+moodle_description.txt
+[/FILENAME]
+[CONTENT]
+In this assignment, we will implement a dynamic queue in two different ways. 
+
+The problem statement is given in queue.h    Please read the problem statement carefully.
+
+The harness for testing your code is given in test.cpp 
+
+You need to write your solution (programs) in two files linearQueue.cpp and circularQueue.cpp and compile by running ""make testLinear"" or ""make testCircular"" as appropriate.
+
+Do not worry about running gnuplot to visualize the running times now. We will send you separate instructions about that.  
+
+# Submission stats
+Participants	200
+Submitted	193
+[/CONTENT]
+[FILENAME]
+queue.h
+[/FILENAME]
+[CONTENT]
+#ifndef DYNAMIC_QUEUE_H
+#define DYNAMIC_QUEUE_H
+
+// You have learnt about queues in CS 213.  A queue stores an ordered sequence of elements, and allows
+// two operations: insert (at tail of queue) and delete (from head of queue).
+//
+// In this lab, we will implement a queue of a generic type using an array in two different ways.
+
+// In the first implementation, called linearQueue, consecutive elements in the queue are stored at
+// array locations with consecutive indices.  Thus, the first element in linearQueue must always be at
+// the array location with the smallest index (need not be 0) compared to other elements in linearQueue.
+// As an example, if linearQueue is implemented using an array A of size 10, and if there are 3
+// elements in the queue, the consecutive elements could be at locations A[3], A[4], A[5].
+
+// In the second implementation, called circularQueue, consecutive elements in the queue are stored at
+// array locations that are consecutive *modulo the array size*.  Thus, the first element in circularQueue
+// may not always be at the array location with the smallest index compared to other elements in
+// circularQueue.
+// As an example, if circularQueue is implemented using an array A of size 10, and if there are 3
+// elements in the queue, the consecutive elements could be at locations A[9], A[0], A[1].
+//
+// When the number of elements in the queue becomes larger than the array size, you have to grow the
+// array size linearly, i.e. by a fixed increment.  You must not grow the array size under any other
+// condition.  If needed, you can re-arrange the list elements in your array to ensure that you
+// don't grow the array size unless the queue contains more elements than the array size.  Note that this
+// will incur additional time/space overhead.  So think carefully about how you would like to implement this.
+//
+// Finally, we will compare the overall run-time for both the above implementations for a series of
+// inserts and deletes from the implemented queues.
+//
+// Comparison graph: x-axis is number of operations (insert/delete), y-axis run-time;
+// Expect to see different graphs depending on the sequence of inserts and deletes.
+//
+// Make sure to document your code properly using suitable comments
+//
+// This file contains the declaration of a template class DynamicQueue.
+// You are required to provide implementations of the member functions for linearQueue and circularQueue in
+// separate files named linearQueue.cpp and circularQueue.cpp.  
+//
+// Your code must compile using the provided make file.  We may change the way the function main in test.cpp
+// inserts and deletes elements. test.cpp is provided to help you run your tests.  
+//
+//
+// FILES
+// DO NOT MODIFY this file, submit as-is
+// Write the CPP code for the member functions for the two implementations in files
+// LinearQueue.cpp and CircularQueue.cpp
+// Your code will be evaluated by compiling and running test.c, where we may change the way inserts
+// and deletes are done.
+
+// While testing, you can change the constant values given below if you want
+
+#define CONST_GROWTH 1000
+#define INIT_SIZE 1000
+
+template <typename T> class DynamicQueue {
+private:
+  T *A; // the array used for implementing the dynamic dequeue
+  unsigned int N; // the current size of array A
+  unsigned int head; // index where next element of queue will be deleted from
+  unsigned int tail; // index where next element will be inserted
+  unsigned int nextSize() { return N+CONST_GROWTH; }
+public:
+  DynamicQueue() // default constructor
+  {
+    A = new T[INIT_SIZE];
+    if (A != nullptr) N = INIT_SIZE;
+    else N = 0;
+    head = tail = 0;
+  } 
+  ~DynamicQueue(){delete[] A;}; // default destructor
+  
+  bool isEmpty(); // is the queue empty?
+  bool isFull(); // is the queue full?
+  void grow(); // grow the queue to its next size 
+  unsigned int size(); // return the current number of elements in the queue
+  void QInsert(T x); // insert given element at tail of the queue; grow array size as necessary
+  bool QDelete(T *x); // delete element at head of the queue and place it in *T; returns false if queue is empty, true otherwise
+};
+
+#endif
+
+[/CONTENT]
+[FILENAME]
+test.cpp
+[/FILENAME]
+[CONTENT]
+#include <iostream>
+#include <stdexcept>
+#include <cstdlib>
+#include <chrono>
+
+#include ""queue.h""
+#include ""linearQueue.cpp""
+
+using namespace std;
+using namespace std::chrono;
+
+void do_insert_delete(DynamicQueue<int>&, int, int&, int&);
+
+int main() {
+  try {
+    DynamicQueue<int> myQueue; // Queue of integers
+    int num_ins, num_del;
+    int total_num_ops = 10000;
+    int points_to_plot = 100;
+    
+    for (int i = 0; i < points_to_plot; i++) {
+      auto start = std::chrono::high_resolution_clock::now();
+      
+      do_insert_delete(myQueue, total_num_ops, num_ins, num_del);
+      
+      auto stop = high_resolution_clock::now();
+      
+      auto duration = duration_cast<microseconds>(stop - start);
+      cout << (num_ins + num_del) << "" "" << duration.count() << endl;
+    }
+
+    return 0;
+  }
+  catch (exception const& ex) {
+    cerr << ""Exception "" << ex.what() << endl;
+    return -1;
+  }
+}
+
+void do_insert_delete(DynamicQueue<int>& q, int N, int& num_ins, int& num_del)
+{
+  int element;
+  int modulus = 100;
+  int thresh_for_del = 20;
+
+  // Simple insertion deletion strategy: delete one element after every thresh_for_del steps
+  
+  srand(time(0));
+  
+  for (int i=0; i < N; i++) {
+    if ((i > 0) && (i % thresh_for_del == 0)) {
+      // Delete element from queue
+      if (q.QDelete(&element)) {
+	// Don't count deletions from empty queue
+	num_del++;
+      }
+    }
+    else {
+      // Insert random element in queue
+      element = rand() % modulus;
+      q.QInsert(element);
+      num_ins++;
+    }
+  }
+
+  return;
+}
+
+[/CONTENT]
+[FILENAME]
+Makefile
+[/FILENAME]
+[CONTENT]
+testLinear: queue.h linearQueue.cpp test.cpp
+	g++ -o testLinear test.cpp
+
+testCircular: queue.h circularQueue.cpp test.cpp
+	g++ -o testCircular test.cpp
+
+[/CONTENT]
+[/Files]
+[/INSTRUCTOR]
+
+[RUBRIC]
+Is the Code well structured and commented
+[POSSIBLESCORES]
+[0,1,2]
+[/POSSIBLESCORES]
+[/RUBRIC]
+
+[STUDENT]
+[FILES]
+[FILENAME]
+linearQueue.cpp
+[/FILENAME]
+[CONTENT]
+#include<iostream>
+using namespace std;
+#define CONST_GROWTH 1000
+#define INIT_SIZE 1000
+#include ""queue.h""
+template <typename T> bool DynamicQueue<T> :: isEmpty()
+{
+    if (head == tail)               //empty if both tail and head are same then no element 
+        return true;
+    else 
+        return false;
+}
+template <typename T> bool DynamicQueue<T> :: isFull()      //full if tail =N and head =0 if any of this is false then there is space in it
+{
+    if(size()==N)
+        return true;
+    else 
+        return false;
+}
+template <typename T> void DynamicQueue<T> :: grow()
+{
+    if (tail==N && head==0)        //grow will work only when it is full
+    {
+        T* A1;          //take a dummy arr and copy the elements in it
+        A1=new T[N];
+        A1=A;
+        A=new T[N+CONST_GROWTH];    //increase the size of original array
+        N=nextSize();
+        for (unsigned int i=head;i<tail;i++)    //copy back the elements in it
+            A[i]=A1[i];
+        return;
+    }
+    else 
+        return;
+}
+template <typename T> unsigned DynamicQueue<T> :: size() // size is tail-head 
+//here tail stores the index next to last elements index
+//head stores first elements index
+{
+    return tail-head;
+}
+template <typename T> void DynamicQueue<T> :: QInsert(T x)
+{
+    if (tail-head==N)       //we will grow if Queue is full and then add the element to it
+        grow();
+    else if (tail==N)       //if its not full but tail==N then change the head and tail values and the array values
+    {                       //because starting elements may be empty
+        unsigned int k=size();
+        for(unsigned int i=0;i<k;i++)
+            A[i]=A[i+head];
+        tail=k;
+        head=0;
+    }
+    A[tail]=x;              //add the element
+    tail++;
+}
+template <typename T> bool DynamicQueue<T> :: QDelete(T *x)
+{
+    if (head==tail)     //do only if queue is non empty 
+    {
+        return false;
+    }
+    else
+    {
+        *x=A[head];     //copy the element into x
+        head++;         //remove the first element by incr the head
+        return true;
+    }
+}           //by saran 210050036
+[/CONTENT]
+[FILENAME]
+circularQueue.cpp
+[/FILENAME]
+[CONTENT]
+#include<iostream>
+using namespace std;
+#define CONST_GROWTH 1000
+#define INIT_SIZE 1000
+#include ""queue.h""
+
+template <typename T> bool DynamicQueue<T> :: isEmpty()
+{
+    if (size()==0)         //empty when head is equal to tail
+        return true;        
+    else 
+        return false;
+}
+template <typename T> bool DynamicQueue<T> :: isFull()
+{
+    if (size()==N)           //if size is max cap then it is N
+        return true;
+    else 
+        return false;
+}
+template <typename T> void DynamicQueue<T> :: grow()
+{
+    if (isFull())           //we should add only when array is full(i.e N)
+    {
+        T *A1;              //we will create a dummy array
+        A1=new T[N+1];        //copy the elements of A in it
+        unsigned int k=size();
+        A1=A;               //incr the size of A
+        A=new T[N+CONST_GROWTH+1]; //incr additionally by 1 because head == tail may also indicate full if we dont incr by 1
+        N=nextSize();
+        for(unsigned int i=0;i<k;i++)   //place the elements back form head 0 to tail=prev max size in original array
+            A[i]=A1[(i+head)%(N+1)];
+        head=0;
+        tail=k;
+        return;
+    }
+    else
+        return;
+}
+template <typename T> unsigned int DynamicQueue<T> :: size()
+//there will be 2 cases T>H and other one
+{
+    if (tail>=head)      //if T>H then it is like linear
+        return tail-head;
+    else                //in other case where H>=T ,it is like copy the n+1 elements in the array and place at last then it will be like a linear array 
+        return (N+tail-head+1);
+}
+template <typename T> void DynamicQueue<T> :: QInsert(T x)
+{
+    if (isFull())       //if full grow the size
+        grow();
+    A[tail]=x;          //add element at tail
+    tail=(tail+1)%(N+1);  //modify the tail
+}
+template <typename T> bool DynamicQueue<T> :: QDelete(T *x)
+{
+    if (isEmpty())  //if empty we cant do anyuthing
+    {
+        return false;
+    }
+    else
+    {
+        *x=A[head];         //copy the element that we are del
+        head=(head+1)%(N+1);    //incr head value
+        return true;
+    }
+}                   //by saran 210050036
+[/CONTENT]
+[/FILES]
+[/STUDENT] [/INST] [SCORE]
+2
+[\SCORE]"

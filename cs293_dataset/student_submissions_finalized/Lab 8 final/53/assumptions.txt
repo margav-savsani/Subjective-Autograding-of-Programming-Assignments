@@ -1,0 +1,6 @@
+Modifications in Heap.h file
+1. last_inserted member variable is introduced in the Heap.h file
+2. The arguments of printHeap() function have been modified in the Heap.h file
+
+Important note for Heap.cpp file
+Call printHeap("") to print the heap at any point of time

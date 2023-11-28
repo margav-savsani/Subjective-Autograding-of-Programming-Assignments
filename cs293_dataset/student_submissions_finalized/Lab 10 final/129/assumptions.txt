@@ -1,0 +1,2 @@
+I assumed that looping around is not allowed
+Also, uptil now my code is only working for journeys with adjacent stations and it's not complete yet.

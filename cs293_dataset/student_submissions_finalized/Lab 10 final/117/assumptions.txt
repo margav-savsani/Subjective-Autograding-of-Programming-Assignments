@@ -1,0 +1,2 @@
+max wait time is less than a day, otherwise look for different journeys
+Same journey code train is not running at the same time(even at different places)

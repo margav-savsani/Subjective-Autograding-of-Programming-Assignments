@@ -1,0 +1,3 @@
+Added member variable 'TrieNode* parent' in class 'TrieNode' which stores the pointer to the parent of thst node.
+
+ASSUMPTION:- All station names are UPPERCASE.

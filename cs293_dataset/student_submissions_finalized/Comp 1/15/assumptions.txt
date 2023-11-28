@@ -1,0 +1,3 @@
+I didn't assume anything.
+
+I used basic data structures- linked list and stack.

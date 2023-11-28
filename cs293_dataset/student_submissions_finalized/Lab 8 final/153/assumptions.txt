@@ -1,0 +1,3 @@
+Assumed:
+  - That the usage of the heap has been implemented.
+  - That O(log(h)) time complexity for operations that take only O(1) time in array implementation is a-OK.

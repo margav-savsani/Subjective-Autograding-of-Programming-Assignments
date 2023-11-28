@@ -1,0 +1,240 @@
+// Code up the functions defined in tree.h
+// Reuse the binary Search Tree implemented in lab 3 as much as possible
+
+#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
+#include <string>
+
+using namespace std;
+
+#include "tree.h"
+
+// PLEASE FILL IN THE BODIES OF THE FOLLOWING FUNCTIONS
+
+// Returns false, if given JourneyCode is already present in the BST
+// Inserts the element and returns True otherwise
+
+int BST::getImbalance()
+{
+  if (root == nullptr) return 0;
+  else return root->getImbalance();
+}
+
+
+
+
+
+bool actualInsert(int JourneyCode, int price , TreeNode*(*currentNode) , TreeNode*(*currentParent)){
+    // cout<<"Reached checkpoint 2 \n";
+    if(*currentNode==nullptr){
+        //cout<<"Address:"<<&*currentNode<<endl;
+        *currentNode=new TreeNode(JourneyCode,price,nullptr,nullptr,(*currentParent));
+        *currentNode->shortestPathLength=0;
+        *currentParent->shortestPathLength=1;
+        *currentParent->longestPathLength=*currentNode->longestPathLength+1;
+        return true;
+    }
+    else if((*currentNode)->JourneyCode > JourneyCode && (*currentNode)->JourneyCode!=0){
+        //cout<<"Going left in insert \n";
+        return actualInsert(JourneyCode,price,&((*currentNode)->left),&(*currentNode));
+    }
+    else if((*currentNode)->JourneyCode <= JourneyCode && (*currentNode)->JourneyCode!=0){
+        //cout<<"Going right in insert \n";
+        return actualInsert(JourneyCode,price,&((*currentNode)->right),&(*currentNode));
+    }
+    else{
+        return false;
+    }
+};
+
+bool actualFind(int JourneyCode, int price , TreeNode*currentNode , TreeNode*currentParent){
+    //cout<<"Reached checkpoint 4 \n";
+    if(currentNode==nullptr){
+        return false;
+    }
+    else if(currentNode->JourneyCode == JourneyCode && currentNode->JourneyCode!=0 && currentNode->price==price){
+        return true;
+        //actualInsert(JourneyCode,price,currentNode->left,currentNode);
+    }
+    else if(currentNode->price <= price && currentNode->price!=0){
+        // cout<<"Going right in find \n";
+        return actualFind(JourneyCode,price,currentNode->right,currentNode);
+    }
+    else if(currentNode->price > price && currentNode->price!=0){
+        //cout<<"Going left in find \n";
+        return actualFind(JourneyCode,price,currentNode->left,currentNode);
+    }
+}
+
+
+
+bool actualRemove(int JourneyCode, int price , TreeNode*(*currentNode) , TreeNode*(*currentParent)){
+
+    if( (*currentNode)->JourneyCode==JourneyCode &&  (*currentNode)->price == price && (*currentNode)->price!=0  ){
+        if((*currentNode)->right==nullptr && (*currentNode)->left==nullptr){
+            (*currentNode)=nullptr;
+            return true;
+        }
+        //if has one child only either right or left
+        else if((*currentNode)->left==nullptr && (*currentNode)->right!=nullptr){
+            (*currentNode)=(*currentNode)->right;
+        }
+        else if((*currentNode)->left!=nullptr && (*currentNode)->right==nullptr){
+            (*currentNode)=(*currentNode)->left;
+            return true;
+        }
+        //if has two childs;
+        else if((*currentNode)->left!=nullptr && (*currentNode)->right!=nullptr){
+            TreeNode*temp;
+            temp=(*currentNode)->left;
+            if(temp->right==nullptr){
+                return false;
+            }
+            // temp=(*currentNode)->left->right;
+            while(true){
+                if(temp!=nullptr && temp->right==nullptr){
+                    //temp->parent->right=nullptr;
+                    temp->parent->left=nullptr;
+                    temp->parent=nullptr;
+                    temp->parent=(*currentNode)->parent;
+                    temp->right=(*currentNode)->right;
+                    temp->left=(*currentNode)->left;
+                    *currentNode=temp;
+                    return true;
+                }
+                else {
+                    temp=temp->right;
+                }
+            }
+        }
+    }
+    else if((*currentNode)->price > price && (*currentNode)->price!=0){
+        return actualRemove(JourneyCode,price,&((*currentNode)->left),&(*currentNode));
+    }
+    else if((*currentNode)->price <= price && (*currentNode)->price!=0){
+        return actualRemove(JourneyCode,price,&((*currentNode)->right),&(*currentNode));   
+    }
+}
+
+
+
+
+bool BST::insert(int JourneyCode, int price)
+{
+  // The following filler code snippet is only given to facilitate
+  // compilation.  You should replace/augment it with appropriate code,
+  // similar to what you had done in lab assignment 3.
+  
+  struct TreeNode *currNode = root, *parentOfCurrNode = nullptr;
+  
+    if(find(JourneyCode,price)){
+        return false;
+    }
+    //cout<<"Reached checkpoint 1 \n";
+    if(root->JourneyCode==0){
+        root->JourneyCode=JourneyCode;
+        root->price=price;
+        return true;
+    }
+    return actualInsert(JourneyCode,price,&root,nullptr);
+  // JourneyCode is not present in the BST.  We must now
+  // insert an appropriate child of parentOfCurrNode.
+  // Please implement this part yourself.
+  //
+  // Do not forget to update shortestPathLength and
+  // longestPathLength of (possibly all) BST nodes in the
+  // path from the root to the new node you are inserting
+  
+
+}
+
+// Return True, if the ticket with given attributes is found, false otherwise
+bool BST::find(int JourneyCode, int price)
+{
+  // The following filler code snippet is only given to facilitate
+  // compilation.  You should replace it with appropriate code, very
+  // similar to what you had done in lab assignment 3.
+  //
+  // You can look at the implementation of insert to code this part up.
+  
+  return actualFind(JourneyCode,price,root,nullptr);
+}
+	
+// Returns false, if JourneyCode isn't present
+// Deletes the corresponding entry and returns True otherwise
+bool BST::remove(int JourneyCode, int price)
+{
+  // The following filler code snippet is only given to facilitate
+  // compilation.  You should replace it with appropriate code, very
+  // similar to what you had done in lab assignment 3.
+  //
+  // Recall from CS 213 lectures about the various ways in which the
+  // BST can be restructured when a node is deleted. You can implement
+  // any of these alternatives.
+  //
+  // Do not forget to update shortestPathLength and
+  // longestPathLength of (possibly all) BST nodes in the
+  // path from the root to nodes whose position in the BST is affected
+  // by the remove.
+    if(!find(JourneyCode,price)){
+        return false; 
+    }
+    else{
+        return actualRemove(JourneyCode,price,&root,nullptr);
+    }
+  return false;
+}
+
+// ************************************************************
+// DO NOT CHANGE ANYTHING BELOW THIS LINE
+
+// Adapted from Adrian Schneider's code on StackOverflow
+void BST::printBST(const string& prefix, bool isLeft=false)
+{
+    if( root != nullptr )
+    {
+        cout << prefix;
+
+        cout << (isLeft ? "|--" : "|__" );
+
+        // print the value of the node
+        cout << root->JourneyCode << endl;
+        TreeNode *curr = root;
+        root = root->left;
+        // enter the next tree level - left and right branch
+        printBST( prefix + (isLeft ? "│   " : "    "), true);
+        root = curr->right;
+        printBST( prefix + (isLeft ? "│   " : "    "), false);
+        root = curr;
+    }
+}
+
+void BST::getBST(const string& prefix,  bool isLeft=false)
+{
+    if( root != nullptr )
+    {
+        result.push_back(prefix);
+
+        result.push_back(isLeft ? "|--" : "|__" );
+
+        // print the value of the node
+        result.push_back(to_string(root->JourneyCode) + "\n");
+        TreeNode *curr = root;
+        root = root->left;
+        // enter the next tree level - left and right branch
+        getBST( prefix + (isLeft ? "│   " : "    "), true);
+        root = curr->right;
+        getBST( prefix + (isLeft ? "│   " : "    "), false);
+        root = curr;
+    }
+}
+
+void BST::clearResult(){
+    result.clear();
+}
+
+vector<string> BST::getResult(){
+    return result;
+}
+

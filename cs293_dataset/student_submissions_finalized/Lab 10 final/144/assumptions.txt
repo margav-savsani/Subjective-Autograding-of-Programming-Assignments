@@ -1,0 +1,8 @@
+Prerak Contractor
+210050124
+
+Assumptions:
+
+No train forms a loop path.
+Only offset of 0 or 1 day between two stations for each train.
+the boolean array in traininfoperstation is for arrival

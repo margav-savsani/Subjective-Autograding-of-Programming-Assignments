@@ -1,0 +1,2 @@
+Assumptions:
+There are only capital/small input I considered.For Pune Central and PUNE CENTRAL to get same hashvalue we should change in dictionary which I not supposed to do. 

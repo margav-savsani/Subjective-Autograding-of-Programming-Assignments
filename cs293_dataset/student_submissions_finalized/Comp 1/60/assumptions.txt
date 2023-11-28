@@ -1,0 +1,3 @@
+Assumptions->
+   1)once a node is visited, during dfs for its child it(parent) cann't be revisited
+   

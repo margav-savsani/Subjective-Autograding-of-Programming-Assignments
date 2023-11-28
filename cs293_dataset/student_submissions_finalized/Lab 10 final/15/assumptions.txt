@@ -1,0 +1,44 @@
+I am assuming that we never switch to a train with the same journey code. For example if a train, say 231 reaches on
+a station on tuesday and thursday both, so when the passenger comes on tuesday he would never make a transit to board the
+thursday train.
+
+I am also assuming the transit time to be the difference between the departure time of the second train to the 
+arival time of the first train. Because this is the time that the user would get to change trains if we take it to be
+the difference in arrival times then there may be a case when a train arives before but also stops 
+for too long, so this implementation would mislead us into not considering it.
+
+I am also assuming a train cannot stop at a station for more than a day.
+
+I created functions for adding and deleting to the end of a linked list.
+
+I created a transit class which stores information about the station of transit and the transit time.
+
+For the output I created my own print function names MyprintStationInfo. It takes in as input two lists one of trainInfoPerStation and one 
+of Transits. I printed the info of the first train on the first station and then whenever there is a transit
+I print the station of transit and the time of transit and then the info of the train we switched to at the transit 
+station.
+
+
+Explation of code-
+I used DFS.
+I did a recursive implementation.
+1) There are two base cases one when we have exhauseted the stop overs we had then we just return.
+2) Second when we reached the destination so we print whatever trains we have boarded till now along 
+    with whatever transits we have made to board these trains.
+3) I created static variables Infos is a ll which stores information about every train we have boarded
+    till now Transits is also a ll which stores information about every transit we have made.
+4) jc_now is the journey code of the train we are currently on initially it is 0 indicating the 0
+    level recurssion.
+5) reaching_time is the time we would be reaching at the next station by the train we are currently on.
+    So we only have to see trains after these.
+6) For handling the 0th level recurssion(jc_now==0) I just recursively performed DFS on all possible
+    stations to which there is direct 0 stop train along with giving appropriate values to jc_now and
+    reaching_time. For calculating the reaching_time I used the fromstations list of the station we are travelling to.
+7) If a train is travelling in multiple days of the week I handled each day differently and performed DFS for
+    all days independently because it may be possible that some train to which we ae switching to is avalaible 
+    on a day i but not on day j.
+8) The handling of the levels of recurssion>0 is similar except we have to take two cases when we are 
+    on the same train (same Journey code) and when we switch trains. Whenever we switch trains we have 
+    to make sure that the new train departs after the arrival of the train we are at now and also the 
+    difference in time is not greater than the max transit time.
+9) Here I also handled transits in which the next train is a week later to the previous train.

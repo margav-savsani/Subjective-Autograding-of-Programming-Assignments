@@ -1,0 +1,3 @@
+Sorted the journeys with respect to days of week and time of departure.
+
+saved the stninfo inside a vector partition which saves the linked list in n/k space and searching gets easier without traversing through whole we can traverse from nearest in the vector. Pivot p is chosen using rand() from start to end.

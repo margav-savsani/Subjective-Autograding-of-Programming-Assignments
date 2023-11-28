@@ -1,0 +1,1 @@
+Assuming a particular train, if it arrives at a particular station multiple times a week, it will arrive at the same time.

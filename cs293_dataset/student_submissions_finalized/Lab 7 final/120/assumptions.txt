@@ -1,0 +1,1 @@
+If dept times are equal then we compare arr times

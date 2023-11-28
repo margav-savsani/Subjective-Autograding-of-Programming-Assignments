@@ -1,0 +1,7 @@
+Name: Josyula Venkata Aditya
+Roll number: 210050075
+
+1. A train runs for atmost 24 hours
+2. Max transit time should be supplied as an integer(in hours)
+3. Any journey that is not a part of the same train journey is considered a layover. Note that this includes cases where the journey codes might be the same but it would still be considered as a layover because the belong to Journeys on 2 different days.
+4. It is assumed that a person cannot switch trains instantaneously(i.e. if transit time exists, then it is >0)

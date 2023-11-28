@@ -1,0 +1,3 @@
+1)  No cycled journeys, no train would make cycles, that is visit 
+    a station twice in one entire journey from source to destination
+2)  Assuming no train has 0 zero journey Code

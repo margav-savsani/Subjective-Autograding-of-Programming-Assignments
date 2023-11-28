@@ -1,0 +1,6 @@
+Assumptions:
+I have sorted trains according to departure time.
+If the departure time of train is -1, then that train is kept at the end of that particular day
+If the departure time and day are same for 2 trains, then i am sorting them based on arrival time
+If all arrtime,deptime and day are same for 2 trains, then i am sorting them using journeycode
+

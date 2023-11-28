@@ -1,0 +1,3 @@
+Ankan Sarkar, 210050013
+
+I have created two additional functions, one for printing the heap and one to free up space. Also, if the ratings of two reviews are equal, I am allowing one to be the parent of the other.

@@ -1,0 +1,1 @@
+No assumptions taken just stores all trains by method similar to BFS.

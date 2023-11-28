@@ -1,0 +1,3 @@
+Assumptions: 
+1. 0 index of daysOfWeek is assumed to be SUNDAY
+

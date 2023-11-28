@@ -1,0 +1,8 @@
+Madur Adarsh Reddy - 210050091
+
+
+Assumptions:
+
+* Trains have a unique path based on jouney code.
+* Journey code changes in the reverse direction
+* There are no closed paths in a trains journey 

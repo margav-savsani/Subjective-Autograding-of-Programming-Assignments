@@ -1,0 +1,3 @@
+My assumptions are:
+1. I created a vector class name 'NewVector' which has the functionality same as the vector in the Graph.h file.
+2. I created a BSTNode class in the Graph.h file, which helps in the building of the BST.

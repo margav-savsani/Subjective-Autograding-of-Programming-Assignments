@@ -1,0 +1,4 @@
+No particular assumption.
+
+Only thing that is different is that I used passing parameter by reference in completion function of Trie
+

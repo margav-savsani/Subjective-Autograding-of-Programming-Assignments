@@ -1,0 +1,2 @@
+Assumptions made:
+No journey starts and ends at the same point - that is, there is no directed cycle of the same journeyCode in the graph.

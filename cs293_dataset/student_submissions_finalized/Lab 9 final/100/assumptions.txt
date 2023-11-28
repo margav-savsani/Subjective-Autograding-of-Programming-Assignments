@@ -1,0 +1,2 @@
+1]Also assuming that no train runs in cycle, i.e. A->B->C->A.
+2]assuming that no  train have journey code=-1.

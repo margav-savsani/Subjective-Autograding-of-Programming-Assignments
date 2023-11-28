@@ -1,0 +1,2 @@
+if the user arrives at a station (which is not the destination) and departs from the station on the same train, the time spent at the station on the same train is not considered transit time.
+assume that a single train's route doesn't have cycles, but of course, when you change trains, you can go around in cycles

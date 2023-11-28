@@ -1,0 +1,2 @@
+1) Admin shall always input station names in capitals, so that there is uniformity in display of stations to users.
+2) There is no such restriction on the user, I have ensured case insensitivity.

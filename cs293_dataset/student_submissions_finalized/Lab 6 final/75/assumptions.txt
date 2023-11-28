@@ -1,0 +1,3 @@
+Assumptions:
+
+1. All the station names are in upper case letters.

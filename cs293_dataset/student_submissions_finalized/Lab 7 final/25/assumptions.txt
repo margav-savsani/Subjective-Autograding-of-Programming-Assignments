@@ -1,0 +1,1 @@
+For testing my code, I have taken initial value of K to be 10.

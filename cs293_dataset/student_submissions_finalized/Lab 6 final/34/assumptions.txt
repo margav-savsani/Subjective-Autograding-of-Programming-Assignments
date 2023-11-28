@@ -1,0 +1,1 @@
+In kmp.cpp I have converted the text and pattern into uppercase to implement the bonus marks part.

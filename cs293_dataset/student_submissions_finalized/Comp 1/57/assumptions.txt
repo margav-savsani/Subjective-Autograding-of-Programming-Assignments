@@ -1,0 +1,7 @@
+I took BST part from the solutions that are given in moodle and done slight modifications.
+I used adjaceny matrix instead of linked list.
+my order of visiting adjacent vertices is from index of lowest value to highest value.
+In printing of BST i am printing values present in Node not index of Node.
+I have used recursive DFS without changing its signatures.
+I haven't used any otherlibrary.
+I implemented some varibles and 2 extra functions.

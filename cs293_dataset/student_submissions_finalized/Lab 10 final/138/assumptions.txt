@@ -1,0 +1,5 @@
+The following assumptions are made:
+1. As we have been provided with only one boolean array, it is assumed that the train arrive and depart on the same day
+2. The person can deboard and board on the same train or train with the same journeycode that travels on a diff day later for example if a person goes from A to B in jc 231 then B to C in jc 331 and can again reboard 231 for going from C to D
+3. As only boolean arrays are stored, to compute the number of days taken by a train to go from one station to another, the lowest number of days/shifts in the boolean array which would lead to us getting the stored boolean array are considered
+

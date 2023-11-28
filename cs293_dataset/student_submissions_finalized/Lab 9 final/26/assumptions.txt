@@ -1,0 +1,5 @@
+AKSHAT SINGH
+210020013
+LAB9
+
+1. Assumed there would be no cyclic journeys with same jounrey code.

@@ -1,0 +1,2 @@
+1. I have used cstdlib header file to generate random numbers in the code.
+2. I have incorborated seed of random value generation with time.

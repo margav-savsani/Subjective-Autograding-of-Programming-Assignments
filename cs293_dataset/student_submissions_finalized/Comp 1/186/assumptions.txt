@@ -1,0 +1,18 @@
+Assumptions -
+1. I assumed that Modified dfs is done in such a way that parent of a Node will not be visited in reverse
+   from that Node, i.e. Direction of dfs is maintained in one direction. The parent might be visited again after
+   completing a cycle or from any other node. But, I am defining parent as that Node from which the cuurent Node
+   got visited at its first time.
+2. For finding cycles, I am using the modified defition of parent of a Node and checking for any backedges from that Node.
+3. I am traversing the graph starting from first Node (that is the Node which stored the value 1).
+4. I think that for somecases, the number of Nodes visited once or twice depends on the source from which we are starting the dfs
+   and also the position where that source is present or basically also on the graph structure. So, these two may come different for
+   graphs with Nodes at different position but same skeleton structure.
+   For example, for 1--2--3--4--2 , and as Node 1 is source for my traversals, here 1 will be visited once.
+   while for same graph skeleton and position altered as 3--2--1--4--2, here Node 3 is at same position where 1 was before
+   but since I am starting from 1 and so 3 is not the source, here 3 will get visited twice.
+5. I am printing some cout statements also as output so that it becomes more meaningfull, as the lab will be manually graded.
+6. Also, exact BST may come different for my output compared to someone else's on same input as it depends on where we are inserting the
+   equal element in BST and as well as order of insertion is BST. However, the thing that would be ensured is that nodes that are visited 
+   twice will be present twice in the BST.
+7. References - I have used the BST Node, print, insert functions (and modified them accordingly) from previous labs for this lab.

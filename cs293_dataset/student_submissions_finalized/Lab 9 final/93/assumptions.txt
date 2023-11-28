@@ -1,0 +1,1 @@
+Assumed that no train runs in a loop with the same journey code

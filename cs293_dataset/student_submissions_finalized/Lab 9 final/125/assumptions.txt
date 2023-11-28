@@ -1,0 +1,2 @@
+It is assumed that can be at most one train from a station with a unique journey code.
+Also it is assumed that there can't be loops with same journey code of a train throughout the loop.

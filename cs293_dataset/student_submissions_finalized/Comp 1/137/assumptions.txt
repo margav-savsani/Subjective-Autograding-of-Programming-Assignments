@@ -1,0 +1,1 @@
+1. In BST if the value is same it's inserted in the left subtree.

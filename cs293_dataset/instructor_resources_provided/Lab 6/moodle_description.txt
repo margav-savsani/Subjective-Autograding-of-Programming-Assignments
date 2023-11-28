@@ -1,0 +1,17 @@
+This assignment is about implementing tries and KMP algorithm.
+
+Please read the problem statement carefully in problem_statement.pdf
+
+You should be editing files Trie.h, Trie.cpp and KMP.cpp
+
+To compile simply run g++ -g -o planner main.cpp
+
+To run, simply run ./planner log_file_name
+
+To help you debug, a log file gets generated that shows some detailed log messages.  Of course, this is not a substitute for gdb
+
+You must upload only kmp.cpp, planner.cpp, planner.h, Trie.h, Trie.cpp in one .tgz flle named <roll_number>_L6.tgz
+
+# Submission stats
+Participants	200
+Submitted	187

@@ -1,0 +1,7 @@
+I have used binary to get to the right node for inserting an element. Use the digits except first to traverse, left if the digit is zero and right if the digit is one. 
+
+In del max heapify from root
+
+In insert heapify from node
+
+The functions work perfectly fine with int (I tested it well), but when integrated with planner, it goes on in some loop. There doesn't seem to be any error in the cases I considered and the logic I used. Kindly go through the code line by line, or just copy paste and test manually for type int. 

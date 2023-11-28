@@ -1,0 +1,1 @@
+Here in this program I took only one of the possibility of shifting the trains between the journey that is I considered only the first day in the days of week array on which the train with the given code will be active between to adjacent stations. I did not consider the remaining days of week on which the trains might be active between two adjacent stations.

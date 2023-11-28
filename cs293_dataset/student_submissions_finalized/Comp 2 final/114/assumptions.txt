@@ -1,0 +1,5 @@
+Pls run the code as
+
+g++ main.cpp && ./a.out < graphFile.txt > outGraph.txt
+
+and open outGraph.txt to view the output

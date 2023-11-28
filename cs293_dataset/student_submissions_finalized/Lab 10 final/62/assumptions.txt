@@ -1,0 +1,7 @@
+Assumed same journeyscode will appear at intervals fof multiples of days noly
+
+Assumed loops were possible in the journeys as long as they were not crossing the destination .
+
+Assumed that max wait time would be less than a week. - > feature for dropping the same train for another day has not been implemented fully correctly due to an incrrect version of planner on my system found too late, please consider the logic
+
+Assumed that no journey between adjacent station would take longer than a day.

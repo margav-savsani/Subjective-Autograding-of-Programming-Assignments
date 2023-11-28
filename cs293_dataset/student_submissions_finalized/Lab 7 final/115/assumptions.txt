@@ -1,0 +1,1 @@
+I assumed there are no trains which have same arrival time, departure time on a particular day.

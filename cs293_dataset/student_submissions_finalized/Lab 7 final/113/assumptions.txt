@@ -1,0 +1,3 @@
+1. The sorting is done based on the day of departure and if same day then time of departure and if that is also same then any order comes. Not done sorting on based on arrival times (as I suppose is not needed as well). But if required, the sorting can be by changing just a few lines in the Quicksort.
+
+2. I implemented both Quicksort and Simple Quicksort.

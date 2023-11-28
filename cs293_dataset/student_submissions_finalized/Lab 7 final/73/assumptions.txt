@@ -1,0 +1,7 @@
+210050036
+Bitra Sai Siddhi Raghuram Saran
+
+assumptions:
+
+Sorting is done by comparing the Day(first) then arrival time(2nd) then Departure time(3rd), if all are same then by journey code
+

@@ -1,0 +1,40 @@
+Assumption-1:
+You should consider this as the same journey.   Breaking a journey at a station and boarding the same train (same journey code), even if it is on a different day, should be considered as a journey without transits.  So a transit necessary happens between two different trains with two different journey codes. // mentioned in piazza.    TODO : increase transit only when journey code changes.\
+
+That is if a train of code 231 comes on mon and and it also comes on friday and departures, then travel by monday to this station, then friday to next station is also a valid output.
+
+Assumption-2 :
+
+	stop over = 0 means direct stations.
+
+Assumption-3:
+	
+	arrival time = -1 means take it as 0000
+	departure time = -1 means take it as 2400
+
+Assumption-4:
+	
+	printing format:
+	
+	first line will be index ( i mean if there are 20 possiblities, then index will be 1, 2, 3,...,20 )
+	after that trains which we have to pick continuosly. ( top  to bottom order, like take first train then next time and soon...)
+	if there is a stopOver, then printed it in YELLOW color( defined it at the start of the file)
+
+Assumption-5:
+	
+	maximum transit time is <= 24*7
+	
+defined functions:
+	
+	1. expand_the_list - this function is used to expand the the TrainInfoPerStation( for example if the train is running on sun, monday... then it splits it into two trains, one on sunday and other on monday), it is a subpart of printStationInfo, given in planner.cpp.
+	2. check - checks whether it is within maxTransitTime or not.
+	3. planJourneys - does most of the work - exceution.
+
+Idea:
+	
+	use dfs, go untill u find final stations with constraint on transitions number and transistion time.
+	maintain a listOfObjects of TrainInfoPerStation and print it if it statisfies the above condition.
+	
+	
+
+

@@ -1,0 +1,11 @@
+1) attributes of class TrainInfoPerStation are public to be able to access it in quicksort.cpp.
+2) need not add partition function in the Planner class if attributes said above are public. 
+3) include quicksort.cpp wherever required (though should not be required).
+4) use Quicksort(listOfObjects<TrainInfoPerStation *> *stnInfoList) to run the quicksort function.
+
+Pivot:
+1) for an N element long linked list, visualise N/K check points after every K elements.
+2) now we are left with N/K lists with starting point as marker to the start of every linked list. 
+3) randomly generated a number less than (N/K + 1). This will choose one of the N/K independent sub-linked list just generated. 
+4) randomly generated a number less than (K + 1). This will tell how many times to traverse the chosen sub-linked list from the starting point of the linked list. This will ensure that worst case time complexity of choosing the pivot is O(K). 
+

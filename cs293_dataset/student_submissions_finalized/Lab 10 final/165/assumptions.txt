@@ -1,0 +1,3 @@
+1)No journey loops with the same journey code, that is, no train goes from A->B->C and then back to A.
+2)I could not print the layover stations, but if there are trains available within the given constraints, my code prints the starting station and arrival departure time of the trains we can start with from that station. I have created a calss which stores the list of all trains to be printed, but due to some reason it is not working.
+3)transit times are less than 1 day

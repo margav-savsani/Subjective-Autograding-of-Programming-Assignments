@@ -1,0 +1,1 @@
+I have assumed that no journey loops around, i.e. you don't get the same station twice in a journey, which is a fair assumption given we are only modelling one way journeys

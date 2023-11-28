@@ -1,0 +1,2 @@
+1. Assuming that there will be no train takes a circular path(passing from a station and again reaching the station)
+2. Assuming that each train will have same schedule from each of it's active days

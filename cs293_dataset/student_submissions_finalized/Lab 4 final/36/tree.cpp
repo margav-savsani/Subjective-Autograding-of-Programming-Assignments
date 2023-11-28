@@ -1,0 +1,365 @@
+// Code up the functions defined in tree.h
+// Reuse the binary Search Tree implemented in lab 3 as much as possible
+
+#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
+#include <string>
+
+using namespace std;
+
+#include "tree.h"
+
+#define PRE_ORDER 0
+#define POST_ORDER 1
+#define IN_ORDER 2
+
+// PLEASE FILL IN THE BODIES OF THE FOLLOWING FUNCTIONS
+
+// Returns false, if given JourneyCode is already present in the BST
+// Inserts the element and returns True otherwise
+
+int BST::getImbalance()
+{
+  if (root == nullptr)
+    return 0;
+  else
+    return root->getImbalance();
+}
+
+bool BST::insert(int JourneyCode, int price)
+{
+  // The following filler code snippet is only given to facilitate
+  // compilation.  You should replace/augment it with appropriate code,
+  // similar to what you had done in lab assignment 3.
+
+  if (root == nullptr)
+  {
+    root = new TreeNode(JourneyCode, price);
+    return true;
+  }
+  if (find(JourneyCode, price))
+  {
+    return false;
+  }
+
+  TreeNode *temp = root;
+
+  while (true)
+  {
+    if (price <= temp->price)
+    {
+      if (temp->left == nullptr)
+      {
+        temp->left = new TreeNode(JourneyCode, price);
+        temp->left->parent = temp;
+        temp->left->pathlength=1+temp->pathlength;
+        return true;
+      }
+      else
+      {
+        temp = temp->left;
+        continue;
+      }
+    }
+    else
+    {
+      if (temp->right == nullptr)
+      {
+        temp->right = new TreeNode(JourneyCode, price);
+        temp->right->parent = temp;
+        temp->right->pathlength=1+temp->pathlength;
+        return true;
+      }
+      else
+      {
+        temp = temp->right;
+        continue;
+      }
+    }
+  }
+}
+
+// Return True, if the ticket with given attributes is found, false otherwise
+bool BST::find(int JourneyCode, int price)
+{
+  // The following filler code snippet is only given to facilitate
+  // compilation.  You should replace it with appropriate code, very
+  // similar to what you had done in lab assignment 3.
+  //
+  // You can look at the implementation of insert to code this part up.
+
+  TreeNode *temp = root;
+
+  while (temp != nullptr)
+  {
+    if (temp->JourneyCode == JourneyCode && temp->price == price)
+    {
+      return true;
+    }
+    else if (price <= temp->price)
+    {
+      temp = temp->left;
+    }
+    else
+    {
+      temp = temp->right;
+    }
+  }
+  return false;
+}
+
+// Returns false, if JourneyCode isn't present
+// Deletes the corresponding entry and returns True otherwise
+struct TreeNode *BST::get(int Journeycode, int price)
+{
+  TreeNode *temp = root;
+
+  while (temp != nullptr)
+  {
+    if (temp->JourneyCode == Journeycode && temp->price == price)
+    {
+      return temp;
+    }
+    else if (price <= temp->price)
+    {
+      temp = temp->left;
+      continue;
+    }
+    else
+    {
+      temp = temp->right;
+    }
+  }
+  return nullptr;
+}
+
+struct TreeNode *BST::successor(TreeNode *x)
+{
+  x = x->right;
+  while (x->left != nullptr)
+  {
+    x = x->left;
+  }
+  return x;
+}
+
+bool BST::remove(int JourneyCode, int price)
+{
+  // The following filler code snippet is only given to facilitate
+  // compilation.  You should replace it with appropriate code, very
+  // similar to what you had done in lab assignment 3.
+  //
+  // Recall from CS 213 lectures about the various ways in which the
+  // BST can be restructured when a node is deleted. You can implement
+  // any of these alternatives.
+  //
+  // Do not forget to update shortestPathLength and
+  // longestPathLength of (possibly all) BST nodes in the
+  // path from the root to nodes whose position in the BST is affected
+  // by the remove.
+
+  if (!find(JourneyCode, price))
+  {
+    return false;
+  }
+  TreeNode *temp = get(JourneyCode, price);
+  if (temp == root)
+  {
+    if (temp->left == nullptr && temp->right == nullptr)
+    {
+      root = nullptr;
+      return true;
+    }
+    else if (temp->left != nullptr && temp->right == nullptr)
+    {
+      root->left->parent = nullptr;
+      root = root->left;
+      return true;
+    }
+    else if (temp->left == nullptr && temp->right != nullptr)
+    {
+      root->right->parent = nullptr;
+      root = root->right;
+      return true;
+    }
+    else
+    {
+      TreeNode *suc = successor(temp);
+      int tempjcode = suc->JourneyCode, temppri = suc->price;
+      remove(tempjcode, temppri);
+      temp->JourneyCode = tempjcode;
+      temp->price = temppri;
+      return true;
+    }
+    return true;
+  }
+  // both empty
+  if (temp->left == nullptr && temp->right == nullptr)
+  {
+    if (temp->parent->left == temp)
+    {
+      temp->parent->left = nullptr;
+      return true;
+    }
+    else
+    {
+      temp->parent->right = nullptr;
+      return true;
+    }
+    return true;
+  }
+  // one empty
+  else if (temp->left != nullptr && temp->right == nullptr)
+  {
+    if (temp->parent->left == temp)
+    {
+      temp->left->parent = temp->parent;
+      temp->parent->left = temp->left;
+      return true;
+    }
+    else
+    {
+      temp->left->parent = temp->parent;
+      temp->parent->right = temp->left;
+      return true;
+    }
+  }
+  else if (temp->left == nullptr && temp->right != nullptr)
+  {
+    if (temp->parent->left == temp)
+    {
+      temp->right->parent = temp->parent;
+      temp->parent->left = temp->right;
+      return true;
+    }
+    else
+    {
+      temp->right->parent = temp->parent;
+      temp->parent->right = temp->right;
+      return true;
+    }
+  }
+  // 0 empty
+  else
+  {
+    TreeNode *suc = successor(temp);
+    int tempjcode = suc->JourneyCode, temppri = suc->price;
+    remove(tempjcode, temppri);
+    temp->JourneyCode = tempjcode;
+    temp->price = temppri;
+    return true;
+  }
+}
+
+void BST::traverse(int typeOfTraversal)
+{
+    TreeNode *temp = root;
+    if (typeOfTraversal == PRE_ORDER)
+    {
+        pre_order(temp);
+    }
+    else if (typeOfTraversal == POST_ORDER)
+    {
+        post_order(temp);
+    }
+    else if (typeOfTraversal == IN_ORDER)
+    {
+        in_order(temp);
+    }
+}
+void BST::pre_order(TreeNode *x)
+{
+
+    if (x == nullptr)
+    {
+        return;
+    }
+    else
+    {
+        cout << x->JourneyCode << endl;
+        pre_order(x->left);
+        pre_order(x->right);
+    }
+}
+void BST::post_order(TreeNode *x)
+{
+    if (x == nullptr)
+    {
+        return;
+    }
+    else
+    {
+
+        post_order(x->left);
+        post_order(x->right);
+        cout << x->JourneyCode << endl;
+    }
+}
+void BST::in_order(TreeNode *x)
+{
+    if (x == nullptr)
+    {
+        return;
+    }
+    else
+    {
+        in_order(x->left);
+        cout << x->JourneyCode << endl;
+        in_order(x->right);
+    }
+}
+
+// ************************************************************
+// DO NOT CHANGE ANYTHING BELOW THIS LINE
+
+// Adapted from Adrian Schneider's code on StackOverflow
+void BST::printBST(const string &prefix, bool isLeft = false)
+{
+  if (root != nullptr)
+  {
+    cout << prefix;
+
+    cout << (isLeft ? "|--" : "|__");
+
+    // print the value of the node
+    cout << root->JourneyCode << endl;
+    TreeNode *curr = root;
+    root = root->left;
+    // enter the next tree level - left and right branch
+    printBST(prefix + (isLeft ? "│   " : "    "), true);
+    root = curr->right;
+    printBST(prefix + (isLeft ? "│   " : "    "), false);
+    root = curr;
+  }
+}
+
+void BST::getBST(const string &prefix, bool isLeft = false)
+{
+  if (root != nullptr)
+  {
+    result.push_back(prefix);
+
+    result.push_back(isLeft ? "|--" : "|__");
+
+    // print the value of the node
+    result.push_back(to_string(root->JourneyCode) + "\n");
+    TreeNode *curr = root;
+    root = root->left;
+    // enter the next tree level - left and right branch
+    getBST(prefix + (isLeft ? "│   " : "    "), true);
+    root = curr->right;
+    getBST(prefix + (isLeft ? "│   " : "    "), false);
+    root = curr;
+  }
+}
+
+void BST::clearResult()
+{
+  result.clear();
+}
+
+vector<string> BST::getResult()
+{
+  return result;
+}

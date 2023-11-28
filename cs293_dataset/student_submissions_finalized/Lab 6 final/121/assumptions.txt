@@ -1,0 +1,8 @@
+A- Tries : 
+    1- All letters in trie of station name are capital letters
+    2- When calling delete function, the 2 arguments given (word to be deleted and station name) 
+    exist in the trie and nameDict respectively
+    3- When calling completions function in trie, the input for prefix contains all capital letters
+    only.
+B- KMP : 
+    4- KMP implementation is case sensitive.

@@ -1,0 +1,15 @@
+This is the final assignment for implementation of the journey planner.  Please read the problem statement carefully and post on Piazza if there are any doubts.  We wish to implement a not-so-common feature, called Monthly Planning, in our planner.  We will use a suitable modification of the idea of minimum spanning trees for this lab.
+
+To compile, run g++ -g -o planner main.cpp
+
+To debug, use gdb ./planner on Linux, and lldb ./planner on Mac
+
+You are required to submit your lab assignment only by Mon, Oct 31, 23:59 (extended from Fri, Oct 28, 14:00).  There is no need for submitting the in-lab version for this lab by Oct 21, 5pm.
+
+This is the link for final submission of this lab assignment.
+
+Please upload only a tar zipped folder containing exactly two files: assumptions.txt (containing assumptions, if any, made by you) and printMonthlyPlan.cpp (containing your implementation of the monthly planner).  Deviations from this may be severely penalized.
+
+# Submission stats
+Participants	200
+Submitted	16

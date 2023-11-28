@@ -1,0 +1,5 @@
+Please read the problem statement in problem_statement.pdf carefully before attempting to solve this lab assignment.
+
+# Submission stats
+Participants	200
+Submitted	188

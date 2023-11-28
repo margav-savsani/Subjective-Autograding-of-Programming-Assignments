@@ -1,0 +1,1 @@
+- Journeys are linear(non-branching) and acyclic. i.e., only one train with a specific journey code can emanate from a given station

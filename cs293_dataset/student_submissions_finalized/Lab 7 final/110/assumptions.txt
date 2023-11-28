@@ -1,0 +1,7 @@
+Name: Nandigama Nikhil
+Roll No: 210050105
+
+I implemented QuicksortSimple
+
+As said by the instructor on piazza, I have sorted based on arrival time
+To reduce repeatations I have implemented two new functions swap and compare

@@ -1,0 +1,3 @@
+train can stay at a station maximum one day.
+
+I did not consider the loops like saturday back to sunday.

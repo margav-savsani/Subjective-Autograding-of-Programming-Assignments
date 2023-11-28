@@ -1,0 +1,3 @@
+assumptions:
+i assumed my insert is case insentive and 
+it treats capital and small letters as same

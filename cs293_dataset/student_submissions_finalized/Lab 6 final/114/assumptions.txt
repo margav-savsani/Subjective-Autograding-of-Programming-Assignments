@@ -1,0 +1,1 @@
+KMP algorithm has been coded to match for case insensitive cases also

@@ -1,0 +1,23 @@
+In this lab, we will have some fun with binary search trees and their traversal order.  You should already have learnt about these from your CS 213 lectures.
+
+Please read the problem statement given in problem.pdf very carefully.
+
+The assignment has 2 parts.  Part 1 is expected to be completed in the lab by 5pm on Aug 19, and TAs will come and do an initial evaluation of your work on this part.  Part 2 is expected to be submitted by Aug 26, 2pm.
+
+Please download all files of the assignment provided below in your working directory.
+
+Please read the comments in the provided files BST.h and BST.cpp very carefully.  You MUST NOT modify the parts of these files that you are asked not to modify.
+
+For compilation, you should simply run "make interactive" or "make automated" and it should produce the corresponding executable called "interact" or "automated" respectively. 
+
+We have already created test harnesses for you, so you can test your code (once it compiles correctly) by running "interact" or "automated" (for interactive and automated testing respectively). 
+
+You must upload your solution to Part 1 as a zipped file named part1.zip and containing BST.h and BST.cpp by 5pm today (Aug 19). 
+
+Your solution to Part 2 must be uploaded as a second zipped file named part2.zip (containing BST.h, BST.cpp and any other file you may want to create for solving part 2) by 2pm on Aug 26.
+
+Please feel free to ask the instructor or TAs for any clarifications.
+
+# Submission stats
+Participants	200
+Submitted	179

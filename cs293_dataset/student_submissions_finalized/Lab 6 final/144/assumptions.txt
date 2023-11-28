@@ -1,0 +1,3 @@
+Assumed that station name to be inserted is not repeated.
+Assumed only letters present in station name for insert function.
+KMP is case insensitive.

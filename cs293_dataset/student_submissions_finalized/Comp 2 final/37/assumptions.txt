@@ -1,0 +1,1 @@
+Assuming that the input data is in the file named graphFile.txt and it is in the same directory as main.cpp.

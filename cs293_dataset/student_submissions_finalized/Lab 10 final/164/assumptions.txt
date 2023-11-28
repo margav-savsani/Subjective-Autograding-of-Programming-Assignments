@@ -1,0 +1,2 @@
+For any source and destionation program will not print any journey codes if the maxtransit time is zero hours as it will not be practically true
+if there are no journeys possibe it will print a journey with journey Code as 0 or empty

@@ -1,0 +1,6 @@
+assumptions:
+
+taken is source not exists return false
+ if list is  empty we cant proceed
+ done a simple quicksort
+ 

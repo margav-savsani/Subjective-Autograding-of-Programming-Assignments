@@ -1,0 +1,14 @@
+I sorted with the first priority being the day starting from Sunday and then the departure time.
+I assumed that if a particular train ends at a station it would be listed before any train on the same day that does
+    not end at that station .
+For Quicksorting  I used two more static variables is the starting index and il the ending index.
+    These will be changed before each recursive call and then reassigned their previous values after the call.
+I divided the list into K parts and store the some nodes which are indexes multiple of k(1 indexing) in 
+    a static array initialized in the first recursion. 
+For finding pivot I just found a random number between the start and the end and then just went to 
+    that index of the linked list not by traversing the list but by going to the corresponding head 
+    on the array and then traversing a list of max size K. 
+
+Then I just partitioned and called quicksort after changing the start and end.
+
+The simple one is almost the same here just the start and the end are not static variables but are passed to the function.

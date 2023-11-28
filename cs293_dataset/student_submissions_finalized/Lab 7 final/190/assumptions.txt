@@ -1,0 +1,39 @@
+Name: Priyanshu Yadav
+Roll no: 210050125
+
+Assumptions made in Lab 7:
+
+1. I have arranged the stations using arrTime and not depTime. It is mentioned in the piazza post:  https://piazza.com/class/l7f1yds2pb71c4/post/66
+
+2. I have done the bonus part. Please check it by uncommenting the quicksort function in planner.cpp.
+
+3. As far as the entries with arrTime = -1 are considered, I have put at the start of the given day. 
+	
+	For e.g. if I have entries 
+		Mon, arrTime: -1
+		Mon, arrTime: 1250
+		Sun, arrTime: 1800
+		
+		
+	They are arranged as:
+		Sun, arrTime: 1800
+		Mon, arrTime: -1
+		Mon, arrTime: 1250
+		
+		
+5. Please checkout the 'choosing pivot' part in partition function. It uses less than K steps in the for loop.
+
+6. In " listOfObjects<TrainInfoPerStation *> **arr ", the array 'arr' is the array of those special points in the array which start from 0
+	and go on at increments of K.
+	
+	For e.g. if n = 18 and K = 4
+		Then the nodes at indices = 0, 4, 8, 12, 16 are stored inside array 'arr'
+		
+	If I want to access say node at index = 13,
+	I first go to node at index = 13 - floor(13 / 4 ) i.e. 12
+	This I do using 'arr'.
+	Then from node 12, I can go to node 13 in 1 step.
+	I can go to 12, 13, 14, 15 in less than 4 steps.  
+		
+
+

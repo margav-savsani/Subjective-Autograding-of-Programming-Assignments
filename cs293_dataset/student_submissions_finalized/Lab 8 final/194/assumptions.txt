@@ -1,0 +1,8 @@
+tree is printed like:
+
+10
+ |--9
+  |--7
+ |__8
+ 
+thus assume that vertical lines lying horizontally below mean both are on same level

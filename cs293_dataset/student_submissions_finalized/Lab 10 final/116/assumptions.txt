@@ -1,0 +1,1 @@
+In this lab I assumed that toStation linked list  stores the trains going out of that stations although some of were talking that it stores the current stations .

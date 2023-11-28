@@ -1,0 +1,17 @@
+                      Assumptions
+
+In this lab i left transit constraint for 
+time-being and solved the problem.
+
+I created a function which asks for start
+location and end location and tells us 
+whether there is a direct train between
+them. This is done using DFS algorithm.
+
+After defining this function, i kept track 
+of all stations in between the journey in 
+a linked list and printed it using
+printJourney function defined earlier.
+
+
+              THANK YOU.

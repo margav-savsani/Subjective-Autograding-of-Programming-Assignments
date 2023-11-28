@@ -1,0 +1,10 @@
+Name        : Atishay Jain
+Roll Number : 210050026
+CS293       : LAB 10
+
+Assumptions :
+1. If there is an indirect as well as direct journey, I will print both of them.
+2. assumed same train timing are same on differnt days of week
+3. Assuming train halts within 24 hours and no such that 11:30 thur and 12:05 fri crossing a day
+4. Printing all halts of the train even if it is same.
+5. I'm not considering the journey in same train on different days as different journey in a station

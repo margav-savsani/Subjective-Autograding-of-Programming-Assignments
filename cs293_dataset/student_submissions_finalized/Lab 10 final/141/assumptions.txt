@@ -1,0 +1,15 @@
+Name : Soham Joshi
+Roll : 210051004
+Lab : 10
+
+==============================================================================
+
+1. Time spent at the station on the same train is not considered as transit time
+2. arrival and departure time are for "current station" in the adjacency list
+3. The arrival day is the soonest available choice after the departure from the source
+4. The Transit Time can exceed one day, and, departures from other days of the week are available. 
+5. Basically, the split train departure time can be "trusted" but the arrival time cannot
+6. Two connecting trains can be separated by atmost a week, for example Kal 2200 and nag 2100 on the same day is allowed since this implies that the train at nagpur leaves one week after arrival at nagpur.
+7. The latest tickets are below, and the old ones are above.
+8. The transit time is displayed below the station which underwent a change of trains.
+

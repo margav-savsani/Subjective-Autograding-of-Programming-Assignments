@@ -1,0 +1,1 @@
+No double addition - A station whose name is already added isn't added again (unless it's deleted first)

@@ -1,0 +1,23 @@
+Please strictly follow the submission instructions below.
+
+1.  Place the following files (containing your solution to lab assignment 4) in a folder named <roll_no>_L4, where <roll_no> is to be replaced by your roll number (e.g. if your roll number is 1234567890, the folder name should be 1234567890_L4):
+
+sort.h, sort.cpp, tree.h, tree.cpp, makeTree.cpp, choose.h, choose.cpp, journey.h, journey.cpp
+
+No other files or folders should be placed here.
+
+2. Change your working directory to the parent of the <roll_no>_L4 folder.  Then run tar -zcvf <roll_no>_L4.tar.gz <roll_no>_L4 from the shell prompt.  Needless to say, you must replace <roll_no> in all of these with your roll number.
+
+This will produce a file <roll_no>_L4.tar.gz
+
+E.g. if your roll number is 1234567890, you should run
+
+tar -zcvf 1234567890_L4.tar.gz 1234567890_L4
+
+3. Upload <roll_no>_L4.tar.gz here. 
+
+Only this file should be uploaded.
+
+# Submission stats
+Participants	200
+Submitted	175

@@ -1,0 +1,4 @@
+I have assumed that if I travelled along an edge say A-B in one direction, I 
+won't travel the same edge in opposite direction. Though I guess this is what
+the question says, I figured it out myself in a hard way.
+Also in inserting a node that is already inserted in BST, I inserted it to the right.

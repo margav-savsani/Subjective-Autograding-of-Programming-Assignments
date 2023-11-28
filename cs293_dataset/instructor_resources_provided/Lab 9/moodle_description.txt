@@ -1,0 +1,7 @@
+In this lab, we will use a variant of Breadth First Search (BFS) to find direct journeys (no changing of trains) between a given source station and a given destination station.  Please read the problem statement carefully.  This refers to specific data structures given in specific files.
+
+You must submit by creating a folder/directory named <roll_number>_L9, putting your version of printJourney.cpp there and then using tar -zcvf <roll_number>_L9.tgz <roll_number>_L9 to create a .tgz file, which should be uploaded.
+
+# Submission stats
+Participants	200
+Submitted	174

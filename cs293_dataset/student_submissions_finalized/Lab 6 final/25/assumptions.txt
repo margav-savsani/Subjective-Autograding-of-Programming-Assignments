@@ -1,0 +1,2 @@
+All characters in station names number be alphabets, no numeric characters allowed.
+The KMP I have implemented is case insensitive, which would be given a bonus as per announcement on Piazza.

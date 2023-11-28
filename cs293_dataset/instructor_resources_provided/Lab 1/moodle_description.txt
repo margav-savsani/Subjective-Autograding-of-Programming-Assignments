@@ -1,0 +1,13 @@
+In this assignment, we will implement a dynamic queue in two different ways. 
+
+The problem statement is given in queue.h    Please read the problem statement carefully.
+
+The harness for testing your code is given in test.cpp 
+
+You need to write your solution (programs) in two files linearQueue.cpp and circularQueue.cpp and compile by running "make testLinear" or "make testCircular" as appropriate.
+
+Do not worry about running gnuplot to visualize the running times now. We will send you separate instructions about that.  
+
+# Submission stats
+Participants	200
+Submitted	193

@@ -1,0 +1,16 @@
+A train won't stop at a station for more than 24 hrs
+A train won't run continuously without stopping for more than 24 hours
+TRANSIT TIME is given in number of hours and not in 24hrs format
+( eg: 20 and not 2000 )
+MAX TRANSIT TIME < 7*24 hours
+TRANSIT time is defined as the max time a person has to wait on a station
+
+PRINT format:
+
+Journey:
+<STATION NAME>
+<TRAIN CODE TO NEXT STATION> <DEPARTURE AT PREV STATION> <ARRIVAL AT NEXT STATION>
+<STATION NAME> <TRANSIT TIME in HHMM format in case of stopover >
+.
+.
+.

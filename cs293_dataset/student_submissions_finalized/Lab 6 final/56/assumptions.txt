@@ -1,0 +1,8 @@
+1. If the string is an empty string, then my computeHMatrixForKMP returns a nullptr.
+2. I assumed that one station name gets added only once to the indices array at the last node for each word in the Trie.
+3. My Trie::insert returns false if the index is already present in the indices array of the node
+4. My Trie::del returns false if
+    a. The word to be deleted doesn't exist.
+    b. The station name specified as the argument is not present in the names corresponding to the indices in the indices array of the last node of the word.
+5. My Trie::completions returns a nullptr if the prefix is invalid
+6. My Trie::addCompletions asserts that the TrieNode being passed as an argument is the last node of that word.

@@ -1,0 +1,13 @@
+1. No journey contains a loop
+2. Trains only run one way, i.e. if train A connects station 1 and 2, the same train does not connect station 2 to 1
+3. Completions will be valid, i.e. lie in the trie
+4. source station will be different from destination station
+
+Output format:
+Destination arrival time for journey 1 (all days)
+Source departure time  for journey 1 (all days)
+Destination arrival time for journey 2 (all days)
+Source departure time  for journey 2 (all days)
+.
+.
+.

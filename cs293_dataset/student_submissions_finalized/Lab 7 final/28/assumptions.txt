@@ -1,0 +1,2 @@
+I created a value function which return the 2400*day +depTime which helps in comparisons.
+

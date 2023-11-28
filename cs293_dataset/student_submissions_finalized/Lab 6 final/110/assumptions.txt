@@ -1,0 +1,4 @@
+
+I assumed the admin gives only upperxase inputs
+For user I made the program, case insensitive
+i.e, program works fine on upper and lower case for prefix and reviews

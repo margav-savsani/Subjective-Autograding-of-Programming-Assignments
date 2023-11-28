@@ -1,0 +1,5 @@
+Name: Josyula Venkata Aditya
+Roll no: 210050075
+
+1. getMax() doesn't work on an empty heap
+2. delMax() effectively does nothing on an empty heap

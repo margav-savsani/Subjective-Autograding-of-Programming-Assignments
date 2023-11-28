@@ -1,0 +1,2 @@
+1.assuming there will be no circular journeys
+2.assuming wait Time will be less than a week

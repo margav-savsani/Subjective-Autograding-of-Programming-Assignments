@@ -1,0 +1,2 @@
+I compared the traininfo, firstly according to the day of the week, then departure time, and if both of them mathc then according to arrival time,
+and if all the three match, according to journey code. All four values can never match,else they'd mean the same train arriving at the same time.

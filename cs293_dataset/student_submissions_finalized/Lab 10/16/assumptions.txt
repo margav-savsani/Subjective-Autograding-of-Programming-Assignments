@@ -1,0 +1,14 @@
+#################################################################
+Name : Karan Godara
+Roll No : 210050082
+InLab 10
+#################################################################
+
+Assumptions:
+Not anything as of now
+
+Note:
+Would work on my previous code and try to modify that to use max possible code 
+as previous lab as possible. Spent time trying to think the same.
+
+#################################################################

@@ -1,0 +1,7 @@
+210050011- Ameya Deshmukh
+CS293 Lab 9
+
+1) No journey code has a cyclic sequence of stations.
+
+2) Each journey code defines a unique sequence of stations, and a set of days.
+i.e. no journey code has 2 distinct journeys running on different days.

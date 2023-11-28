@@ -1,0 +1,2 @@
+1. Once a node gets visited from a previous node, the previous node cannot be visited from this node.
+2. Assuming that the inputs are valid (i.e edges < nC2)

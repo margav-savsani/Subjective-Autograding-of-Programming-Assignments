@@ -1,0 +1,2 @@
+Any node might be picked as a starting point
+Also any adjacent node might be picked to continue our DFS

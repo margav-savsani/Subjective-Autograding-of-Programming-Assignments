@@ -1,0 +1,2 @@
+case sensitive search in the reviews.
+only alphabets should be there in station names or word names.

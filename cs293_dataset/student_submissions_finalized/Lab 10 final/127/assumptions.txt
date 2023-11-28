@@ -1,0 +1,6 @@
+Since there was not a clear way recommended to deal with differing days of travel, I took a very simplistic
+approach when it came to the comparison with maxTransitTime. Similarly, since there was not much said about
+dealing with computation with times of arrival/departure of trains with respect to the  units used, I basically
+just implemented a dummy model for comparison, which can be made more sophisiticated as needed.
+Using printStationInfo was perhaps not the ideal way to display information to the user, but as it was recommended,
+I did use it.

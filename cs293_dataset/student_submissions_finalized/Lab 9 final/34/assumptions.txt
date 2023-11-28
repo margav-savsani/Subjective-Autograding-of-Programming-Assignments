@@ -1,0 +1,1 @@
+1) if trains goes from A-B-C-D-E, it is assumed that it cant go from A-C-E(i.e. without stopping at B and D) and A-F-E(i.e. no new intermeadiate station added).

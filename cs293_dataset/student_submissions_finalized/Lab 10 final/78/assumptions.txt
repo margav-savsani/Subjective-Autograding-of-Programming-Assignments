@@ -1,0 +1,30 @@
+Assumptions-
+
+A new class Journey has been declared in the printJourney.cpp file . It stores all the journey info including the train changes in between and the total transit time.
+I have modified planner.h and planner.cpp for printing this new Journey class.
+
+Following changes have been made- 
+
+1] planner.h -->
+void printJourneyInfo(listOfObjects<Journey *> *JourneyInfoList);
+
+2] planner.cpp -->
+void Planner::printJourneyInfo(listOfObjects<Journey *> *jlist){
+  listOfObjects<Journey *> *currList, *expandedList;
+  Journey *currInfo;
+  currList = jlist;
+  expandedList = nullptr;
+  int listLength = 0;
+  while (currList != nullptr) {
+    currInfo = currList->object;
+    if (currInfo != nullptr){
+	  cout<<"Journey : \n";
+      printStationInfo(currInfo->alljrnys);
+	  cout<< GREEN <<"Transit Time : "<< currInfo->transittime << RESET <<endl;
+    }
+  	currList = currList->next;
+  }
+}
+
+These changes have been done to use the printStationInfo function defined for the printing station information to print the journeys
+

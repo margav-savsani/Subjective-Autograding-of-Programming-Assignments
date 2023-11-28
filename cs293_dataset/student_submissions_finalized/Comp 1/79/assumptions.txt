@@ -1,0 +1,2 @@
+There should be no spiro based graphs and no bicyclo graph should have the root node at the bridgehead position
+

@@ -1,0 +1,21 @@
+210050089
+
+I have taken departure time  > arrival time for every train at every station.
+
+for checking trasist times I considered the cases only if changing the trains occurs at the same day.
+
+I have considered cases where transist time is < 24 hrs while solving.
+
+if train reches a particular station today then it must leave this station today only or 
+the given station must be the final station of that train.
+
+I have not considered the cases where train travels only on particular days
+so I haven't printed the days.
+
+I have used a cout statement "you have to change the train now at :   " untill that 
+statement is printed we are not changing trains.
+
+I have printed every station and train which we have to take at that station for that journey.
+
+I have ignored days of trains on which it runs.
+

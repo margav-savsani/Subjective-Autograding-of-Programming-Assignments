@@ -1,0 +1,2 @@
+I've assumed that every train corresponds to a unique journey code. 
+I've also assumed that each train only goes in one direction, i.e., the journey codes for an onward journey are different from the return journey.

@@ -1,0 +1,2 @@
+Assumed that:
+- The user considers the days at which respective trains are active before blindly choosing a journey plan.

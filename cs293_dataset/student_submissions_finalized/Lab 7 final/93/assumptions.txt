@@ -1,0 +1,1 @@
+If any journey ends at a given station, then the quicksort assumes the departure time as -1 while sorting.

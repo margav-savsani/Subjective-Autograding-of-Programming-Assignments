@@ -1,0 +1,5 @@
+21d180043 VIJAY BALSUBRAMANIAM
+
+Assumed that train of same journeyCode does not have two stations with an overlap in the arrival-departure time interval
+
+Assumed that a single train will not branch to two different stations from the same station,i.e  if a train goes through A-B-C-D-E then it can't go through A-C-E or A-F-D-E etc.

@@ -1,0 +1,17 @@
+Please follow the following submission instructions strictly. 
+
+Submissions made in violation of these instructions will be severely penalized.
+
+You should have made changes only to Trie.h, Trie.cpp, and kmp.cpp  The assignment can be solved by modifying only these files.
+Make sure your code compiles and works with all the updated files provided on Moodle, specifically updated_codes.h, updated_dictionary.cpp, updated_planner.cpp, updated_planner.h (needless to say, you need to rename each file to get rid of the updated_ prefix).
+Make sure your Trie.h/Trie.cpp includes the declaration/definition of printTrie and recursivePrintTrie (these were provided in updated_Trie.h and updated_Trie.cpp on Moodle)
+Write all assumptions you have made in an ASCII text file named assumptions.txt. Even if you have made no assumptions, create this file and write "No assumptions made" in the file.
+Create a separate directory/folder named <roll_number>_L6, where <roll_number> is your roll number.
+Use "cp"/"copy" command from a shell to copy the files assumptions.txt, Trie.h, Trie.cpp and kmp.cpp to the folder <roll_number>_L6.  Do not use Finder on Mac or File Explorer on Windows to copy the files, since they may also copy other metadata files.
+Run "tar -zcvf <roll_number>_L6.tgz  <roll_number>_L6", where <roll_number> is your roll number
+Next run "tar -zxvf <rull_number>_L6.tgz" to see if the extracted folder has only your copies of Trie.h, Trie.cpp and kmp.cpp
+If yes, please upload <roll_number>_L6.tgz on Moodle.  Otherwise, you need to go back to Step 4.
+
+# Submission stats
+Participants	200
+Submitted	178

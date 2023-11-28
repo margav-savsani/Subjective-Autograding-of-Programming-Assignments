@@ -1,0 +1,5 @@
+made the following assumptions:
+	getMax will not be used on an empty heap
+	number of elements in the heap will not exceed 2^16-1
+	swapping objects is relatively inexpensive
+	<< is overloaded

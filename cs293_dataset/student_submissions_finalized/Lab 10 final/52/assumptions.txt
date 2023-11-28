@@ -1,0 +1,6 @@
+- Journey codes are positive
+- maxTransitTime is given in the format HHMM i.e. if its 10 hours then its given as 1000
+- In bool daysOfWeek[7] the days marked are days of arrival unless the train starts on that station in which case the days marked are of departure.
+- On a given station a train does not wait for more than 24 hours. Hence, if the departure time is less than arrival time then it means it departs on the next day after it arrived
+- Between two consecutive stations the travel time is not more than 24 hours. Hence, if its arrival time on next station is less than departure time on current station it means it reaches on the next day after it departed
+- If a passenger comes to a station on a train with journeycode say 231 then he cannot deboard and board again on a train with same journeycode 231 which comes on the next day or so, since he could have just continued on orignal train without wasting time for no reason

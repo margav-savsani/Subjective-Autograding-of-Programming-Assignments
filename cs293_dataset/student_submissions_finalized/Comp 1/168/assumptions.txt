@@ -1,0 +1,4 @@
+I have assumed that we will move along an undirected edge from one node to another only if that new node was not a parent node of the node we are currently on.
+For example, if we have 2 nodes A and B and an edge between them, we start from A and go to B. However, once we are at B, we do not go back to A because A is a parent node of B. (parent node is a node from which we reached that specific node)
+
+So, this will affect the number of nodes visited once and twice and also the BST.

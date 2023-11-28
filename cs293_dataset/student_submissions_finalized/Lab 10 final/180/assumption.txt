@@ -1,0 +1,13 @@
+OUTPUT FORMAT::
+
+* All different possible paths are separated by "==============================".
+* In a single path suppose there is journey like A - B - C - D - E - F and there is change in train at C and E then output will be
+	 journey info at A (JourneyCode = 100 {assumed})
+
+	journey info at B (JourneyCode 100)
+
+	journey info at C (here there will be changed journeycode as we have changed train)
+	
+	journey info at D (journeycode same as C)
+
+	journey info at E (some other journeycode again)

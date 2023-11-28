@@ -1,0 +1,5 @@
+- Actually no Assumptions :)
+
+- Using the fact that there are atmost DICT_SIZE of station.
+- Using the linked list to implement the queue functionalities which is why the code is much longer than that using the separate Queue class.
+

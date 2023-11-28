@@ -1,0 +1,4 @@
+1. Loops may be included within the journey
+2. Transit time is taken from arrival time of first train till departure time of next train
+3. All possible journeys are returned in no specific order
+4. Output specification: Departing train from station, layovers (if any), arrival time to desination

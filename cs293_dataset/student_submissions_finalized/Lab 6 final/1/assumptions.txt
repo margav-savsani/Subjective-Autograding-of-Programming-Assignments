@@ -1,0 +1,1 @@
+1) The KMP algorithm implemented is case-insensitive.

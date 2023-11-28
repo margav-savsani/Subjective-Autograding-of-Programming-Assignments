@@ -1,0 +1,7 @@
+The sorting of the trains is primarily based on the precedence of the day of the week they runs on,
+if the days are equal, they are sorted based on their arrival times.
+
+Equal arrival times have equal precedence.
+
+If a train is starting at the station, i.e. arrival time -1
+it comes first in the precedence order.

@@ -1,0 +1,4 @@
+No train will go in a infinite loop ofc, this is not possible.
+Every train will go from a station to its adjacent station in less than 24hrs.
+maxTransitTime is less than 24hrs. and 24hrs is assumed to be 2400 as an integer.
+No train will stop at a station for more than 24 hrs.

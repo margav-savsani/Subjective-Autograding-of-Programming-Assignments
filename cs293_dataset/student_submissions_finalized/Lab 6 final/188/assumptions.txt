@@ -1,0 +1,2 @@
+Assuming that the word gets split, if there is a space in the string. 
+And delete function does not the trie if there are no indices in that trie. It just makes isWord false, for not giving it access.

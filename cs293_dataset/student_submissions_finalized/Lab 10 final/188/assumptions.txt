@@ -1,0 +1,8 @@
+Name - Akkapally Shasmith Krishna
+Roll no: 210050008
+
+---------------------------------------------------------------------
+Assumptions:
+transitTime is the time to be in station
+stopOver is a change between trains
+If there is a possibility of a early train to go to the destination, then the I output the early train instead of giving every possibility true within transitTime. The user have to check another journey from intermediate stn to destination if he wants to wait for more than 2 days in the intermediate station. 
